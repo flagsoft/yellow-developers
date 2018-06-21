@@ -5,7 +5,7 @@
 
 class YellowContact
 {
-	const VERSION = "0.7.1";
+	const VERSION = "0.7.2";
 	var $yellow;			//access to API
 	
 	// Handle initialisation
@@ -90,7 +90,6 @@ class YellowContact
 			$mailHeaders = mb_encode_mimeheader("From: $name")." <$from>\r\n";
 			$mailHeaders .= mb_encode_mimeheader("X-Referer-Url: ".$referer)."\r\n";
 			$mailHeaders .= mb_encode_mimeheader("X-Request-Url: ".$this->yellow->page->getUrl())."\r\n";
-			$mailHeaders .= mb_encode_mimeheader("X-Remote-Addr: $_SERVER[REMOTE_ADDR]")."\r\n";
 			$mailHeaders .= "Mime-Version: 1.0\r\n";
 			$mailHeaders .= "Content-Type: text/plain; charset=utf-8\r\n";
 			$mailMessage = "$message\r\n-- \r\n$name";
