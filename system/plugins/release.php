@@ -1,11 +1,11 @@
 <?php
 // Release plugin, https://github.com/datenstrom/yellow-developers
-// Copyright (c) 2013-2017 Datenstrom, https://datenstrom.se
+// Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
 class YellowRelease
 {
-	const VERSION = "0.7.1";
+	const VERSION = "0.7.2";
 
 	// Handle plugin initialisation
 	function onLoad($yellow)
@@ -277,19 +277,20 @@ class YellowRelease
 	function getSoftwareArchiveEntries($path)
 	{
 		$entries = array();
-		$fileName = $path.$this->yellow->config->get("updateInformationFile");
-		$fileData = $this->yellow->toolbox->readFile($fileName);
+		$fileNameInformation = $path.$this->yellow->config->get("updateInformationFile");
+		$fileData = $this->yellow->toolbox->readFile($fileNameInformation);
 		foreach($this->yellow->toolbox->getTextLines($fileData) as $line)
 		{
 				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
 				if(!empty($matches[1]) && !empty($matches[2]) && strposu($matches[1], '/'))
 				{
 					list($dummy, $entry) = explode('/', $matches[1], 2);
+					list($fileName, $flags) = explode(',', $matches[2], 2);
 					if($dummy[0]!='Y') list($entry, $flags) = explode(',', $matches[2], 2); //TODO: remove later, converts old file format
 					if(!preg_match("/delete/i", $flags)) array_push($entries, "$path$entry");
 				}
 		}
-		array_push($entries, $fileName);
+		array_push($entries, $fileNameInformation);
 		return $entries;
 	}
 	
