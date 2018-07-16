@@ -5,7 +5,7 @@
 
 class YellowSearch
 {
-	const VERSION = "0.7.3";
+	const VERSION = "0.7.4";
 	var $yellow;			//access to API
 	
 	// Handle initialisation
@@ -94,19 +94,22 @@ class YellowSearch
 	function getSearchInformation($query, $tokensMax)
 	{
 		$tokens = array_unique(array_filter($this->yellow->toolbox->getTextArgs($query), "strlen"));
-		$filters = array_filter($_REQUEST, "strlen");
+		$filters = array();
+		$filtersSupported = array("tag", "author", "language", "status", "special");
+		foreach($_REQUEST as $key=>$value)
+		{
+			if(in_array($key, $filtersSupported)) $filters[$key] = $value;
+		}
 		foreach($tokens as $key=>$value)
 		{
 			preg_match("/^(.*?):(.*)$/", $value, $matches);
-			if(!empty($matches[1]) && !strempty($matches[2]))
+			if(!empty($matches[1]) && !strempty($matches[2]) && in_array($matches[1], $filtersSupported))
 			{
-				$filtersInQuery = true;
 				$filters[$matches[1]] = $matches[2];
 				unset($tokens[$key]);
 			}
 		}
 		if($tokensMax) $tokens = array_slice($tokens, 0, $tokensMax);
-		if(empty($tokens) && !$filtersInQuery && !$filters["special"]) $filters = array();
 		return array($tokens, $filters);
 	}
 }
