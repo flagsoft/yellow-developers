@@ -5,7 +5,7 @@
 
 class YellowRelease
 {
-	const VERSION = "0.7.3";
+	const VERSION = "0.7.4";
 
 	// Handle plugin initialisation
 	function onLoad($yellow)
@@ -119,6 +119,13 @@ class YellowRelease
 				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
 				if(lcfirst($matches[1])=="version") $line = "Version: $version\n";
 				if(lcfirst($matches[1])=="published") $line = "Published: ".date("Y-m-d H:i:s", $published)."\n";
+				if(lcfirst($matches[1])=="plugin" || lcfirst($matches[1])=="theme") $software = $matches[2]; //TODO: remove later
+				if(!empty($matches[1]) && !empty($matches[2]) && strposu($matches[1], '/')) //TODO: remove later, converts old file format
+				{
+					list($dummy, $entry) = explode('/', $matches[1], 2);
+					list($fileShort, $flags) = explode(',', $matches[2], 2);
+					if($dummy[0]!='Y') $line = "$software/$fileShort: $dummy/$entry,$flags\n";
+				}
 				$fileDataNew .= $line;
 			}
 			if($fileData!=$fileDataNew)
