@@ -5,15 +5,14 @@
 
 class YellowRelease
 {
-	const VERSION = "0.7.2";
+	const VERSION = "0.7.3";
 
 	// Handle plugin initialisation
 	function onLoad($yellow)
 	{
 		$this->yellow = $yellow;
-		$this->yellow->config->setDefault("releasePluginsDir", "/Users/Shared/Github/yellow-plugins/");
-		$this->yellow->config->setDefault("releaseThemesDir", "/Users/Shared/Github/yellow-themes/");
-		$this->yellow->config->setDefault("releaseZipArchiveDir", "zip/");
+		$this->yellow->config->setDefault("releasePluginsDir", "/Users/Datenstrom/Documents/GitHub/yellow-plugins/");
+		$this->yellow->config->setDefault("releaseThemesDir", "/Users/Datenstrom/Documents/GitHub/yellow-themes/");
 		$this->yellow->config->setDefault("releaseDocumentationFile", "README.md");
 	}
 
@@ -35,43 +34,42 @@ class YellowRelease
 		return $statusCode;
 	}
 
-	// Update release files
+	// Create software releases
 	function releaseCommand($args)
 	{
 		$statusCode = 0;
 		list($command, $path) = $args;
 		if(empty($path))
 		{
-			$path = rtrim($this->yellow->config->get("releasePluginsDir"), '/').'/';
-			$statusCode = max($statusCode, $this->updateSoftwareFiles($path));
-			$statusCode = max($statusCode, $this->updateSoftwareArchives($path));
-			$path = rtrim($this->yellow->config->get("releaseThemesDir"), '/').'/';
-			$statusCode = max($statusCode, $this->updateSoftwareFiles($path));
-			$statusCode = max($statusCode, $this->updateSoftwareArchives($path));
+			$pathPlugins = rtrim($this->yellow->config->get("releasePluginsDir"), '/').'/';
+			$pathThemes = rtrim($this->yellow->config->get("releaseThemesDir"), '/').'/';
+			$statusCode = max($statusCode, $this->updateSoftwareRepository($pathPlugins));
+			$statusCode = max($statusCode, $this->updateSoftwareRepository($pathThemes));
 		} else {
-			$path = rtrim($path, '/').'/';
-			$statusCode = max($statusCode, $this->updateSoftwareFiles($path));
-			$statusCode = max($statusCode, $this->updateSoftwareArchives($path));
+			$pathPlugins = rtrim($this->yellow->config->get("releasePluginsDir"), '/').'/';
+			$pathThemes = rtrim($this->yellow->config->get("releaseThemesDir"), '/').'/';
+			$pathRepository = $this->getSoftwareTypeFromDirectory($path)=="plugin" ? $pathPlugins : $pathThemes;
+			$statusCode = max($statusCode, $this->updateSoftwareRepositoryCustom($pathRepository, rtrim($path, '/').'/'));
 		}
 		echo "Yellow $command: Release files ".($statusCode!=200 ? "not " : "")."updated\n";
 		return $statusCode;
 	}
 	
-	// Update software files
-	function updateSoftwareFiles($path)
+	// Update software repository from all subdirectories
+	function updateSoftwareRepository($path)
 	{
 		$statusCode = 200;
 		if(is_dir($path))
 		{
-			$data = $this->getSoftwareVersionFromRepository($path);
-			$statusCode = max($statusCode, $this->updateSoftwareVersion($path, $data));
-			$statusCode = max($statusCode, $this->updateSoftwareResource($path, $data));
 			foreach($this->yellow->toolbox->getDirectoryEntries($path, "/.*/", true, true, false) as $entry)
 			{
 				list($software, $version) = $this->getSoftwareVersionFromDirectory("$path$entry/");
 				$statusCode = max($statusCode, $this->updateSoftwareInformation("$path$entry/", $version));
 				$statusCode = max($statusCode, $this->updateSoftwareDocumentation("$path$entry/", $version));
 			}
+			$statusCode = max($statusCode, $this->updateSoftwareVersion($path));
+			$statusCode = max($statusCode, $this->updateSoftwareResource($path));
+			$statusCode = max($statusCode, $this->updateSoftwareArchives($path));
 		} else {
 			$statusCode = 500;
 			echo "ERROR updating files: Can't find directory '$path'!\n";
@@ -79,77 +77,21 @@ class YellowRelease
 		return $statusCode;
 	}
 	
-	// Update software version file
-	function updateSoftwareVersion($path, $data)
+	// Update software repository from custom directory
+	function updateSoftwareRepositoryCustom($path, $pathCustom)
 	{
 		$statusCode = 200;
-		$fileName = $path.$this->yellow->config->get("updateVersionFile");
-		if(is_file($fileName))
+		if(is_dir($path) && is_dir($pathCustom))
 		{
-			$fileData = $this->yellow->toolbox->readFile($fileName);
-			foreach($this->yellow->toolbox->getTextLines($fileData) as $line)
-			{
-				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
-				if(!empty($matches[1]) && !empty($matches[2]) && !is_null($data[$matches[1]]))
-				{
-					list($version, $url) = explode(',', $matches[2]);
-					$version = $data[$matches[1]];
-					$fileDataNew .= "$matches[1]: $version,$url\n";
-				} else {
-					$fileDataNew .= $line;
-				}
-			}
-			if($fileData!=$fileDataNew)
-			{
-				if(!$this->yellow->toolbox->createFile($fileName, $fileDataNew))
-				{
-					$statusCode = 500;
-					echo "ERROR updating files: Can't write file '$fileName'!\n";
-				}
-			}
-			if(defined("DEBUG") && DEBUG>=2) echo "YellowRelease::updateSoftwareVersion file:$fileName<br/>\n";
-		}
-		return $statusCode;
-	}
-
-	// Update software resource file
-	function updateSoftwareResource($path, $data)
-	{
-		$statusCode = 200;
-		$fileName = $path.$this->yellow->config->get("updateResourceFile");
-		if(is_file($fileName))
-		{
-			$resourceData = $this->getSoftwareResourceFromRepository($path);
-			$fileData = $this->yellow->toolbox->readFile($fileName);
-			foreach($this->yellow->toolbox->getTextLines($fileData) as $line)
-			{
-				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
-				if(!empty($matches[1]) && !empty($matches[2]))
-				{
-					list($softwareNew) = explode('/', $matches[1]);
-					if(!is_null($data[$softwareNew]) && !is_null($resourceData[$softwareNew]))
-					{
-						if($software!=$softwareNew)
-						{
-							$software = $softwareNew;
-							$fileDataNew .= $resourceData[$softwareNew];
-						}
-					} else {
-						$fileDataNew .= $line;
-					}
-				} else {
-					$fileDataNew .= $line;
-				}
-			}
-			if($fileData!=$fileDataNew)
-			{
-				if(!$this->yellow->toolbox->createFile($fileName, $fileDataNew))
-				{
-					$statusCode = 500;
-					echo "ERROR updating files: Can't write file '$fileName'!\n";
-				}
-			}
-			if(defined("DEBUG") && DEBUG>=2) echo "YellowRelease::updateSoftwareResource file:$fileName<br/>\n";
+			list($software, $version) = $this->getSoftwareVersionFromDirectory($pathCustom);
+			$statusCode = max($statusCode, $this->updateSoftwareInformation($pathCustom, $version));
+			$statusCode = max($statusCode, $this->updateSoftwareDocumentation($pathCustom, $version));
+			$statusCode = max($statusCode, $this->updateSoftwareVersion($path, $pathCustom));
+			$statusCode = max($statusCode, $this->updateSoftwareResource($path, $pathCustom));
+		} else {
+			$statusCode = 500;
+			if(!is_dir($path)) echo "ERROR updating files: Can't find directory '$path'!\n";
+			if(!is_dir($pathCustom)) echo "ERROR updating files: Can't find directory '$pathCustom'!\n";
 		}
 		return $statusCode;
 	}
@@ -224,51 +166,125 @@ class YellowRelease
 		return $statusCode;
 	}
 	
+	// Update software version file
+	function updateSoftwareVersion($path, $pathCustom = "")
+	{
+		$statusCode = 200;
+		$fileName = $path.$this->yellow->config->get("updateVersionFile");
+		if(is_file($fileName))
+		{
+			$versionData = $this->getSoftwareVersionFromRepository($path, $pathCustom);
+			$fileData = $this->yellow->toolbox->readFile($fileName);
+			foreach($this->yellow->toolbox->getTextLines($fileData) as $line)
+			{
+				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
+				if(!empty($matches[1]) && !empty($matches[2]) && !is_null($versionData[$matches[1]]))
+				{
+					list($version, $url) = explode(',', $matches[2]);
+					$version = $versionData[$matches[1]];
+					$fileDataNew .= "$matches[1]: $version,$url\n";
+				} else {
+					$fileDataNew .= $line;
+				}
+			}
+			if($fileData!=$fileDataNew)
+			{
+				if(!$this->yellow->toolbox->createFile($fileName, $fileDataNew))
+				{
+					$statusCode = 500;
+					echo "ERROR updating files: Can't write file '$fileName'!\n";
+				}
+			}
+			if(defined("DEBUG") && DEBUG>=2) echo "YellowRelease::updateSoftwareVersion file:$fileName<br/>\n";
+		}
+		return $statusCode;
+	}
+
+	// Update software resource file
+	function updateSoftwareResource($path, $pathCustom = "")
+	{
+		$statusCode = 200;
+		$fileName = $path.$this->yellow->config->get("updateResourceFile");
+		if(is_file($fileName))
+		{
+			$versionData = $this->getSoftwareVersionFromRepository($path, $pathCustom);
+			$resourceData = $this->getSoftwareResourceFromRepository($path, $pathCustom);
+			$fileData = $this->yellow->toolbox->readFile($fileName);
+			foreach($this->yellow->toolbox->getTextLines($fileData) as $line)
+			{
+				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
+				if(!empty($matches[1]) && !empty($matches[2]))
+				{
+					list($softwareNew) = explode('/', $matches[1]);
+					if(!is_null($versionData[$softwareNew]) && !is_null($resourceData[$softwareNew]))
+					{
+						if($software!=$softwareNew)
+						{
+							$software = $softwareNew;
+							$fileDataNew .= $resourceData[$softwareNew];
+						}
+					} else {
+						$fileDataNew .= $line;
+					}
+				} else {
+					$fileDataNew .= $line;
+				}
+			}
+			if($fileData!=$fileDataNew)
+			{
+				if(!$this->yellow->toolbox->createFile($fileName, $fileDataNew))
+				{
+					$statusCode = 500;
+					echo "ERROR updating files: Can't write file '$fileName'!\n";
+				}
+			}
+			if(defined("DEBUG") && DEBUG>=2) echo "YellowRelease::updateSoftwareResource file:$fileName<br/>\n";
+		}
+		return $statusCode;
+	}
+	
 	// Update software archives
 	function updateSoftwareArchives($path)
 	{
 		$statusCode = 200;
-		if(is_dir($path))
+		$pathZipArchive = $path."zip/";
+		$fileNameInformation = $this->yellow->config->get("updateInformationFile");
+		foreach($this->yellow->toolbox->getDirectoryEntries($path, "/.*/", true, true, false) as $entry)
 		{
-			$pathZipArchive = $path.$this->yellow->config->get("releaseZipArchiveDir");
-			$fileNameInformation = $this->yellow->config->get("updateInformationFile");
-			foreach($this->yellow->toolbox->getDirectoryEntries($path, "/.*/", true, true, false) as $entry)
+			if("$path$entry/"==$pathZipArchive) continue;
+			if(!is_file("$path$entry/$fileNameInformation")) continue;
+			$zip = new ZipArchive();
+			$fileNameZipArchive = "$pathZipArchive$entry.zip";
+			if($zip->open($fileNameZipArchive, ZIPARCHIVE::CREATE|ZIPARCHIVE::OVERWRITE)===true)
 			{
-				if("$path$entry/"==$pathZipArchive) continue;
-				if(!is_file("$path$entry/$fileNameInformation")) continue;
-				$zip = new ZipArchive();
-				$fileNameZipArchive = "$pathZipArchive$entry.zip";
-				if($zip->open($fileNameZipArchive, ZIPARCHIVE::CREATE|ZIPARCHIVE::OVERWRITE)===true)
+				$modified = 0;
+				$fileNamesRequired = $this->getSoftwareArchiveEntries("$path$entry/");
+				$fileNamesFound = $this->yellow->toolbox->getDirectoryEntries($path.$entry, "/.*/", true, false);
+				foreach($fileNamesFound as $fileName)
 				{
-					$modified = 0;
-					$fileNamesRequired = $this->getSoftwareArchiveEntries("$path$entry/");
-					$fileNamesFound = $this->yellow->toolbox->getDirectoryEntries($path.$entry, "/.*/", true, false);
-					foreach($fileNamesFound as $fileName)
-					{
-						if(!in_array($fileName, $fileNamesRequired)) continue;
-						$zip->addFile($fileName, substru($fileName, strlenu($path)));
-						$modified = max($modified, $this->yellow->toolbox->getFileModified($fileName));
-						unset($fileNamesRequired[array_search($fileName, $fileNamesRequired)]);
-					}
-					if(count($fileNamesRequired))
-					{
-						$statusCode = 500;
-						foreach($fileNamesRequired as $fileName)
-						{
-							echo "ERROR updating files: Can't find file '$fileName'!\n";
-						}
-					}
-					if(!$zip->close() || !$this->yellow->toolbox->modifyFile($fileNameZipArchive, $modified))
-					{
-						$statusCode = 500;
-						echo "ERROR updating files: Can't write file '$fileNameZipArchive'!\n";
-					}
-				} else {
-					$statusCode = 500;
-					echo "ERROR updating files: Can't write file '$fileNameZipArchive'!\n";					
+					if(!in_array($fileName, $fileNamesRequired)) continue;
+					$zip->addFile($fileName, substru($fileName, strlenu($path)));
+					$modified = max($modified, $this->yellow->toolbox->getFileModified($fileName));
+					unset($fileNamesRequired[array_search($fileName, $fileNamesRequired)]);
 				}
-				if(defined("DEBUG") && DEBUG>=2) echo "YellowRelease::updateSoftwareArchives file:$fileNameZipArchive<br/>\n";
+				if(count($fileNamesRequired))
+				{
+					$statusCode = 500;
+					foreach($fileNamesRequired as $fileName)
+					{
+						echo "ERROR updating files: Can't find file '$fileName'!\n";
+					}
+				}
+				if(!$zip->close() || !$this->yellow->toolbox->modifyFile($fileNameZipArchive, $modified))
+				{
+					$statusCode = 500;
+					echo "ERROR updating files: Can't write file '$fileNameZipArchive'!\n";
+				}
+			} else {
+				$statusCode = 500;
+				echo "ERROR updating files: Can't write file '$fileNameZipArchive'!\n";
 			}
+			if(defined("DEBUG") && DEBUG>=2) echo "YellowRelease::updateSoftwareArchives file:$fileNameZipArchive<br/>\n";
 		}
 		return $statusCode;
 	}
@@ -281,26 +297,31 @@ class YellowRelease
 		$fileData = $this->yellow->toolbox->readFile($fileNameInformation);
 		foreach($this->yellow->toolbox->getTextLines($fileData) as $line)
 		{
-				preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
-				if(!empty($matches[1]) && !empty($matches[2]) && strposu($matches[1], '/'))
-				{
-					list($dummy, $entry) = explode('/', $matches[1], 2);
-					list($fileName, $flags) = explode(',', $matches[2], 2);
-					if($dummy[0]!='Y') list($entry, $flags) = explode(',', $matches[2], 2); //TODO: remove later, converts old file format
-					if(!preg_match("/delete/i", $flags)) array_push($entries, "$path$entry");
-				}
+			preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
+			if(!empty($matches[1]) && !empty($matches[2]) && strposu($matches[1], '/'))
+			{
+				list($dummy, $entry) = explode('/', $matches[1], 2);
+				list($fileName, $flags) = explode(',', $matches[2], 2);
+				if($dummy[0]!='Y') list($entry, $flags) = explode(',', $matches[2], 2); //TODO: remove later, converts old file format
+				if(!preg_match("/delete/i", $flags)) array_push($entries, "$path$entry");
+			}
 		}
 		array_push($entries, $fileNameInformation);
 		return $entries;
 	}
 	
 	// Return software version from repository
-	function getSoftwareVersionFromRepository($path)
+	function getSoftwareVersionFromRepository($path, $pathCustom)
 	{
 		$data = array();
 		foreach($this->yellow->toolbox->getDirectoryEntries($path, "/.*/", true, true) as $entry)
 		{
 			list($software, $version) = $this->getSoftwareVersionFromDirectory($entry);
+			if(!empty($software) && !empty($version)) $data[$software] = $version;
+		}
+		if(!empty($pathCustom))
+		{
+			list($software, $version) = $this->getSoftwareVersionFromDirectory($pathCustom);
 			if(!empty($software) && !empty($version)) $data[$software] = $version;
 		}
 		return $data;
@@ -324,13 +345,25 @@ class YellowRelease
 		return array($software, $version);
 	}
 
+	// Return software version from directory
+	function getSoftwareTypeFromDirectory($path)
+	{
+		list($software) = $this->getSoftwareVersionFromDirectory($path);
+		return preg_match("/^YellowTheme/", $software) ? "theme" : "plugin";
+	}
+
 	// Return software resource from repository
-	function getSoftwareResourceFromRepository($path)
+	function getSoftwareResourceFromRepository($path, $pathCustom)
 	{
 		$data = array();
 		foreach($this->yellow->toolbox->getDirectoryEntries($path, "/.*/", true, true) as $entry)
 		{
 			list($software, $resource) = $this->getSoftwareResourceFromDirectory("$entry/");
+			if(!empty($software) && !empty($resource)) $data[$software] = $resource;
+		}
+		if(!empty($pathCustom))
+		{
+			list($software, $resource) = $this->getSoftwareResourceFromDirectory($pathCustom);
 			if(!empty($software) && !empty($resource)) $data[$software] = $resource;
 		}
 		return $data;
