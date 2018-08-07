@@ -55,6 +55,8 @@ a:hover { color:#07d; text-decoration:underline; }
 .content .stretchable ul { margin:0 -0.5em; padding:0; list-style:none; text-align:center; }
 .content .stretchable li { margin:0; padding:1em 0; display:inline-block; text-align:center; vertical-align:top; }
 .content .stretchable a { color:#717171; text-decoration:none; }
+.content .task-list-item { list-style-type:none; }
+.content .task-list-item input { margin:0 0.2em 0.25em -1.75em; vertical-align:middle; }
 .content .toc { margin:0; padding:0; list-style:none; }
 .content .entry-links .previous { margin-right:1em; }
 .content .pagination .previous { margin-right:1em; }
