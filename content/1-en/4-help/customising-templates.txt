@@ -15,7 +15,7 @@ The template defines which snippets will be used. To adjust the source code of y
 
 Here's an example template file `system/themes/templates/custom.html`:
 
-``` php
+``` html
 <?php $yellow->snippet("header") ?>
 <?php $yellow->snippet("content-custom") ?>
 <?php $yellow->snippet("footer") ?>
@@ -23,7 +23,7 @@ Here's an example template file `system/themes/templates/custom.html`:
 
 Here's an example snippet file `system/themes/snippets/content-custom.php`:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -34,7 +34,7 @@ Here's an example snippet file `system/themes/snippets/content-custom.php`:
 
 Here's an example snippet for showing page content with additional meta data:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -46,7 +46,7 @@ Here's an example snippet for showing page content with additional meta data:
 
 Here's an example snippet for showing latest blog pages:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index()->filter("template", "blog")->sort("published", false)->limit(5) ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <?php $yellow->page->setHeader("Cache-Control", "max-age=60") ?>
@@ -80,7 +80,7 @@ The following navigations are available:
 
 Here's an example snippet file `system/themes/snippets/navigation.php`:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <div class="navigation">
@@ -95,7 +95,7 @@ Here's an example snippet file `system/themes/snippets/navigation.php`:
 
 Here's an example snippet to show additional links in the navigation:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <div class="navigation">
@@ -113,7 +113,7 @@ Here's an example snippet to show additional links in the navigation:
 
 Here's an example snippet to show [icons and symbols](https://github.com/datenstrom/yellow-plugins/tree/master/fontawesome) in the navigation:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <div class="navigation">
@@ -135,7 +135,7 @@ At the bottom is the footer. To adjust the footer change the corresponding snipp
 
 Here's an example snippet file `system/themes/snippets/footer.php`:
 
-``` php
+``` html
 <div class="footer">
 <div class="siteinfo">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.
@@ -150,7 +150,7 @@ Here's an example snippet file `system/themes/snippets/footer.php`:
 
 Here's an example snippet to show additional links in the footer:
 
-``` php
+``` html
 <div class="footer">
 <div class="siteinfo">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.
@@ -168,7 +168,7 @@ Here's an example snippet to show additional links in the footer:
 
 Here's an example snippet to divide the footer into left and right:
 
-``` php
+``` html
 <div class="footer">
 <div class="siteinfo">
 <div class="siteinfo-left">

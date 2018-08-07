@@ -15,7 +15,7 @@ To understand themes it's good to know the [HTML](https://www.w3schools.com/html
 
 Here's the default HTML layout:
 
-``` php
+``` html
 <!DOCTYPE html>
 <html>
   <head>…</head>

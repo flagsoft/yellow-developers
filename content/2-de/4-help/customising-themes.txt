@@ -16,7 +16,7 @@ Um Themes zu verstehen, ist es gut die [HTML](https://www.w3schools.com/html/)-S
 
 Hier ist die Standard-HTML-Struktur:
 
-``` php
+``` html
 <!DOCTYPE html>
 <html>
   <head>…</head>

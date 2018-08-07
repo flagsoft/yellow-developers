@@ -15,7 +15,7 @@ Das Template legt fest welche Snippets benutzt werden. Um den Quellcode deiner W
 
 Hier ist eine Beispiel-Templatedatei `system/themes/templates/custom.html`:
 
-``` php
+``` html
 <?php $yellow->snippet("header") ?>
 <?php $yellow->snippet("content-custom") ?>
 <?php $yellow->snippet("footer") ?>
@@ -23,7 +23,7 @@ Hier ist eine Beispiel-Templatedatei `system/themes/templates/custom.html`:
 
 Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/content-custom.php`:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -34,7 +34,7 @@ Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/content-custom.php`:
 
 Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Metadaten anzuzeigen:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -46,7 +46,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Metadaten anz
 
 Hier ist ein Beispiel-Snippet um die neusten Blogseiten anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index()->filter("template", "blog")->sort("published", false)->limit(5) ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <?php $yellow->page->setHeader("Cache-Control", "max-age=60") ?>
@@ -80,7 +80,7 @@ Die folgenden Navigationen sind vorhanden:
 
 Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/navigation.php`:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <div class="navigation">
@@ -95,7 +95,7 @@ Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/navigation.php`:
 
 Hier ist ein Beispiel-Snippet um zusätzliche Links in der Navigation anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <div class="navigation">
@@ -113,7 +113,7 @@ Hier ist ein Beispiel-Snippet um zusätzliche Links in der Navigation anzuzeigen
 
 Hier ist ein Beispiel-Snippet um [Icons und Symbole](https://github.com/datenstrom/yellow-plugins/tree/master/fontawesome) in der Navigation anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <div class="navigation">
@@ -135,7 +135,7 @@ Unten befindet sich die Fußzeile. Um die Fußzeile anzupassen, ändere das ents
 
 Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/footer.php`:
 
-``` php
+``` html
 <div class="footer">
 <div class="siteinfo">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.
@@ -150,7 +150,7 @@ Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/footer.php`:
 
 Hier ist ein Beispiel-Snippet um zusätzliche Links in der Fußzeile anzuzeigen:
 
-``` php
+``` html
 <div class="footer">
 <div class="siteinfo">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.
@@ -168,7 +168,7 @@ Hier ist ein Beispiel-Snippet um zusätzliche Links in der Fußzeile anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um die Fußzeile in Links und Rechts aufzuteilen:
 
-``` php
+``` html
 <div class="footer">
 <div class="siteinfo">
 <div class="siteinfo-left">

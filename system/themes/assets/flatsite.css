@@ -156,10 +156,11 @@ a:hover { color:#07d; text-decoration:underline; }
 .template-language .content div.language { font-size:1.2em; text-align:left; width:9em; margin:0 auto; }
 .template-language .content div.language p { margin:1.5em 0em; }
 .template-language .content div.language img { vertical-align:middle; margin-top:-5px; margin-right:1.5em; }
-.highlight .kw1, .highlight .kw2, .highlight .kw3, .highlight .kw4 { color:#b0b; }
-.highlight .st0, .highlight .st_h, .highlight .nu0 { color:#b0b; }
-.highlight .re0, .highlight .re1, .highlight .re2, .highlight .re3, .css .nu0 { color:inherit; }
-.highlight .co1, .highlight .coMULTI, .highlight .sc0, .highlight .sc-1 { color:inherit; }
+.hljs-meta, .hljs-keyword, .hljs-literal { color:#b0b; }
+.hljs-attr, .hljs-attribute, .hljs-selector-id, .hljs-selector-class, .hljs-selector-pseudo { color:#b0b; }
+.hljs-type, .hljs-built_in, .hljs-builtin-name, .hljs-params { color:#b0b; }
+.hljs-string { color:#717171; }
+.hljs-symbol, .hljs-bullet, .hljs-link, .hljs-number { color:#717171; }
 
 /* Responsive and print */
 

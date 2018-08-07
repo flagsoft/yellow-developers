@@ -64,7 +64,7 @@ Créer des tables:
 
 Créer des notes de bas de page:
 
-    Texte avec une note de bas de page[^1] et quelques autres notes de bas de page.[^2][^3]
+    Texte avec une note de bas de page[^1] et quelques autres notes de bas de page.[^2] [^3]
     
     [^1]: Voici la première note de bas de page
     [^2]: Voici la deuxième note de bas de page

@@ -150,7 +150,7 @@ Check if related page exists
 
 Here's an example snippet for showing page content:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -161,7 +161,7 @@ Here's an example snippet for showing page content:
 
 Here's an example snippet for showing page content with additional meta data:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -173,7 +173,7 @@ Here's an example snippet for showing page content with additional meta data:
 
 Here's an example snippet for showing page content with additional tags:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -258,7 +258,7 @@ Check if there is a pagination
 
 Here's an example snippet for showing three random pages:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index() ?>
 <ul>
 <?php foreach($pages->shuffle()->limit(3) as $page): ?>
@@ -269,7 +269,7 @@ Here's an example snippet for showing three random pages:
 
 Here's an example snippet for showing latest pages:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index() ?>
 <ul>
 <?php foreach($pages->sort("modified", false) as $page): ?>
@@ -280,7 +280,7 @@ Here's an example snippet for showing latest pages:
 
 Here's an example snippet for showing all pages with draft status:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index(true, true) ?>
 <ul>
 <?php foreach($pages->filter("status", "draft") as $page): ?>
@@ -313,7 +313,7 @@ Return [page collection](#yellow-page-collection) that is empty
 
 Here's an example snippet for showing all pages:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index(true, true) ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <ul>
@@ -325,7 +325,7 @@ Here's an example snippet for showing all pages:
 
 Here's an example snippet for showing pages below a specific location:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->find("/help/")->getChildren(true) ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <ul>
@@ -337,7 +337,7 @@ Here's an example snippet for showing pages below a specific location:
 
 Here's an example snippet for showing top-level navigation pages:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <ul>
@@ -362,7 +362,7 @@ Return [page collection](#yellow-page-collection) that is empty
 
 Here's an example snippet for showing all media files:
 
-``` php
+``` html
 <?php $files = $yellow->files->index(true) ?>
 <?php $yellow->page->setLastModified($files->getModified()) ?>
 <ul>
@@ -374,7 +374,7 @@ Here's an example snippet for showing all media files:
 
 Here's an example snippet for showing latest media files:
 
-``` php
+``` html
 <?php $files = $yellow->files->index(true)->sort("modified", false) ?>
 <?php $yellow->page->setLastModified($files->getModified()) ?>
 <ul>
@@ -386,7 +386,7 @@ Here's an example snippet for showing latest media files:
 
 Here's an example snippet for showing media files of a specific type:
 
-``` php
+``` html
 <?php $files = $yellow->files->index(true)->filter("type", "pdf") ?>
 <?php $yellow->page->setLastModified($files->getModified()) ?>
 <ul>
@@ -417,7 +417,7 @@ Check if plugin exists
 
 Here's an example snippet for showing information about plugins:
 
-``` php
+``` html
 <ul>
 <?php foreach($yellow->plugins->getData() as $key=>$value): ?>
 <li><?php echo htmlspecialchars("$key $value") ?></li>
@@ -427,7 +427,7 @@ Here's an example snippet for showing information about plugins:
 
 Here's an example snippet for checking if plugin exists:
 
-``` php
+``` html
 <?php if($yellow->plugins->isExisting("fontawesome")): ?>
 <a href="https://twitter.com/username"><i class="fa fa-twitter"></i></a>
 <?php else: ?>
@@ -468,7 +468,7 @@ Check if theme exists
 
 Here's an example snippet for showing information about themes:
 
-``` php
+``` html
 <ul>
 <?php foreach($yellow->themes->getData() as $key=>$value): ?>
 <li><?php echo htmlspecialchars("$key $value") ?></li>
@@ -478,7 +478,7 @@ Here's an example snippet for showing information about themes:
 
 Here's an example snippet for checking if theme exists:
 
-``` php
+``` html
 <?php if($yellow->themes->isExisting("flatsite")): ?>
 <p>Flatsite theme installed.</p>
 <?php else: ?>
@@ -489,6 +489,7 @@ Here's an example snippet for checking if theme exists:
 Here's an example for registering a theme:
 
 ``` php
+<?php
 class YellowThemeExample
 {
 	const VERSION = "0.1.0";	
@@ -518,7 +519,7 @@ Check if configuration exists
 
 Here's an example snippet for showing static website settings:
 
-``` php
+``` html
 <div class="config">
 <?php foreach($yellow->config->getData("static") as $key=>$value): ?>
 <?php echo htmlspecialchars("$key: $value") ?><br />
@@ -528,7 +529,7 @@ Here's an example snippet for showing static website settings:
 
 Here's an example snippet for showing webmaster settings:
 
-``` php
+``` html
 <div class="config">
 <?php $author = $yellow->config->get("author") ?>
 <?php $email = $yellow->config->get("email") ?>
@@ -538,7 +539,7 @@ Here's an example snippet for showing webmaster settings:
 
 Here's an example snippet for checking safe mode:
 
-``` php
+``` html
 <div class="config">
 <?php $parserSafeMode = $yellow->config->get("parserSafeMode") ?>
 Safe mode is <?php echo htmlspecialchars($parserSafeMode ? "on" : "off") ?>.
@@ -578,7 +579,7 @@ Check if text string exists
 
 Here's an example snippet for showing contact text strings:
 
-``` php
+``` html
 <div class="text">
 <?php foreach($yellow->text->getData("contact") as $key=>$value): ?>
 <?php echo htmlspecialchars("$key: $value") ?><br />
@@ -588,7 +589,7 @@ Here's an example snippet for showing contact text strings:
 
 Here's an example snippet for checking if language exists:
 
-``` php
+``` html
 <div class="text">
 <?php $swedish = $yellow->text->isLanguage("sv") ?>
 Swedish language <?php echo htmlspecialchars($swedish ? "" : "not") ?> found.
@@ -597,7 +598,7 @@ Swedish language <?php echo htmlspecialchars($swedish ? "" : "not") ?> found.
 
 Here's an example snippet for showing languages and translators:
 
-``` php
+``` html
 <div class="text">
 <?php foreach($yellow->text->getLanguages() as $language): ?>
 <?php echo $yellow->text->getTextHtml("languageDescription", $language) ?> - 
@@ -657,7 +658,7 @@ Return arguments from text string, space separated
 
 Here's an example snippet for showing location and arguments of HTTP request:
 
-``` php
+``` html
 <div class="toolbox">
 <?php echo htmlspecialchars($yellow->toolbox->getLocation()) ?><br />
 <?php foreach($_REQUEST as $key=>$value): ?>
@@ -668,7 +669,7 @@ Here's an example snippet for showing location and arguments of HTTP request:
 
 Here's an example snippet for showing files in a directory:
 
-``` php
+``` html
 <div class="toolbox">
 <?php $path = $yellow->config->get("configDir") ?>
 <?php foreach($yellow->toolbox->getDirectoryEntries($path, "/.*/", true, false) as $entry): ?>
@@ -679,7 +680,7 @@ Here's an example snippet for showing files in a directory:
 
 Here's an example snippet for reading text lines from file:
 
-``` php
+``` html
 <div class="toolbox">
 <?php $fileName = $yellow->config->get("configDir").$yellow->config->get("robotsFile") ?>
 <?php $fileData = $this->yellow->toolbox->readFile($fileName) ?>
@@ -884,7 +885,7 @@ When dates are displayed on a page they are converted to a language specific for
 
 Here's an example snippet for showing a date:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -896,7 +897,7 @@ Here's an example snippet for showing a date:
 
 Here's an example snippet for showing a date like `yesterday` or `14 days ago`:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -914,7 +915,7 @@ When text is displayed on a page you can use one of these encoding functions:
 
 Here's an example snippet for encoding HTML arguments:
 
-``` php
+``` html
 <?php list($name, $class) = $yellow->getSnippetArgs() ?>
 <?php if(empty($class)) $class = "regular" ?>
 <img src="https://unsplash.it/210/140/?random" class="<?php echo htmlspecialchars($class) ?>" />
@@ -922,7 +923,7 @@ Here's an example snippet for encoding HTML arguments:
 
 Here's an example snippet for encoding hyperlink arguments:
 
-``` php
+``` html
 <?php list($name, $id) = $yellow->getSnippetArgs() ?>
 <?php if(empty($id)) $id = "821" ?>
 <img src="https://unsplash.it/210/140/?image=<?php echo rawurlencode($id) ?>" />
@@ -930,7 +931,7 @@ Here's an example snippet for encoding hyperlink arguments:
 
 Here's an example snippet for encoding JavaScript arguments:
 
-``` php
+``` html
 <?php list($name, $message) = $yellow->getSnippetArgs() ?>
 <?php if(empty($message)) $message = "Hello world" ?>
 <script type="text/javascript">

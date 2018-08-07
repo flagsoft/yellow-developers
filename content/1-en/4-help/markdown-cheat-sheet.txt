@@ -64,7 +64,7 @@ Making tables:
 
 Making footnotes:
 
-    Text with a footnote[^1] and some more footnotes.[^2][^3]
+    Text with a footnote[^1] and some more footnotes.[^2] [^3]
     
     [^1]: Here's the first footnote
     [^2]: Here's the second footnote

@@ -64,7 +64,7 @@ Tabellen erstellen:
 
 Fußnoten erstellen:
 
-    Text mit einer Fußnote[^1] und noch weiteren Fußnoten.[^2][^3]
+    Text mit einer Fußnote[^1] und noch weiteren Fußnoten.[^2] [^3]
     
     [^1]: Hier ist die erste Fußnote
     [^2]: Hier ist die zweite Fußnote

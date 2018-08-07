@@ -151,7 +151,7 @@ Teste ob die zugehörige Seite existiert
 
 Hier ist ein Beispiel-Snippet um den Seiteninhalt anzuzeigen:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -162,7 +162,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Metadaten anzuzeigen:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -174,7 +174,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Metadaten anz
 
 Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Tags anzuzeigen:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -259,7 +259,7 @@ Teste ob eine Pagination vorhanden ist
 
 Hier ist ein Beispiel-Snippet um drei zufällige Seiten anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index() ?>
 <ul>
 <?php foreach($pages->shuffle()->limit(3) as $page): ?>
@@ -270,7 +270,7 @@ Hier ist ein Beispiel-Snippet um drei zufällige Seiten anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um die neusten Seiten anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index() ?>
 <ul>
 <?php foreach($pages->sort("modified", false) as $page): ?>
@@ -281,7 +281,7 @@ Hier ist ein Beispiel-Snippet um die neusten Seiten anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um Entwurfseiten anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index(true, true) ?>
 <ul>
 <?php foreach($pages->filter("status", "draft") as $page): ?>
@@ -314,7 +314,7 @@ Hole eine [Page-Collection](#yellow-page-collection) die leer ist
 
 Hier ist ein Beispiel-Snippet um alle Seiten anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->index(true, true) ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <ul>
@@ -326,7 +326,7 @@ Hier ist ein Beispiel-Snippet um alle Seiten anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um Seiten unterhalb einer bestimmten Orts anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->find("/help/")->getChildren(true) ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <ul>
@@ -338,7 +338,7 @@ Hier ist ein Beispiel-Snippet um Seiten unterhalb einer bestimmten Orts anzuzeig
 
 Hier ist ein Beispiel-Snippet um die Hauptseiten der Navigation anzuzeigen:
 
-``` php
+``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <ul>
@@ -363,7 +363,7 @@ Hole eine [Page-Collection](#yellow-page-collection) die leer ist
 
 Hier ist ein Beispiel-Snippet um alle Mediendateien anzuzeigen:
 
-``` php
+``` html
 <?php $files = $yellow->files->index(true) ?>
 <?php $yellow->page->setLastModified($files->getModified()) ?>
 <ul>
@@ -375,7 +375,7 @@ Hier ist ein Beispiel-Snippet um alle Mediendateien anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um die neusten Mediendateien anzuzeigen:
 
-``` php
+``` html
 <?php $files = $yellow->files->index(true)->sort("modified", false) ?>
 <?php $yellow->page->setLastModified($files->getModified()) ?>
 <ul>
@@ -387,7 +387,7 @@ Hier ist ein Beispiel-Snippet um die neusten Mediendateien anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um Mediendateien eines bestimmten Types anzuzeigen:
 
-``` php
+``` html
 <?php $files = $yellow->files->index(true)->filter("type", "pdf") ?>
 <?php $yellow->page->setLastModified($files->getModified()) ?>
 <ul>
@@ -418,7 +418,7 @@ Teste ob ein Plugin existiert
 
 Hier ist ein Beispiel-Snippet um Informationen über Plugins anzuzeigen:
 
-``` php
+``` html
 <ul>
 <?php foreach($yellow->plugins->getData() as $key=>$value): ?>
 <li><?php echo htmlspecialchars("$key $value") ?></li>
@@ -428,7 +428,7 @@ Hier ist ein Beispiel-Snippet um Informationen über Plugins anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um zu testen ob ein Plugin existiert:
 
-``` php
+``` html
 <?php if($yellow->plugins->isExisting("fontawesome")): ?>
 <a href="https://twitter.com/username"><i class="fa fa-twitter"></i></a>
 <?php else: ?>
@@ -469,7 +469,7 @@ Teste ob ein Theme existiert
 
 Hier ist ein Beispiel-Snippet um Informationen über Themes anzuzeigen:
 
-``` php
+``` html
 <ul>
 <?php foreach($yellow->themes->getData() as $key=>$value): ?>
 <li><?php echo htmlspecialchars("$key $value") ?></li>
@@ -479,7 +479,7 @@ Hier ist ein Beispiel-Snippet um Informationen über Themes anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um zu testen ob ein Theme existiert:
 
-``` php
+``` html
 <?php if($yellow->themes->isExisting("flatsite")): ?>
 <p>Flatsite theme installed.</p>
 <?php else: ?>
@@ -490,6 +490,7 @@ Hier ist ein Beispiel-Snippet um zu testen ob ein Theme existiert:
 Hier ist ein Beispiel um ein Theme zu registrieren:
 
 ``` php
+<?php
 class YellowThemeExample
 {
 	const VERSION = "0.1.0";	
@@ -519,7 +520,7 @@ Teste ob eine Einstellung existiert
 
 Hier ist ein Beispiel-Snippet um statische Webseiten-Einstellungen anzuzeigen:
 
-``` php
+``` html
 <div class="config">
 <?php foreach($yellow->config->getData("static") as $key=>$value): ?>
 <?php echo htmlspecialchars("$key: $value") ?><br />
@@ -529,7 +530,7 @@ Hier ist ein Beispiel-Snippet um statische Webseiten-Einstellungen anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um Webmaster-Einstellungen anzuzeigen:
 
-``` php
+``` html
 <div class="config">
 <?php $author = $yellow->config->get("author") ?>
 <?php $email = $yellow->config->get("email") ?>
@@ -539,7 +540,7 @@ Hier ist ein Beispiel-Snippet um Webmaster-Einstellungen anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um zu testen ob der sichere Modus aktiviert ist:
 
-``` php
+``` html
 <div class="config">
 <?php $parserSafeMode = $yellow->config->get("parserSafeMode") ?>
 Safe mode is <?php echo htmlspecialchars($parserSafeMode ? "on" : "off") ?>.
@@ -579,7 +580,7 @@ Teste ob ein Textstring existiert
 
 Hier ist ein Beispiel-Snippet um Kontakt-Textstrings anzuzeigen:
 
-``` php
+``` html
 <div class="text">
 <?php foreach($yellow->text->getData("contact") as $key=>$value): ?>
 <?php echo htmlspecialchars("$key: $value") ?><br />
@@ -589,7 +590,7 @@ Hier ist ein Beispiel-Snippet um Kontakt-Textstrings anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um zu testen ob eine Sprache existiert:
 
-``` php
+``` html
 <div class="text">
 <?php $swedish = $yellow->text->isLanguage("sv") ?>
 Swedish language <?php echo htmlspecialchars($swedish ? "" : "not") ?> found.
@@ -598,7 +599,7 @@ Swedish language <?php echo htmlspecialchars($swedish ? "" : "not") ?> found.
 
 Hier ist ein Beispiel-Snippet um Sprachen und Übersetzer anzuzeigen:
 
-``` php
+``` html
 <div class="text">
 <?php foreach($yellow->text->getLanguages() as $language): ?>
 <?php echo $yellow->text->getTextHtml("languageDescription", $language) ?> - 
@@ -658,7 +659,7 @@ Hole die Argumente eines Textstrings, durch Leerzeichen getrennt
 
 Hier ist ein Beispiel-Snippet um Ort und Argumente der HTTP-Anfrage anzuzeigen:
 
-``` php
+``` html
 <div class="toolbox">
 <?php echo htmlspecialchars($yellow->toolbox->getLocation()) ?><br />
 <?php foreach($_REQUEST as $key=>$value): ?>
@@ -669,7 +670,7 @@ Hier ist ein Beispiel-Snippet um Ort und Argumente der HTTP-Anfrage anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um Dateien in einem Verzeichnis anzuzeigen:
 
-``` php
+``` html
 <div class="toolbox">
 <?php $path = $yellow->config->get("configDir") ?>
 <?php foreach($yellow->toolbox->getDirectoryEntries($path, "/.*/", true, false) as $entry): ?>
@@ -680,7 +681,7 @@ Hier ist ein Beispiel-Snippet um Dateien in einem Verzeichnis anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um Textzeilen von Datei zu lesen:
 
-``` php
+``` html
 <div class="toolbox">
 <?php $fileName = $yellow->config->get("configDir").$yellow->config->get("robotsFile") ?>
 <?php $fileData = $this->yellow->toolbox->readFile($fileName) ?>
@@ -886,7 +887,7 @@ Wird ein Datum auf einer Seite angezeigt wird es in ein sprachspezifisches Forma
 
 Hier ist ein Beispiel-Snippet um ein Datum anzuzeigen:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -898,7 +899,7 @@ Hier ist ein Beispiel-Snippet um ein Datum anzuzeigen:
 
 Hier ist ein Beispiel-Snippet um ein Datum anzuzeigen wie `gestern` oder `vor 14 Tagen`:
 
-``` php
+``` html
 <div class="content">
 <div class="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
@@ -916,7 +917,7 @@ Wird Text auf einer Seite ausgegeben kann man diese Kodierungs-Funktionen benutz
 
 Hier ist ein Beispiel-Snippet um HTML-Argumente zu kodieren:
 
-``` php
+``` html
 <?php list($name, $class) = $yellow->getSnippetArgs() ?>
 <?php if(empty($class)) $class = "regular" ?>
 <img src="https://unsplash.it/210/140/?random" class="<?php echo htmlspecialchars($class) ?>" />
@@ -924,7 +925,7 @@ Hier ist ein Beispiel-Snippet um HTML-Argumente zu kodieren:
 
 Hier ist ein Beispiel-Snippet um Hyperlink-Argumente zu kodieren:
 
-``` php
+``` html
 <?php list($name, $id) = $yellow->getSnippetArgs() ?>
 <?php if(empty($id)) $id = "821" ?>
 <img src="https://unsplash.it/210/140/?image=<?php echo rawurlencode($id) ?>" />
@@ -932,7 +933,7 @@ Hier ist ein Beispiel-Snippet um Hyperlink-Argumente zu kodieren:
 
 Hier ist ein Beispiel-Snippet um JavaScript-Argumente zu kodieren:
 
-``` php
+``` html
 <?php list($name, $message) = $yellow->getSnippetArgs() ?>
 <?php if(empty($message)) $message = "Hello world" ?>
 <script type="text/javascript">

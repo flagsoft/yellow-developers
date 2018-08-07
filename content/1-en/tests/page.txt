@@ -1,12 +1,10 @@
 ---
 Title: Tests
 ---
-This website is made with [yellow].
+Made with [yellow].
 
-||||
-|---|---|---|
-|**datenstrom/yellow**|[![Build status](https://travis-ci.org/datenstrom/yellow.svg?branch=master)](https://travis-ci.org/datenstrom/yellow)|[![Code quality](https://img.shields.io/codacy/grade/f565b048bdff4b0e90391d3d93384b2f/master.svg)](https://www.codacy.com/app/markseu/yellow)
-|**datenstrom/yellow-developers**|[![Build status](https://travis-ci.org/datenstrom/yellow-developers.svg?branch=master)](https://travis-ci.org/datenstrom/yellow-developers)|[![Code quality](https://img.shields.io/codacy/grade/238ea263acd94e36a8dc105a9c0c80fa/master.svg)](https://www.codacy.com/app/markseu/yellow-developers)
+[![Build status](https://travis-ci.org/datenstrom/yellow.svg?branch=master)](https://travis-ci.org/datenstrom/yellow) [![Code quality](https://img.shields.io/codacy/grade/f565b048bdff4b0e90391d3d93384b2f/master.svg)](https://www.codacy.com/app/markseu/yellow)  
+[![Build status](https://travis-ci.org/datenstrom/yellow-developers.svg?branch=master)](https://travis-ci.org/datenstrom/yellow-developers) [![Code quality](https://img.shields.io/codacy/grade/238ea263acd94e36a8dc105a9c0c80fa/master.svg)](https://www.codacy.com/app/markseu/yellow-developers)  
 
 Here's a collection of our tests:
 
@@ -16,7 +14,8 @@ Here's a collection of our tests:
 * [Test custom template](custom-template)
 * [Test custom theme](custom-theme)
 * [Test file name Unicode](file-name-unicode-åäö)
-* [Test file name whitespace](file-name-whitespace)* [Test image parsing](image-parsing)
+* [Test file name whitespace](file-name-whitespace)
+* [Test image parsing](image-parsing)
 * [Test link parsing](link-parsing)
 * [Test redirect to home](redirect-to-home)
 

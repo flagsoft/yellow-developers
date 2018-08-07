@@ -10,6 +10,6 @@ Liens spéciaux pour cette page: [Afficher](@pageread), [Modifier](@pageedit).
 
 Autolinking URL:
 
-https://example.com, http://example.com, ftp://example.com, bla@example.com, pe.ter@example.com.  
+https://example.com, http://example.com, bla@example.com, pe.ter@example.com.  
 "https://example.com" 'https://example.com' https://example.com: https://example.com;  
 http://www.faqs.org/docs/artu/ch01s06.html
