@@ -958,7 +958,7 @@ YellowCore::request status:200 handler:core time:19 ms
 
 Get file system information by increasing debug level to `<?php define("DEBUG", 2);`
 ```
-Datenstrom Yellow 0.7.3, PHP 5.6.30, Apache/2.4.28 Darwin
+Datenstrom Yellow 0.7.5, PHP 7.1.16, Apache/2.4.33 Darwin
 YellowConfig::load file:system/config/config.ini
 YellowUsers::load file:system/config/user.ini
 YellowText::load file:system/plugins/language-de.txt
@@ -969,7 +969,7 @@ YellowText::load file:system/config/text.ini
 
 Get maximum information by increasing debug level to `<?php define("DEBUG", 3);`
 ```
-Datenstrom Yellow 0.7.3, PHP 5.6.30, Apache/2.4.28 Darwin
+Datenstrom Yellow 0.7.5, PHP 7.1.16, Apache/2.4.33 Darwin
 YellowConfig::load file:system/config/config.ini
 YellowConfig::load Sitename:Datenstrom developers
 YellowConfig::load Author:Datenstrom

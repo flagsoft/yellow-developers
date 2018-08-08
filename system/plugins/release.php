@@ -5,7 +5,7 @@
 
 class YellowRelease
 {
-	const VERSION = "0.7.9";
+	const VERSION = "0.7.10";
 
 	// Handle plugin initialisation
 	function onLoad($yellow)
@@ -321,6 +321,7 @@ class YellowRelease
 				if($matches[1]=="const" && preg_match("/\"([0-9\.]+)\"/", $line, $matches)) $version = $matches[1];
 				if($matches[1]=="function") break;
 			}
+			if(!empty($software) && !empty($version)) break;
 		}
 		return array($software, $version);
 	}
