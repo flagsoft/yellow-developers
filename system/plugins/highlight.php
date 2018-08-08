@@ -5,7 +5,7 @@
 
 class YellowHighlight
 {
-	const VERSION = "0.7.3";
+	const VERSION = "0.7.4";
 	var $yellow;			//access to API
 	
 	// Handle initialisation
@@ -172,25 +172,30 @@ class Highlighter
             'useBR' => false,
             'languages' => null,
         );
-        if (self::$languages === null) $this->registerLanguages();
+
+        self::registerLanguages();
     }
 
-    private function registerLanguages()
+    private static function registerLanguages()
     {
         // Languages that take precedence in the classMap array.
-        $languagePath = __DIR__.DIRECTORY_SEPARATOR."languages".DIRECTORY_SEPARATOR;
-        foreach(Array("xml", "django", "javascript", "matlab", "cpp") as $languageId) {
-            $filePath = $languagePath.$languageId.".json";
-            if (is_readable($filePath)) $this->registerLanguage($languageId, $filePath);
+        $languagePath = __DIR__ . DIRECTORY_SEPARATOR . "languages" . DIRECTORY_SEPARATOR;
+        foreach (array("xml", "django", "javascript", "matlab", "cpp") as $languageId) {
+            $filePath = $languagePath . $languageId . ".json";
+            if (is_readable($filePath)) {
+                self::registerLanguage($languageId, $filePath);
+            }
         }
 
         $d = @dir($languagePath);
         if ($d) {
-            while (false !== ($entry = $d->read())) {
+            while (($entry = $d->read()) !== false) {
                 if (substr($entry, -5) === ".json") {
                     $languageId = substr($entry, 0, -5);
-                    $filePath = $languagePath.$entry;
-                    if (is_readable($filePath)) $this->registerLanguage($languageId, $filePath);
+                    $filePath = $languagePath . $entry;
+                    if (is_readable($filePath)) {
+                        self::registerLanguage($languageId, $filePath);
+                    }
                 }
             }
             $d->close();
@@ -206,7 +211,7 @@ class Highlighter
      *
      * @param string $languageId The unique name of a language
      * @param string $filePath   The file path to the language definition
-     * @param bool $overwrite    Overwrite language if it already exists
+     * @param bool   $overwrite  Overwrite language if it already exists
      *
      * @return Language The object containing the definition for a language's markup
      */
@@ -480,7 +485,7 @@ class Highlighter
     public function setAutodetectLanguages(array $set)
     {
         $this->autodetectSet = array_unique($set);
-        $this->registerLanguages();
+        self::registerLanguages();
     }
 
     /**
