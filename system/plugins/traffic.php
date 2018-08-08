@@ -5,7 +5,7 @@
 
 class YellowTraffic
 {
-	const VERSION = "0.7.6";
+	const VERSION = "0.7.7";
 	var $yellow;			//access to API
 	var $days;				//number of days
 	var $views;				//number of views
@@ -24,7 +24,7 @@ class YellowTraffic
 	// Handle command help
 	function onCommandHelp()
 	{
-		return "traffic [DAYS LOCATION FILENAME]\n";
+		return "traffic [days location filename]\n";
 	}
 	
 	// Handle command

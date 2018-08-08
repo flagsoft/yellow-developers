@@ -5,7 +5,7 @@
 
 class YellowRelease
 {
-	const VERSION = "0.7.10";
+	const VERSION = "0.7.11";
 
 	// Handle plugin initialisation
 	function onLoad($yellow)
@@ -20,7 +20,7 @@ class YellowRelease
 	// Handle command help
 	function onCommandHelp()
 	{
-		return "release [DIRECTORY]\n";
+		return "release [directory]\n";
 	}
 	
 	// Handle command
