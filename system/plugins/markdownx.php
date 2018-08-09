@@ -5,42 +5,42 @@
 
 class YellowMarkdownX
 {
-	const VERSION = "0.6.8";
-	var $yellow;			//access to API
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
-	
-	// Handle page content parsing of raw format
-	function onParseContentRaw($page, $text)
-	{
-		$markdown = new YellowMarkdownExtraX($this->yellow, $page);
-		return $markdown->text($text);
-	}
+    const VERSION = "0.6.8";
+    public $yellow;         //access to API
+    
+    // Handle initialisation
+    public function onLoad($yellow)
+    {
+        $this->yellow = $yellow;
+    }
+    
+    // Handle page content parsing of raw format
+    public function onParseContentRaw($page, $text)
+    {
+        $markdown = new YellowMarkdownExtraX($this->yellow, $page);
+        return $markdown->text($text);
+    }
 }
 
 // Parsedown, https://github.com/erusev/parsedown
 // Copyright (c) 2013 Emanuil Rusev, http://erusev.com
 //
-// 	Permission is hereby granted, free of charge, to any person obtaining a copy of
-// 	this software and associated documentation files (the "Software"), to deal in
-// 	the Software without restriction, including without limitation the rights to
-// 	use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-// 	the Software, and to permit persons to whom the Software is furnished to do so,
-// 	subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining a copy of
+// this software and associated documentation files (the "Software"), to deal in
+// the Software without restriction, including without limitation the rights to
+// use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+// the Software, and to permit persons to whom the Software is furnished to do so,
+// subject to the following conditions:
 //
-// 	The above copyright notice and this permission notice shall be included in all
-// 	copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
 //
-// 	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// 	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-// 	FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-// 	COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-// 	IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-// 	CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+// FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+// COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+// IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+// CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 class Parsedown
 {
@@ -2681,184 +2681,171 @@ class ParsedownExtra extends Parsedown
 
 class YellowMarkdownExtraX extends ParsedownExtra
 {
-	var $yellow;			//access to API
-	var $page;				//access to page
-	var $idAttributes;		//id attributes
-	
-	function __construct($yellow, $page)
-	{
-		parent::__construct();
-		$this->yellow = $yellow;
-		$this->page = $page;
-		$this->idAttributes = array();
-		$this->setSafeMode($page->parserSafeMode);
-		$this->InlineTypes['@'][]= 'EmailLink';
-		$this->inlineMarkerList .= '@';
-		$this->InlineTypes['['][]= 'ShortcutText';
-		$this->inlineMarkerList .= '[';
-		$this->InlineTypes[':'][]= 'ShortcutSymbol';
-		$this->inlineMarkerList .= ':';
-	}
-	
-	// Handle inline links, normalise locations
-	protected function inlineLink($Excerpt)
-	{
-		$Link = parent::inlineLink($Excerpt);
-		if ($Link)
-		{
-			$href = $Link['element']['attributes']['href'];
-			if ($Excerpt['context'][0]=='!' && !preg_match("/^\w+:/", $href))
-			{
-				$href = $this->yellow->config->get("serverBase").$this->yellow->config->get("imageLocation").$href;
-			}
-			$href = $this->yellow->lookup->normaliseLocation($href,
-				$this->page->location, $this->page->parserSafeMode && $this->page->statusCode==200);
-			$Link['element']['attributes']['href'] = $href;
-		}
-		return $Link;
-	}	
-	
-	// Handle email links, autolink emails
-	protected function inlineEmailLink($Excerpt)
-	{
-		if ($this->urlsLinked &&
-			preg_match("/([\w\-\.]+@[\w\-\.]+\.[\w]{2,4})/", $Excerpt['context'], $matches, PREG_OFFSET_CAPTURE))
-		{
-			$email = $matches[1][0];
-			return array(
-				'extent' => strlen($matches[1][0]),
-				'position' => $matches[1][1],
-				'element' => array('name' => 'a', 'attributes' => array('href' => "mailto:$email"), 'text' => $email),
-			);
-		}
-	}
-	
-	// Handle shortcuts, text style
-	protected function inlineShortcutText($Excerpt)
-	{
-		if (preg_match("/\[(\w+)(.*?)\]/", $Excerpt['text'], $matches))
-		{
-			$output = $this->page->parseContentBlock($matches[1], trim($matches[2]), true);
-			if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
-			return array(
-				'element' => array('rawHtml' => $output, 'allowRawHtmlInSafeMode' => true),
-				'extent' => strlen($matches[0]),
-			);
-		} else if (preg_match("/\[\-\-(.*?)\-\-\]/", $Excerpt['text'], $matches)) {
-			$output = "<!--".htmlspecialchars($matches[1], ENT_NOQUOTES)."-->";
-			if ($matches[1][0]=='-') $output = "";
-			return array(
-				 'element' => array('rawHtml' => $output, 'allowRawHtmlInSafeMode' => true),
-				 'extent' => strlen($matches[0]),
-			 );
-		}
-	}
+    public $yellow;             //access to API
+    public $page;               //access to page
+    public $idAttributes;       //id attributes
+    
+    public function __construct($yellow, $page)
+    {
+        parent::__construct();
+        $this->yellow = $yellow;
+        $this->page = $page;
+        $this->idAttributes = array();
+        $this->setSafeMode($page->parserSafeMode);
+        $this->InlineTypes['@'][]= 'EmailLink';
+        $this->inlineMarkerList .= '@';
+        $this->InlineTypes['['][]= 'ShortcutText';
+        $this->inlineMarkerList .= '[';
+        $this->InlineTypes[':'][]= 'ShortcutSymbol';
+        $this->inlineMarkerList .= ':';
+    }
+    
+    // Handle inline links, normalise locations
+    protected function inlineLink($Excerpt)
+    {
+        $Link = parent::inlineLink($Excerpt);
+        if ($Link) {
+            $href = $Link['element']['attributes']['href'];
+            if ($Excerpt['context'][0]=='!' && !preg_match("/^\w+:/", $href)) {
+                $href = $this->yellow->config->get("serverBase").$this->yellow->config->get("imageLocation").$href;
+            }
+            $href = $this->yellow->lookup->normaliseLocation($href,
+                $this->page->location, $this->page->parserSafeMode && $this->page->statusCode==200);
+            $Link['element']['attributes']['href'] = $href;
+        }
+        return $Link;
+    }
+    
+    // Handle email links, autolink emails
+    protected function inlineEmailLink($Excerpt)
+    {
+        if ($this->urlsLinked &&
+            preg_match("/([\w\-\.]+@[\w\-\.]+\.[\w]{2,4})/", $Excerpt['context'], $matches, PREG_OFFSET_CAPTURE)) {
+            $email = $matches[1][0];
+            return array(
+                'extent' => strlen($matches[1][0]),
+                'position' => $matches[1][1],
+                'element' => array('name' => 'a', 'attributes' => array('href' => "mailto:$email"), 'text' => $email),
+            );
+        }
+    }
+    
+    // Handle shortcuts, text style
+    protected function inlineShortcutText($Excerpt)
+    {
+        if (preg_match("/\[(\w+)(.*?)\]/", $Excerpt['text'], $matches)) {
+            $output = $this->page->parseContentBlock($matches[1], trim($matches[2]), true);
+            if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
+            return array(
+                'element' => array('rawHtml' => $output, 'allowRawHtmlInSafeMode' => true),
+                'extent' => strlen($matches[0]),
+            );
+        } elseif (preg_match("/\[\-\-(.*?)\-\-\]/", $Excerpt['text'], $matches)) {
+            $output = "<!--".htmlspecialchars($matches[1], ENT_NOQUOTES)."-->";
+            if ($matches[1][0]=='-') $output = "";
+            return array(
+                 'element' => array('rawHtml' => $output, 'allowRawHtmlInSafeMode' => true),
+                 'extent' => strlen($matches[0]),
+             );
+        }
+    }
 
-	// Handle shortcuts, symbol style
-	protected function inlineShortcutSymbol($Excerpt)
-	{
-		if (preg_match("/\:([\w\+\-\_]+)\:/", $Excerpt['text'], $matches)) {
-			$output = $this->page->parseContentBlock("", $matches[1], true);
-			if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
-			return array(
-				 'element' => array('rawHtml' => $output, 'allowRawHtmlInSafeMode' => true),
-				 'extent' => strlen($matches[0]),
-			 );
-		}
-	}
-	
-	// Handle fenced code blocks
-	protected function blockFencedCodeComplete($Block)
-	{
-		$Block = parent::blockFencedCodeComplete($Block);
-		if ($Block)
-		{
-			$name = preg_replace("/language-(.*)/", "$1", $Block['element']['element']['attributes']['class']);
-			$name = preg_replace("/{(.*)}/", "$1", $name);
-			$text = $Block['element']['element']['text'];
-			$output = $this->page->parseContentBlock($name, $text, false);
-			if (!is_null($output))
-			{
-				$Block['element'] = array(
-					'rawHtml' => $output,
-					'allowRawHtmlInSafeMode' => true,
-					'autobreak' => true,
-				);
-			}
-		}
-		return $Block;
-	}
-	
-	// Handle lists, task list
-	protected function blockListComplete(array $Block)
-	{
-		$Block = parent::blockListComplete($Block);
-		if ($Block['element']['name']=='ul')
-		{
-			$containsTaskList = false;
-			foreach ($Block['element']['elements'] as &$element)
-			{
-				$token = substr($element['handler']['argument'][0], 0, 4);
-				if ($token=='[ ] ' || $token=='[x] ')
-				{
-					$attributes = $token=='[ ] ' ? array('type' => 'checkbox', 'disabled' => 'disabled') :
-						array('type' => 'checkbox', 'disabled' => 'disabled', 'checked' => 'checked');
-					$element['handler']['argument'][0] = substr($element['handler']['argument'][0], 4);
-					$element['elements'] = array(
-						array('name' => 'input', 'attributes' => $attributes, 'autobreak' => false),
-						array('text' => ' '),
-						array('handler' => $element['handler'])
-					);
-					$element['attributes'] = array('class' => 'task-list-item');
-					unset($element['handler']);
-					$containsTaskList = true;
-				}
-			}
-			if ($containsTaskList) $Block['element']['attributes'] = array('class' => 'contains-task-list');
-		}
-		return $Block;
-	}
-	
-	// Handle headers, atx style
-	protected function blockHeader($Line)
-	{
-		$Block = parent::blockHeader($Line);
-		if ($Block)
-		{
-			$level = strspn($Line['text'], '#');
-			$text = trim($Line['text'], '#');
-			$Block['element']['attributes'] = array('id' => $this->getIdAttribute($text, $level));
-		}
-		return $Block;
-	}
-	
-	// Handle headers, text style
-	protected function blockSetextHeader($Line, array $Block = null)
-	{
-		$Block = parent::blockSetextHeader($Line, $Block);
-		if ($Block)
-		{
-			$text = $Block['element']['handler']['argument'];
-			$level = $Line['text'][0]=='=' ? 1 : 2;
-			$Block['element']['attributes'] = array('id' => $this->getIdAttribute($text, $level));
-		}
-		return $Block;
-	}
-	
-	// Return unique id attribute
-	protected function getIdAttribute($text, $level)
-	{
-		$text = $this->yellow->lookup->normaliseName($text, true, false, true);
-		$text = trim(preg_replace("/-+/", "-", $text), "-");
-		if (is_null($this->idAttributes[$text]) && $level>=2 && $level<=3)
-		{
-			$this->idAttributes[$text] = $text;
-		} else {
-			$text = null;
-		}
-		return $text;
-	}
+    // Handle shortcuts, symbol style
+    protected function inlineShortcutSymbol($Excerpt)
+    {
+        if (preg_match("/\:([\w\+\-\_]+)\:/", $Excerpt['text'], $matches)) {
+            $output = $this->page->parseContentBlock("", $matches[1], true);
+            if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
+            return array(
+                 'element' => array('rawHtml' => $output, 'allowRawHtmlInSafeMode' => true),
+                 'extent' => strlen($matches[0]),
+             );
+        }
+    }
+    
+    // Handle fenced code blocks
+    protected function blockFencedCodeComplete($Block)
+    {
+        $Block = parent::blockFencedCodeComplete($Block);
+        if ($Block) {
+            $name = preg_replace("/language-(.*)/", "$1", $Block['element']['element']['attributes']['class']);
+            $name = preg_replace("/{(.*)}/", "$1", $name);
+            $text = $Block['element']['element']['text'];
+            $output = $this->page->parseContentBlock($name, $text, false);
+            if (!is_null($output)) {
+                $Block['element'] = array(
+                    'rawHtml' => $output,
+                    'allowRawHtmlInSafeMode' => true,
+                    'autobreak' => true,
+                );
+            }
+        }
+        return $Block;
+    }
+    
+    // Handle lists, task list
+    protected function blockListComplete(array $Block)
+    {
+        $Block = parent::blockListComplete($Block);
+        if ($Block['element']['name']=='ul') {
+            $containsTaskList = false;
+            foreach ($Block['element']['elements'] as &$element) {
+                $token = substr($element['handler']['argument'][0], 0, 4);
+                if ($token=='[ ] ' || $token=='[x] ') {
+                    $attributes = $token=='[ ] ' ? array('type' => 'checkbox', 'disabled' => 'disabled') :
+                        array('type' => 'checkbox', 'disabled' => 'disabled', 'checked' => 'checked');
+                    $element['handler']['argument'][0] = substr($element['handler']['argument'][0], 4);
+                    $element['elements'] = array(
+                        array('name' => 'input', 'attributes' => $attributes, 'autobreak' => false),
+                        array('text' => ' '),
+                        array('handler' => $element['handler'])
+                    );
+                    $element['attributes'] = array('class' => 'task-list-item');
+                    unset($element['handler']);
+                    $containsTaskList = true;
+                }
+            }
+            if ($containsTaskList) $Block['element']['attributes'] = array('class' => 'contains-task-list');
+        }
+        return $Block;
+    }
+    
+    // Handle headers, atx style
+    protected function blockHeader($Line)
+    {
+        $Block = parent::blockHeader($Line);
+        if ($Block) {
+            $level = strspn($Line['text'], '#');
+            $text = trim($Line['text'], '#');
+            $Block['element']['attributes'] = array('id' => $this->getIdAttribute($text, $level));
+        }
+        return $Block;
+    }
+    
+    // Handle headers, text style
+    protected function blockSetextHeader($Line, array $Block = null)
+    {
+        $Block = parent::blockSetextHeader($Line, $Block);
+        if ($Block) {
+            $text = $Block['element']['handler']['argument'];
+            $level = $Line['text'][0]=='=' ? 1 : 2;
+            $Block['element']['attributes'] = array('id' => $this->getIdAttribute($text, $level));
+        }
+        return $Block;
+    }
+    
+    // Return unique id attribute
+    protected function getIdAttribute($text, $level)
+    {
+        $text = $this->yellow->lookup->normaliseName($text, true, false, true);
+        $text = trim(preg_replace("/-+/", "-", $text), "-");
+        if (is_null($this->idAttributes[$text]) && $level>=2 && $level<=3) {
+            $this->idAttributes[$text] = $text;
+        } else {
+            $text = null;
+        }
+        return $text;
+    }
 }
 
 $yellow->plugins->register("markdownx", "YellowMarkdownX", YellowMarkdownX::VERSION);
-?>
