@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowRelease {
-    const VERSION = "0.7.11";
+    const VERSION = "0.7.12";
     public $yellow;         //access to API
 
     // Handle plugin initialisation
@@ -267,10 +267,10 @@ class YellowRelease {
         foreach ($this->yellow->toolbox->getDirectoryEntries($path, "/^.*\.php$/", false, false) as $entry) {
             $fileData = $this->yellow->toolbox->readFile($entry, 4096);
             foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
-                preg_match("/^\s*(.*?)\s+(.*?)$/", $line, $matches);
-                if ($matches[1]=="class" && !strempty($matches[2])) $software = $matches[2];
+                preg_match("/^\s*(\S+)\s+(\S+)/", $line, $matches);
+                if ($matches[1]=="class") $software = $matches[2];
                 if ($matches[1]=="const" && preg_match("/\"([0-9\.]+)\"/", $line, $matches)) $version = $matches[1];
-                if ($matches[1]=="function") break;
+                if ($matches[1]=="function" || $matches[2]=="function") break;
             }
             if (!empty($software) && !empty($version)) break;
         }
