@@ -537,7 +537,7 @@ yellow.edit = {
     
     // Process shortcut
     processShortcut: function(e) {
-        var shortcut = yellow.toolbox.getEventShortcut(e)
+        var shortcut = yellow.toolbox.getEventShortcut(e);
         if (shortcut) {
             var tokens = yellow.config.editKeyboardShortcuts.split(",");
             for (var i=0; i<tokens.length; i++) {
@@ -792,7 +792,7 @@ yellow.edit = {
         var elements = element.getElementsByTagName("a");
         for (var i=0, l=elements.length; i<l; i++) {
             if (elements[i].getAttribute("data-action")) elements[i].onclick = yellow.onClickAction;
-            if (elements[i].getAttribute("data-action")=="toolbar") elements[i].onmousedown = function(e) { e.preventDefault() };
+            if (elements[i].getAttribute("data-action")=="toolbar") elements[i].onmousedown = function(e) { e.preventDefault(); };
         }
     },
     

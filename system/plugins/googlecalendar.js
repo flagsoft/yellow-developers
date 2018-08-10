@@ -93,7 +93,7 @@ GoogleCalendar.prototype = {
     requestUrl: function(url, callback, error) {
         var thisObject = this;
         var request = new XMLHttpRequest();
-        request.onload = function() { if(this.status==200) { callback.call(thisObject, this.responseText, this.status) } else { error.call(thisObject, this.responseText, this.status); } };
+        request.onload = function() { if(this.status==200) { callback.call(thisObject, this.responseText, this.status); } else { error.call(thisObject, this.responseText, this.status); } };
         request.open("GET", url, true);
         request.send();
     },
@@ -126,7 +126,7 @@ GoogleCalendar.prototype = {
     formatDate: function(format, date) {
         var timeZone = this.options.timeZone;
         var timeZoneOffset = this.options.timeZoneOffset;
-        var timeZoneOffsetHours = Math.abs(parseInt(timeZoneOffset/3600))
+        var timeZoneOffsetHours = Math.abs(parseInt(timeZoneOffset/3600));
         var timeZoneOffsetMinutes = Math.abs(parseInt(timeZoneOffset/60))%60;
         var dateMonths = this.options.dateMonths.split(/,\s*/);
         var dateWeekdays = this.options.dateWeekdays.split(/,\s*/);

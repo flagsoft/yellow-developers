@@ -58,7 +58,7 @@ TwitterMessage.prototype = {
             this.onShowError("offline");
         }
     }
-}
+};
 
 var initTwitterFromDOM = function() {
     var elements = document.querySelectorAll(".twitter");
