@@ -88,8 +88,7 @@ En utilisant des blocs de code:
 
     ```
     Code source dans un bloc de code sera affiché inchangé.
-    function onLoad($yellow)
-    {
+    function onLoad($yellow) {
         $this->yellow = $yellow;
     }
     ```

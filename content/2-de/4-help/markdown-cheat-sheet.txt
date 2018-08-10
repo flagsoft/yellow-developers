@@ -88,8 +88,7 @@ Code-Blöcke benutzen:
 
     ```
     Quellcode in einem Code-Block wird unverändert dargestellt.
-    function onLoad($yellow)
-    {
+    function onLoad($yellow) {
         $this->yellow = $yellow;
     }
     ```

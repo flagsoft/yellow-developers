@@ -439,12 +439,10 @@ Here's an example for registering a plugin:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.0";
+class YellowExample {
+    const VERSION = "0.1.0";
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ### Yellow themes
@@ -490,12 +488,10 @@ Here's an example for registering a theme:
 
 ``` php
 <?php
-class YellowThemeExample
-{
-	const VERSION = "0.1.0";	
+class YellowThemeExample {
+    const VERSION = "0.1.0";    
 }
 $yellow->themes->register("example", "YellowThemeExample", YellowThemeExample::VERSION);
-?>
 ```
 
 ### Yellow config
@@ -754,32 +750,27 @@ Here's an example plugin for parsing an `[example]` shortcut:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.1";
-	var $yellow;
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
+class YellowExample {
+    const VERSION = "0.1.1";
+    var $yellow;
+    
+    // Handle initialisation
+    function onLoad($yellow) {
+        $this->yellow = $yellow;
+    }
 
-	// Handle page content parsing of custom block
-	function onParseContentBlock($page, $name, $text, $shortcut)
-	{
-		$output = null;
-		if($name=="example" && $shortcut)
-		{
-			$output = "<div class=\"".htmlspecialchars($name)."\">";
-			$output .= "Add more HTML code here";
-			$output .= "</div>";
-		}
-		return $output;
-	}
+    // Handle page content parsing of custom block
+    function onParseContentBlock($page, $name, $text, $shortcut) {
+        $output = null;
+        if($name=="example" && $shortcut) {
+            $output = "<div class=\"".htmlspecialchars($name)."\">";
+            $output .= "Add more HTML code here";
+            $output .= "</div>";
+        }
+        return $output;
+    }
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ### Yellow edit events
@@ -802,25 +793,21 @@ Here's an example plugin for restricting certain users:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.2";
-	var $yellow;
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
+class YellowExample {
+    const VERSION = "0.1.2";
+    var $yellow;
+    
+    // Handle initialisation
+    function onLoad($yellow) {
+        $this->yellow = $yellow;
+    }
 
-	// Handle user restrictions
-	function onEditUserRestrictions($email, $location, $fileName, $users)
-	{
-		return $users->getHome($email)=="/guests/";
-	}
+    // Handle user restrictions
+    function onEditUserRestrictions($email, $location, $fileName, $users) {
+        return $users->getHome($email)=="/guests/";
+    }
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ### Yellow command events
@@ -837,38 +824,32 @@ Here's an example plugin for handling a command:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.3";
-	var $yellow;
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
+class YellowExample {
+    const VERSION = "0.1.3";
+    var $yellow;
+    
+    // Handle initialisation
+    function onLoad($yellow) {
+        $this->yellow = $yellow;
+    }
 
-	// Handle command help
-	function onCommandHelp()
-	{
-		return "example\n";
-	}
-	
-	// Handle command
-	function onCommand($args)
-	{
-		$statusCode = 0;
-		list($command) = $args;
-		if($command=="example")
-		{
-			echo "Yellow $command: Add more text here\n";
-			$statusCode = 200;
-		}
-		return $statusCode;
-	}
+    // Handle command help
+    function onCommandHelp() {
+        return "example\n";
+    }
+    
+    // Handle command
+    function onCommand($args) {
+        $statusCode = 0;
+        list($command) = $args;
+        if($command=="example") {
+            echo "Yellow $command: Add more text here\n";
+            $statusCode = 200;
+        }
+        return $statusCode;
+    }
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ## Formats

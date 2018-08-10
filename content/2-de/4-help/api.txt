@@ -440,12 +440,10 @@ Hier ist ein Beispiel um ein Plugin zu registrieren:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.0";
+class YellowExample {
+    const VERSION = "0.1.0";
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ### Yellow-Themes
@@ -491,12 +489,10 @@ Hier ist ein Beispiel um ein Theme zu registrieren:
 
 ``` php
 <?php
-class YellowThemeExample
-{
-	const VERSION = "0.1.0";	
+class YellowThemeExample {
+    const VERSION = "0.1.0";    
 }
 $yellow->themes->register("example", "YellowThemeExample", YellowThemeExample::VERSION);
-?>
 ```
 
 ### Yellow-Config
@@ -755,32 +751,27 @@ Hier ist ein Beispiel-Plugin um eine `[example]`-Abkürzung zu parsen:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.1";
-	var $yellow;
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
+class YellowExample {
+    const VERSION = "0.1.1";
+    var $yellow;
+    
+    // Handle initialisation
+    function onLoad($yellow) {
+        $this->yellow = $yellow;
+    }
 
-	// Handle page content parsing of custom block
-	function onParseContentBlock($page, $name, $text, $shortcut)
-	{
-		$output = null;
-		if($name=="example" && $shortcut)
-		{
-			$output = "<div class=\"".htmlspecialchars($name)."\">";
-			$output .= "Add more HTML code here";
-			$output .= "</div>";
-		}
-		return $output;
-	}
+    // Handle page content parsing of custom block
+    function onParseContentBlock($page, $name, $text, $shortcut) {
+        $output = null;
+        if($name=="example" && $shortcut) {
+            $output = "<div class=\"".htmlspecialchars($name)."\">";
+            $output .= "Add more HTML code here";
+            $output .= "</div>";
+        }
+        return $output;
+    }
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ### Yellow-Edit-Ereignisse
@@ -803,25 +794,21 @@ Hier ist ein Beispiel-Plugin um Schreibrechte von bestimmten Benutzern zu beschr
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.2";
-	var $yellow;
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
+class YellowExample {
+    const VERSION = "0.1.2";
+    var $yellow;
+    
+    // Handle initialisation
+    function onLoad($yellow) {
+        $this->yellow = $yellow;
+    }
 
-	// Handle user restrictions
-	function onEditUserRestrictions($email, $location, $fileName, $users)
-	{
-		return $users->getHome($email)=="/guests/";
-	}
+    // Handle user restrictions
+    function onEditUserRestrictions($email, $location, $fileName, $users) {
+        return $users->getHome($email)=="/guests/";
+    }
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ### Yellow-Command-Ereignisse
@@ -839,38 +826,32 @@ Hier ist ein Beispiel-Plugin um einen Befehl zu behandeln:
 
 ``` php
 <?php
-class YellowExample
-{
-	const VERSION = "0.1.3";
-	var $yellow;
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-	}
+class YellowExample {
+    const VERSION = "0.1.3";
+    var $yellow;
+    
+    // Handle initialisation
+    function onLoad($yellow) {
+        $this->yellow = $yellow;
+    }
 
-	// Handle command help
-	function onCommandHelp()
-	{
-		return "example\n";
-	}
-	
-	// Handle command
-	function onCommand($args)
-	{
-		$statusCode = 0;
-		list($command) = $args;
-		if($command=="example")
-		{
-			echo "Yellow $command: Add more text here\n";
-			$statusCode = 200;
-		}
-		return $statusCode;
-	}
+    // Handle command help
+    function onCommandHelp() {
+        return "example\n";
+    }
+    
+    // Handle command
+    function onCommand($args) {
+        $statusCode = 0;
+        list($command) = $args;
+        if($command=="example") {
+            echo "Yellow $command: Add more text here\n";
+            $statusCode = 200;
+        }
+        return $statusCode;
+    }
 }
 $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
-?>
 ```
 
 ## Formate

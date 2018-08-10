@@ -40,52 +40,11 @@ To adjust themes you can use [CSS](https://www.w3schools.com/css/). This allows 
 Here's an example CSS file `system/themes/assets/custom.css`:
 
 ``` css
-html, body, div, form, pre, span, tr, th, td, img { margin:0; padding:0; border:0; vertical-align:baseline; }
-body { background-color:#f8cc44; color:#fff; margin:1em; }
-body { font-family:Helvetica,sans-serif; font-size:1.5em; font-weight:normal; }
-h1, h2, h3, h4, h5, h6 { color:#fff; font-weight:bold; }
-h1 { font-size:2.5em; }
-a { color:#fff; text-decoration:none; }
-a:hover { color:#fff; text-decoration:underline; }
-.header .sitename a { color:#fff; font-size:0.4em; font-weight:normal; }
-.navigation, .footer { display:none; }
-```
-
-Here's an example CSS with centred text:
-
-``` css
-html, body, div, form, pre, span, tr, th, td, img { margin:0; padding:0; border:0; vertical-align:baseline; }
-body { background-color:#f8cc44; color:#fff; margin:1em; }
-body { font-family:Helvetica,sans-serif; font-size:1.5em; font-weight:normal; }
-h1, h2, h3, h4, h5, h6 { color:#fff; font-weight:bold; }
-h1 { font-size:2.5em; }
-a { color:#fff; text-decoration:none; }
-a:hover { color:#fff; text-decoration:underline; }
-.header .sitename a { color:#fff; font-size:0.4em; font-weight:normal; }
-.navigation, .footer { display:none; }
-.page { text-align:center; margin:0 auto; max-width:27em; }
-```
-
-Here's an example CSS with background image:
-
-``` css
-html, body, div, form, pre, span, tr, th, td, img { margin:0; padding:0; border:0; vertical-align:baseline; }
-body { background-color:#f8cc44; color:#fff; margin:1em; }
-body { font-family:Helvetica,sans-serif; font-size:1.5em; font-weight:normal; }
-body {
-	background-image:url(custom-background.jpg);
-	background-repeat:no-repeat;
-	background-size:cover;
-	background-position:center;
-	background-attachment:fixed;
+.page {
+    background-color: #fc4;
+    color: #fff;
+    text-align:center; 
 }
-h1, h2, h3, h4, h5, h6 { color:#fff; font-weight:bold; }
-h1 { font-size:2.5em; }
-a { color:#fff; text-decoration:none; }
-a:hover { color:#fff; text-decoration:underline; }
-.header .sitename a { color:#fff; font-size:0.4em; font-weight:normal; }
-.navigation, .footer { display:none; }
-.page { text-align:center; margin:0 auto; max-width:27em; }
 ```
 
 ## JavaScript
@@ -95,8 +54,7 @@ To adjust themes even more you can use [JavaScript](https://www.w3schools.com/js
 Here's an example JS file `system/themes/assets/custom.js`:
 
 ``` javascript
-var ready = function() 
-{
+var ready = function() {
 	console.log("Hello world");
 	// Add more JavaScript code here
 }
