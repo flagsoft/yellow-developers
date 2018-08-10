@@ -3,113 +3,98 @@
 // Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
-class YellowHighlight
-{
-	const VERSION = "0.7.4";
-	var $yellow;			//access to API
-	
-	// Handle initialisation
-	function onLoad($yellow)
-	{
-		$this->yellow = $yellow;
-		$this->yellow->config->setDefault("highlightClass", "highlight");
-		$this->yellow->config->setDefault("highlightLineNumber", "0");
-		$this->yellow->config->setDefault("highlightAutodetectLanguages", "html, css, javascript, php");
-	}
-	
-	// Handle page content parsing of custom block
-	function onParseContentBlock($page, $name, $text, $shortcut)
-	{
-		$output = null;
-		if(!empty($name) && !$shortcut)
-		{
-			list($language, $class, $id, $lineNumber) = $this->getHighlightInformation($name);
-			if(!empty($language))
-			{
-				list($language, $text) = $this->highlight($language, $text);
-				$output = "<pre";
-				if(!empty($class)) $output .= " class=\"".htmlspecialchars($class)."\"";
-				if(!empty($id)) $output .= " id=\"".htmlspecialchars($id)."\"";
-				$output .= ">";
-				if(!$lineNumber)
-				{
-					$output .= "<code class=\"".htmlspecialchars("language-$language")."\">".$text."</code>";
-				} else {
-					$output .= "<code class=\"".htmlspecialchars("language-$language hljs-with-line-number")."\">";
-					foreach($this->yellow->toolbox->getTextLines($text) as $line)
-					{
-						$output .= "<span class=\"hljs-line-number\"></span>$line";
-					}
-					$output .= "</code>";
-				}
-				$output .= "</pre>";
-			}
-		}
-		return $output;
-	}
-	
-	// Handle page extra HTML data
-	function onExtra($name)
-	{
-		$output = null;
-		if($name=="header")
-		{
-			$locationStylesheet = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation")."highlight.css";
-			$fileNameStylesheet = $this->yellow->config->get("pluginDir")."highlight.css";
-			if(is_file($fileNameStylesheet)) $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"$locationStylesheet\" />\n";
-		}
-		return $output;
-	}
-	
-	// Highlight
-	function highlight($language, $text)
-	{
-		$hl = new Highlighter();
-		$autodetectLanguages = preg_split("/\s*,\s*/", $this->yellow->config->get("highlightAutodetectLanguages"));
-		if(!in_array($language, $autodetectLanguages)) array_push($autodetectLanguages, $language);
-		foreach($autodetectLanguages as $autodetectLanguage)
-		{
-			list($languageId, $fileName) = $this->getLanguageInformation($autodetectLanguage);
-			if(is_readable($fileName)) $hl->registerLanguage($languageId, $fileName);
-		}
-		try
-		{
-			$hl->setAutodetectLanguages($autodetectLanguages);
-			$result = $hl->highlight($language, $text);
-			$language = $result->language;
-			$text = $result->value;
-		}
-		catch(DomainException $e)
-		{
-			$language = "unknown";
-		}
-		return array($language, $text);
-	}
-	
-	// Return highlight information
-	function getHighlightInformation($name)
-	{
-		$class = $this->yellow->config->get("highlightClass");
-		$lineNumber = intval($this->yellow->config->get("highlightLineNumber"));
-		foreach(explode(' ', $name) as $token)
-		{
-			if(preg_match("/^[\w]+$/", $token) && empty($language)) $language = $token;
-			if($token[0]=='.') $class = $class." ".substru($token, 1);
-			if($token[0]=='#') $id = substru($token, 1);
-		}
-		if(preg_match("/with-line-number/i", $class)) $lineNumber = true;
-		if(preg_match("/without-line-number/i", $class)) $lineNumber = false;
-		return array($language, $class, $id, $lineNumber);
-	}
-	
-	// Return highlight file name
-	function getLanguageInformation($language)
-	{
-		$aliases = array("c" => "cpp", "html" => "xml");
-		$language = isset($aliases[$language]) ? $aliases[$language] : $language;
-		$fileName = $this->yellow->config->get("pluginDir")."highlight-$language.json";
-		return array($language, $fileName);
-	}
+class YellowHighlight {
+    const VERSION = "0.7.4";
+    public $yellow;         //access to API
+    
+    // Handle initialisation
+    public function onLoad($yellow) {
+        $this->yellow = $yellow;
+        $this->yellow->config->setDefault("highlightClass", "highlight");
+        $this->yellow->config->setDefault("highlightLineNumber", "0");
+        $this->yellow->config->setDefault("highlightAutodetectLanguages", "html, css, javascript, php");
+    }
+    
+    // Handle page content parsing of custom block
+    public function onParseContentBlock($page, $name, $text, $shortcut) {
+        $output = null;
+        if (!empty($name) && !$shortcut) {
+            list($language, $class, $id, $lineNumber) = $this->getHighlightInformation($name);
+            if (!empty($language)) {
+                list($language, $text) = $this->highlight($language, $text);
+                $output = "<pre";
+                if (!empty($class)) $output .= " class=\"".htmlspecialchars($class)."\"";
+                if (!empty($id)) $output .= " id=\"".htmlspecialchars($id)."\"";
+                $output .= ">";
+                if (!$lineNumber) {
+                    $output .= "<code class=\"".htmlspecialchars("language-$language")."\">".$text."</code>";
+                } else {
+                    $output .= "<code class=\"".htmlspecialchars("language-$language hljs-with-line-number")."\">";
+                    foreach ($this->yellow->toolbox->getTextLines($text) as $line) {
+                        $output .= "<span class=\"hljs-line-number\"></span>$line";
+                    }
+                    $output .= "</code>";
+                }
+                $output .= "</pre>";
+            }
+        }
+        return $output;
+    }
+    
+    // Handle page extra HTML data
+    public function onExtra($name) {
+        $output = null;
+        if ($name=="header") {
+            $locationStylesheet = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation")."highlight.css";
+            $fileNameStylesheet = $this->yellow->config->get("pluginDir")."highlight.css";
+            if (is_file($fileNameStylesheet)) {
+                $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"$locationStylesheet\" />\n";
+            }
+        }
+        return $output;
+    }
+    
+    // Highlight
+    public function highlight($language, $text) {
+        $hl = new Highlighter();
+        $autodetectLanguages = preg_split("/\s*,\s*/", $this->yellow->config->get("highlightAutodetectLanguages"));
+        if (!in_array($language, $autodetectLanguages)) array_push($autodetectLanguages, $language);
+        foreach ($autodetectLanguages as $autodetectLanguage) {
+            list($languageId, $fileName) = $this->getLanguageInformation($autodetectLanguage);
+            if (is_readable($fileName)) $hl->registerLanguage($languageId, $fileName);
+        }
+        try {
+            $hl->setAutodetectLanguages($autodetectLanguages);
+            $result = $hl->highlight($language, $text);
+            $language = $result->language;
+            $text = $result->value;
+        } catch (DomainException $e) {
+            $language = "unknown";
+        }
+        return array($language, $text);
+    }
+    
+    // Return highlight information
+    public function getHighlightInformation($name) {
+        $class = $this->yellow->config->get("highlightClass");
+        $lineNumber = intval($this->yellow->config->get("highlightLineNumber"));
+        foreach (explode(" ", $name) as $token) {
+            if (preg_match("/^[\w]+$/", $token) && empty($language)) $language = $token;
+            if ($token[0]==".") $class = $class." ".substru($token, 1);
+            if ($token[0]=="#") $id = substru($token, 1);
+        }
+        if (preg_match("/with-line-number/i", $class)) $lineNumber = true;
+        if (preg_match("/without-line-number/i", $class)) $lineNumber = false;
+        return array($language, $class, $id, $lineNumber);
+    }
+    
+    // Return highlight file name
+    public function getLanguageInformation($language) {
+        $aliases = array("c" => "cpp", "html" => "xml");
+        $language = isset($aliases[$language]) ? $aliases[$language] : $language;
+        $fileName = $this->yellow->config->get("pluginDir")."highlight-$language.json";
+        return array($language, $fileName);
+    }
 }
 
 /* Highlight.php, https://github.com/scrivo/highlight.php
@@ -1022,4 +1007,3 @@ class JsonRef
 }
 
 $yellow->plugins->register("highlight", "YellowHighlight", YellowHighlight::VERSION);
-?>

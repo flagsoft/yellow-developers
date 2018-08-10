@@ -3779,7 +3779,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser {
     public function _doAutoLinks_comment_callback($matches) {
         $text = $matches[1];
         $output = "<!--".htmlspecialchars($text, ENT_NOQUOTES)."-->";
-        if ($text[0]=='-') $output = "";
+        if ($text[0]=="-") $output = "";
         return $this->hashBlock($output);
     }
     
@@ -3811,9 +3811,9 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser {
     
     // Handle headers, text style
     public function _doHeaders_callback_setext($matches) {
-        if ($matches[3]=='-' && preg_match('{^- }', $matches[1])) return $matches[0];
+        if ($matches[3]=="-" && preg_match('{^- }', $matches[1])) return $matches[0];
         $text = $matches[1];
-        $level = $matches[3]{0}=='=' ? 1 : 2;
+        $level = $matches[3]{0}=="=" ? 1 : 2;
         $attr = $this->doExtraAttributes("h$level", $dummy =& $matches[2]);
         if (empty($attr) && $level>=2 && $level<=3) $attr = $this->getIdAttribute($text);
         $output = "<h$level$attr>".$this->runSpanGamut($text)."</h$level>";

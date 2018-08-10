@@ -316,6 +316,8 @@
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Specific panes */
+
 #yellow-pane-login,
 #yellow-pane-signup,
 #yellow-pane-forgot,
@@ -354,6 +356,8 @@
 #yellow-pane-user {
     padding: 10px 0;
 }
+
+/* Specific popups */
 
 #yellow-popup-format,
 #yellow-popup-heading,
@@ -397,7 +401,6 @@
 #yellow-popup-emojiawesome .yellow-dropdown li {
     display: inline-block;
 }
-
 #yellow-popup-fontawesome {
     padding: 10px;
     width: 13em;
@@ -410,6 +413,8 @@
 #yellow-popup-fontawesome .yellow-dropdown li {
     display: inline-block;
 }
+
+/* Icons */
 
 @font-face {
     font-family: "Edit";

@@ -1790,11 +1790,11 @@ class YellowText {
         $timeZoneHelper = new DateTime(null, new DateTimeZone($timeZone));
         $timeZoneOffset = $timeZoneHelper->getOffset();
         $timeZoneAbbreviation = "GMT".($timeZoneOffset<0 ? "-" : "+").abs(intval($timeZoneOffset/3600));
-        $format = preg_replace("/(?<!\\\)F/", addcslashes($month, 'A..Za..z'), $format);
-        $format = preg_replace("/(?<!\\\)M/", addcslashes(substru($month, 0, 3), 'A..Za..z'), $format);
-        $format = preg_replace("/(?<!\\\)D/", addcslashes(substru($weekday, 0, 3), 'A..Za..z'), $format);
-        $format = preg_replace("/(?<!\\\)l/", addcslashes($weekday, 'A..Za..z'), $format);
-        $format = preg_replace("/(?<!\\\)T/", addcslashes($timeZoneAbbreviation, 'A..Za..z'), $format);
+        $format = preg_replace("/(?<!\\\)F/", addcslashes($month, "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)M/", addcslashes(substru($month, 0, 3), "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)D/", addcslashes(substru($weekday, 0, 3), "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)l/", addcslashes($weekday, "A..Za..z"), $format);
+        $format = preg_replace("/(?<!\\\)T/", addcslashes($timeZoneAbbreviation, "A..Za..z"), $format);
         return date($format, $timestamp);
     }
     
@@ -2522,7 +2522,7 @@ class YellowToolbox {
     // Normalise text into UTF-8 NFC
     public function normaliseUnicode($text) {
         if (PHP_OS=="Darwin" && !mb_check_encoding($text, "ASCII")) {
-            $utf8nfc = preg_match("//u", $text) && !preg_match('/[^\x00-\x{2FF}]/u', $text);
+            $utf8nfc = preg_match("//u", $text) && !preg_match("/[^\\x00-\\x{2FF}]/u", $text);
             if (!$utf8nfc) $text = iconv("UTF-8-MAC", "UTF-8", $text);
         }
         return $text;

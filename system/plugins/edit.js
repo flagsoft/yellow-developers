@@ -3,6 +3,8 @@
 // This file may be used and distributed under the terms of the public license.
 
 var yellow = {
+    
+    // Main event handlers
     action: function(action, status, args) { yellow.edit.action(action, status, args); },
     onLoad: function() { yellow.edit.load(); },
     onClickAction: function(e) { yellow.edit.clickAction(e); },
