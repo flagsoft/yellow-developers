@@ -3,15 +3,13 @@
 // Copyright (c) 2013-2017 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
-class YellowImage
-{
+class YellowImage {
     const VERSION = "0.7.3";
     public $yellow;             //access to API
     public $graphicsLibrary;    //graphics library support? (boolean)
 
     // Handle initialisation
-    public function onLoad($yellow)
-    {
+    public function onLoad($yellow) {
         $this->yellow = $yellow;
         $this->yellow->config->setDefault("imageThumbnailLocation", "/media/thumbnails/");
         $this->yellow->config->setDefault("imageThumbnailDir", "media/thumbnails/");
@@ -21,8 +19,7 @@ class YellowImage
     }
 
     // Handle page content parsing of custom block
-    public function onParseContentBlock($page, $name, $text, $shortcut)
-    {
+    public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="image" && $shortcut) {
             if (!$this->graphicsLibrary) {
@@ -50,8 +47,7 @@ class YellowImage
     }
     
     // Handle command
-    public function onCommand($args)
-    {
+    public function onCommand($args) {
         list($command) = $args;
         switch ($command) {
             case "clean":   $statusCode = $this->cleanCommand($args); break;
@@ -61,8 +57,7 @@ class YellowImage
     }
 
     // Clean thumbnails
-    public function cleanCommand($args)
-    {
+    public function cleanCommand($args) {
         $statusCode = 0;
         list($command, $path) = $args;
         if ($path=="all") {
@@ -76,8 +71,7 @@ class YellowImage
     }
 
     // Return image info, create thumbnail on demand
-    public function getImageInfo($fileName, $widthOutput, $heightOutput)
-    {
+    public function getImageInfo($fileName, $widthOutput, $heightOutput) {
         $fileNameShort = substru($fileName, strlenu($this->yellow->config->get("imageDir")));
         list($widthInput, $heightInput, $type) = $this->yellow->toolbox->detectImageInfo($fileName);
         $widthOutput = $this->convertValueAndUnit($widthOutput, $widthInput);
@@ -106,8 +100,7 @@ class YellowImage
     }
 
     // Load image from file
-    public function loadImage($fileName, $type)
-    {
+    public function loadImage($fileName, $type) {
         $image = false;
         switch ($type) {
             case "gif": $image = @imagecreatefromgif($fileName); break;
@@ -118,8 +111,7 @@ class YellowImage
     }
     
     // Save image to file
-    public function saveImage($image, $fileName, $type)
-    {
+    public function saveImage($image, $fileName, $type) {
         $ok = false;
         switch ($type) {
             case "gif": $ok = @imagegif($image, $fileName); break;
@@ -130,8 +122,7 @@ class YellowImage
     }
 
     // Create image from scratch
-    public function createImage($width, $height)
-    {
+    public function createImage($width, $height) {
         $image = imagecreatetruecolor($width, $height);
         imagealphablending($image, false);
         imagesavealpha($image, true);
@@ -139,8 +130,7 @@ class YellowImage
     }
 
     // Resize image
-    public function resizeImage($image, $widthInput, $heightInput, $widthOutput, $heightOutput)
-    {
+    public function resizeImage($image, $widthInput, $heightInput, $widthOutput, $heightOutput) {
         $widthFit = $widthInput * ($heightOutput / $heightInput);
         $heightFit = $heightInput * ($widthOutput / $widthInput);
         $widthDiff = abs($widthOutput - $widthFit);
@@ -155,8 +145,7 @@ class YellowImage
     }
     
     // Return value according to unit
-    public function convertValueAndUnit($text, $valueBase)
-    {
+    public function convertValueAndUnit($text, $valueBase) {
         $value = $unit = "";
         if (preg_match("/([\d\.]+)(\S*)/", $text, $matches)) {
             $value = $matches[1];
@@ -167,14 +156,12 @@ class YellowImage
     }
 
     // Check if file needs to be updated
-    public function isFileNotUpdated($fileNameInput, $fileNameOutput)
-    {
+    public function isFileNotUpdated($fileNameInput, $fileNameOutput) {
         return $this->yellow->toolbox->getFileModified($fileNameInput)!=$this->yellow->toolbox->getFileModified($fileNameOutput);
     }
 
     // Check graphics library support
-    public function isGraphicsLibrary()
-    {
+    public function isGraphicsLibrary() {
         return extension_loaded("gd") && function_exists("gd_info") &&
             ((imagetypes()&(IMG_GIF|IMG_JPG|IMG_PNG))==(IMG_GIF|IMG_JPG|IMG_PNG));
     }

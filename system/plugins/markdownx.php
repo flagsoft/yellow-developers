@@ -3,20 +3,17 @@
 // Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
-class YellowMarkdownX
-{
+class YellowMarkdownX {
     const VERSION = "0.6.8";
     public $yellow;         //access to API
     
     // Handle initialisation
-    public function onLoad($yellow)
-    {
+    public function onLoad($yellow) {
         $this->yellow = $yellow;
     }
     
     // Handle page content parsing of raw format
-    public function onParseContentRaw($page, $text)
-    {
+    public function onParseContentRaw($page, $text) {
         $markdown = new YellowMarkdownExtraX($this->yellow, $page);
         return $markdown->text($text);
     }
@@ -2679,14 +2676,12 @@ class ParsedownExtra extends Parsedown
 // Yellow Markdown extra
 // Copyright (c) 2013-2018 Datenstrom
 
-class YellowMarkdownExtraX extends ParsedownExtra
-{
+class YellowMarkdownExtraX extends ParsedownExtra {
     public $yellow;             //access to API
     public $page;               //access to page
     public $idAttributes;       //id attributes
     
-    public function __construct($yellow, $page)
-    {
+    public function __construct($yellow, $page) {
         parent::__construct();
         $this->yellow = $yellow;
         $this->page = $page;
@@ -2701,8 +2696,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle inline links, normalise locations
-    protected function inlineLink($Excerpt)
-    {
+    protected function inlineLink($Excerpt) {
         $Link = parent::inlineLink($Excerpt);
         if ($Link) {
             $href = $Link['element']['attributes']['href'];
@@ -2717,8 +2711,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle email links, autolink emails
-    protected function inlineEmailLink($Excerpt)
-    {
+    protected function inlineEmailLink($Excerpt) {
         if ($this->urlsLinked &&
             preg_match("/([\w\-\.]+@[\w\-\.]+\.[\w]{2,4})/", $Excerpt['context'], $matches, PREG_OFFSET_CAPTURE)) {
             $email = $matches[1][0];
@@ -2731,8 +2724,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle shortcuts, text style
-    protected function inlineShortcutText($Excerpt)
-    {
+    protected function inlineShortcutText($Excerpt) {
         if (preg_match("/\[(\w+)(.*?)\]/", $Excerpt['text'], $matches)) {
             $output = $this->page->parseContentBlock($matches[1], trim($matches[2]), true);
             if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
@@ -2751,8 +2743,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
 
     // Handle shortcuts, symbol style
-    protected function inlineShortcutSymbol($Excerpt)
-    {
+    protected function inlineShortcutSymbol($Excerpt) {
         if (preg_match("/\:([\w\+\-\_]+)\:/", $Excerpt['text'], $matches)) {
             $output = $this->page->parseContentBlock("", $matches[1], true);
             if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
@@ -2764,8 +2755,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle fenced code blocks
-    protected function blockFencedCodeComplete($Block)
-    {
+    protected function blockFencedCodeComplete($Block) {
         $Block = parent::blockFencedCodeComplete($Block);
         if ($Block) {
             $name = preg_replace("/language-(.*)/", "$1", $Block['element']['element']['attributes']['class']);
@@ -2784,8 +2774,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle lists, task list
-    protected function blockListComplete(array $Block)
-    {
+    protected function blockListComplete(array $Block) {
         $Block = parent::blockListComplete($Block);
         if ($Block['element']['name']=='ul') {
             $containsTaskList = false;
@@ -2811,8 +2800,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle headers, atx style
-    protected function blockHeader($Line)
-    {
+    protected function blockHeader($Line) {
         $Block = parent::blockHeader($Line);
         if ($Block) {
             $level = strspn($Line['text'], '#');
@@ -2823,8 +2811,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Handle headers, text style
-    protected function blockSetextHeader($Line, array $Block = null)
-    {
+    protected function blockSetextHeader($Line, array $Block = null) {
         $Block = parent::blockSetextHeader($Line, $Block);
         if ($Block) {
             $text = $Block['element']['handler']['argument'];
@@ -2835,8 +2822,7 @@ class YellowMarkdownExtraX extends ParsedownExtra
     }
     
     // Return unique id attribute
-    protected function getIdAttribute($text, $level)
-    {
+    protected function getIdAttribute($text, $level) {
         $text = $this->yellow->lookup->normaliseName($text, true, false, true);
         $text = trim(preg_replace("/-+/", "-", $text), "-");
         if (is_null($this->idAttributes[$text]) && $level>=2 && $level<=3) {

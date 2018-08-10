@@ -3,20 +3,17 @@
 // Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
-class YellowMarkdown
-{
+class YellowMarkdown {
     const VERSION = "0.6.8";
     public $yellow;         //access to API
     
     // Handle initialisation
-    public function onLoad($yellow)
-    {
+    public function onLoad($yellow) {
         $this->yellow = $yellow;
     }
     
     // Handle page content parsing of raw format
-    public function onParseContentRaw($page, $text)
-    {
+    public function onParseContentRaw($page, $text) {
         $markdown = new YellowMarkdownExtraParser($this->yellow, $page);
         return $markdown->transform($text);
     }
@@ -3738,20 +3735,17 @@ class MarkdownExtraParser extends MarkdownParser {
 // Markdown extra parser extensions
 // Copyright (c) 2013-2018 Datenstrom
 
-class YellowMarkdownExtraParser extends MarkdownExtraParser
-{
+class YellowMarkdownExtraParser extends MarkdownExtraParser {
     public $yellow;             //access to API
     public $page;               //access to page
     public $idAttributes;       //id attributes
 
-    public function __construct($yellow, $page)
-    {
+    public function __construct($yellow, $page) {
         $this->yellow = $yellow;
         $this->page = $page;
         $this->idAttributes = array();
         $this->no_markup = $page->parserSafeMode;
-        $this->url_filter_func = function($url) use ($yellow, $page)
-        {
+        $this->url_filter_func = function($url) use ($yellow, $page) {
             return $yellow->lookup->normaliseLocation($url, $page->location,
                 $page->parserSafeMode && $page->statusCode==200);
         };
@@ -3759,8 +3753,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
 
     // Return unique id attribute
-    public function getIdAttribute($text)
-    {
+    public function getIdAttribute($text) {
         $text = $this->yellow->lookup->normaliseName($text, true, false, true);
         $text = trim(preg_replace("/-+/", "-", $text), "-");
         if (is_null($this->idAttributes[$text])) {
@@ -3771,8 +3764,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle links
-    public function doAutoLinks($text)
-    {
+    public function doAutoLinks($text) {
         $text = preg_replace_callback("/<(\w+:[^\'\">\s]+)>/", array(&$this, "_doAutoLinks_url_callback"), $text);
         $text = preg_replace_callback("/<([\w\-\.]+@[\w\-\.]+)>/", array(&$this, "_doAutoLinks_email_callback"), $text);
         $text = preg_replace_callback("/\[\-\-(.*?)\-\-\]/", array(&$this, "_doAutoLinks_comment_callback"), $text);
@@ -3784,8 +3776,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle comments
-    public function _doAutoLinks_comment_callback($matches)
-    {
+    public function _doAutoLinks_comment_callback($matches) {
         $text = $matches[1];
         $output = "<!--".htmlspecialchars($text, ENT_NOQUOTES)."-->";
         if ($text[0]=='-') $output = "";
@@ -3793,24 +3784,21 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle shortcuts
-    public function _doAutoLinks_shortcut_callback($matches)
-    {
+    public function _doAutoLinks_shortcut_callback($matches) {
         $output = $this->page->parseContentBlock($matches[1], trim($matches[2]), true);
         if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
         return substr($output, 0, 4)=="<div" ? $this->hashBlock(trim($output)) : $this->hashPart(trim($output));
     }
 
     // Handle shortcodes
-    public function _doAutoLinks_shortcode_callback($matches)
-    {
+    public function _doAutoLinks_shortcode_callback($matches) {
         $output = $this->page->parseContentBlock("", $matches[1], true);
         if (is_null($output)) $output = htmlspecialchars($matches[0], ENT_NOQUOTES);
         return $this->hashPart($output);
     }
     
     // Handle fenced code blocks
-    public function _doFencedCodeBlocks_callback($matches)
-    {
+    public function _doFencedCodeBlocks_callback($matches) {
         $text = $matches[4];
         $name = empty($matches[2]) ? "" : "$matches[2] $matches[3]";
         $output = $this->page->parseContentBlock($name, $text, false);
@@ -3822,8 +3810,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle headers, text style
-    public function _doHeaders_callback_setext($matches)
-    {
+    public function _doHeaders_callback_setext($matches) {
         if ($matches[3]=='-' && preg_match('{^- }', $matches[1])) return $matches[0];
         $text = $matches[1];
         $level = $matches[3]{0}=='=' ? 1 : 2;
@@ -3834,8 +3821,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle headers, atx style
-    public function _doHeaders_callback_atx($matches)
-    {
+    public function _doHeaders_callback_atx($matches) {
         $text = $matches[2];
         $level = strlen($matches[1]);
         $attr = $this->doExtraAttributes("h$level", $dummy =& $matches[3]);
@@ -3845,8 +3831,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle inline links
-    public function _doAnchors_inline_callback($matches)
-    {
+    public function _doAnchors_inline_callback($matches) {
         $url = $matches[3]=="" ? $matches[4] : $matches[3];
         $text = $matches[2];
         $title = $matches[7];
@@ -3859,8 +3844,7 @@ class YellowMarkdownExtraParser extends MarkdownExtraParser
     }
     
     // Handle inline images
-    public function _doImages_inline_callback($matches)
-    {
+    public function _doImages_inline_callback($matches) {
         $width = $height = 0;
         $src = $matches[3]=="" ? $matches[4] : $matches[3];
         if (!preg_match("/^\w+:/", $src)) {

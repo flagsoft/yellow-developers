@@ -3,8 +3,7 @@
 // Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
-class YellowEdit
-{
+class YellowEdit {
     const VERSION = "0.7.27";
     public $yellow;         //access to API
     public $response;       //web response
@@ -12,8 +11,7 @@ class YellowEdit
     public $merge;          //text merge
 
     // Handle initialisation
-    public function onLoad($yellow)
-    {
+    public function onLoad($yellow) {
         $this->yellow = $yellow;
         $this->response = new YellowResponse($yellow);
         $this->users = new YellowUsers($yellow);
@@ -36,8 +34,7 @@ class YellowEdit
     }
 
     // Handle startup
-    public function onStartup($update)
-    {
+    public function onStartup($update) {
         if ($update) {
             $fileNameUser = $this->yellow->config->get("configDir").$this->yellow->config->get("editUserFile");
             $fileData = $this->yellow->toolbox->readFile($fileNameUser);
@@ -63,8 +60,7 @@ class YellowEdit
     }
     
     // Handle request
-    public function onRequest($scheme, $address, $base, $location, $fileName)
-    {
+    public function onRequest($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if ($this->checkRequest($location)) {
             $scheme = $this->yellow->config->get("serverScheme");
@@ -78,8 +74,7 @@ class YellowEdit
     }
     
     // Handle page meta data parsing
-    public function onParseMeta($page)
-    {
+    public function onParseMeta($page) {
         if ($page==$this->yellow->page && $this->response->isActive()) {
             if ($this->response->isUser()) {
                 if (empty($this->response->rawDataSource)) $this->response->rawDataSource = $page->rawData;
@@ -95,8 +90,7 @@ class YellowEdit
     }
     
     // Handle page content parsing of custom block
-    public function onParseContentBlock($page, $name, $text, $shortcut)
-    {
+    public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="edit" && $shortcut) {
             $editText = "$name $text";
@@ -107,8 +101,7 @@ class YellowEdit
     }
     
     // Handle page extra HTML data
-    public function onExtra($name)
-    {
+    public function onExtra($name) {
         $output = null;
         if ($name=="header" && $this->response->isActive()) {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
@@ -126,8 +119,7 @@ class YellowEdit
     }
     
     // Handle command
-    public function onCommand($args)
-    {
+    public function onCommand($args) {
         list($command) = $args;
         switch ($command) {
             case "user":    $statusCode = $this->userCommand($args); break;
@@ -137,14 +129,12 @@ class YellowEdit
     }
     
     // Handle command help
-    public function onCommandHelp()
-    {
+    public function onCommandHelp() {
         return "user [option email password name]\n";
     }
 
     // Update user account
-    public function userCommand($args)
-    {
+    public function userCommand($args) {
         list($command, $option) = $args;
         switch ($option) {
             case "":        $statusCode = $this->userShow($args); break;
@@ -157,8 +147,7 @@ class YellowEdit
     }
     
     // Show user accounts
-    public function userShow($args)
-    {
+    public function userShow($args) {
         list($command) = $args;
         foreach ($this->users->getData() as $line) {
             echo "$line\n";
@@ -168,8 +157,7 @@ class YellowEdit
     }
     
     // Add user account
-    public function userAdd($args)
-    {
+    public function userAdd($args) {
         $status = "ok";
         list($command, $option, $email, $password, $name) = $args;
         if (empty($email) || empty($password)) $status = $this->response->status = "incomplete";
@@ -197,8 +185,7 @@ class YellowEdit
     }
     
     // Change user account
-    public function userChange($args)
-    {
+    public function userChange($args) {
         $status = "ok";
         list($command, $option, $email, $password, $name) = $args;
         if (empty($email)) $status = $this->response->status = "invalid";
@@ -220,8 +207,7 @@ class YellowEdit
     }
 
     // Remove user account
-    public function userRemove($args)
-    {
+    public function userRemove($args) {
         $status = "ok";
         list($command, $option, $email) = $args;
         if (empty($email)) $status = $this->response->status = "invalid";
@@ -242,8 +228,7 @@ class YellowEdit
     }
     
     // Process request
-    public function processRequest($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequest($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if ($this->checkUserAuth($scheme, $address, $base, $location, $fileName)) {
             switch ($_REQUEST["action"]) {
@@ -280,8 +265,7 @@ class YellowEdit
     }
     
     // Process request to show file
-    public function processRequestShow($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestShow($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if (is_readable($fileName)) {
             $statusCode = $this->yellow->processRequest($scheme, $address, $base, $location, $fileName, false);
@@ -299,8 +283,7 @@ class YellowEdit
     }
 
     // Process request for user login
-    public function processRequestLogin($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestLogin($scheme, $address, $base, $location, $fileName) {
         $fileNameUser = $this->yellow->config->get("configDir").$this->yellow->config->get("editUserFile");
         if ($this->users->save($fileNameUser, $this->response->userEmail)) {
             $home = $this->users->getHome($this->response->userEmail);
@@ -319,8 +302,7 @@ class YellowEdit
     }
     
     // Process request for user logout
-    public function processRequestLogout($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestLogout($scheme, $address, $base, $location, $fileName) {
         $this->response->userEmail = "";
         $this->response->destroyCookies($scheme, $address, $base);
         $location = $this->yellow->lookup->normaliseUrl(
@@ -333,8 +315,7 @@ class YellowEdit
     }
 
     // Process request for user signup
-    public function processRequestSignup($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestSignup($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "signup";
         $this->response->status = "ok";
         $name = trim(preg_replace("/[^\pL\d\-\. ]/u", "-", $_REQUEST["name"]));
@@ -364,8 +345,7 @@ class YellowEdit
     }
     
     // Process request to confirm user signup
-    public function processRequestConfirm($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestConfirm($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "confirm";
         $this->response->status = "ok";
         $email = $_REQUEST["email"];
@@ -384,8 +364,7 @@ class YellowEdit
     }
     
     // Process request to approve user signup
-    public function processRequestApprove($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestApprove($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "approve";
         $this->response->status = "ok";
         $email = $_REQUEST["email"];
@@ -404,8 +383,7 @@ class YellowEdit
     }
 
     // Process request for forgotten password
-    public function processRequestForgot($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestForgot($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "forgot";
         $this->response->status = "ok";
         $email = trim($_REQUEST["email"]);
@@ -420,8 +398,7 @@ class YellowEdit
     }
     
     // Process request to recover password
-    public function processRequestRecover($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestRecover($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "recover";
         $this->response->status = "ok";
         $email = trim($_REQUEST["email"]);
@@ -445,8 +422,7 @@ class YellowEdit
     }
     
     // Process request to reactivate account
-    public function processRequestReactivate($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestReactivate($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "reactivate";
         $this->response->status = "ok";
         $email = $_REQUEST["email"];
@@ -461,8 +437,7 @@ class YellowEdit
     }
     
     // Process request to change settings
-    public function processRequestSettings($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestSettings($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "settings";
         $this->response->status = "ok";
         $email = trim($_REQUEST["email"]);
@@ -509,8 +484,7 @@ class YellowEdit
     }
 
     // Process request to verify email
-    public function processRequestVerify($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestVerify($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "verify";
         $this->response->status = "ok";
         $email = $emailSource = $_REQUEST["email"];
@@ -533,8 +507,7 @@ class YellowEdit
     }
     
     // Process request to change email or password
-    public function processRequestChange($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestChange($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "change";
         $this->response->status = "ok";
         $email = $emailSource = trim($_REQUEST["email"]);
@@ -564,8 +537,7 @@ class YellowEdit
     }
     
     // Process request to show software version
-    public function processRequestVersion($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestVersion($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "version";
         $this->response->status = "ok";
         if ($this->yellow->plugins->isExisting("update")) {
@@ -604,8 +576,7 @@ class YellowEdit
     }
     
     // Process request to update website
-    public function processRequestUpdate($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestUpdate($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if ($this->yellow->plugins->isExisting("update") && $this->response->isUserWebmaster()) {
             $option = trim($_REQUEST["option"]);
@@ -620,8 +591,7 @@ class YellowEdit
     }
     
     // Process request to quit account
-    public function processRequestQuit($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestQuit($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "quit";
         $this->response->status = "ok";
         $name = trim($_REQUEST["name"]);
@@ -638,8 +608,7 @@ class YellowEdit
     }
     
     // Process request to remove account
-    public function processRequestRemove($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestRemove($scheme, $address, $base, $location, $fileName) {
         $this->response->action = "remove";
         $this->response->status = "ok";
         $email = $_REQUEST["email"];
@@ -667,8 +636,7 @@ class YellowEdit
     }
     
     // Process request to create page
-    public function processRequestCreate($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestCreate($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if (!$this->response->isUserRestrictions() && !empty($_REQUEST["rawdataedit"])) {
             $this->response->rawDataSource = $_REQUEST["rawdatasource"];
@@ -693,8 +661,7 @@ class YellowEdit
     }
     
     // Process request to edit page
-    public function processRequestEdit($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestEdit($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if (!$this->response->isUserRestrictions() && !empty($_REQUEST["rawdataedit"])) {
             $this->response->rawDataSource = $_REQUEST["rawdatasource"];
@@ -721,8 +688,7 @@ class YellowEdit
     }
 
     // Process request to delete page
-    public function processRequestDelete($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestDelete($scheme, $address, $base, $location, $fileName) {
         $statusCode = 0;
         if (!$this->response->isUserRestrictions() && is_file($fileName)) {
             $this->response->rawDataSource = $_REQUEST["rawdatasource"];
@@ -758,8 +724,7 @@ class YellowEdit
     }
 
     // Process request to show preview
-    public function processRequestPreview($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestPreview($scheme, $address, $base, $location, $fileName) {
         $page = $this->response->getPagePreview($scheme, $address, $base, $location, $fileName,
             $_REQUEST["rawdataedit"], $_REQUEST["rawdataendofline"]);
         $statusCode = $this->yellow->sendData(200, $page->outputData, "", false);
@@ -771,8 +736,7 @@ class YellowEdit
     }
     
     // Process request to upload file
-    public function processRequestUpload($scheme, $address, $base, $location, $fileName)
-    {
+    public function processRequestUpload($scheme, $address, $base, $location, $fileName) {
         $data = array();
         $fileNameTemp = $_FILES["file"]["tmp_name"];
         $fileNameShort = preg_replace("/[^\pL\d\-\.]/u", "-", basename($_FILES["file"]["name"]));
@@ -795,16 +759,14 @@ class YellowEdit
     }
     
     // Check request
-    public function checkRequest($location)
-    {
+    public function checkRequest($location) {
         $locationLength = strlenu($this->yellow->config->get("editLocation"));
         $this->response->active = substru($location, 0, $locationLength)==$this->yellow->config->get("editLocation");
         return $this->response->isActive();
     }
     
     // Check user authentication
-    public function checkUserAuth($scheme, $address, $base, $location, $fileName)
-    {
+    public function checkUserAuth($scheme, $address, $base, $location, $fileName) {
         if ($this->isRequestSameSite("POST", $scheme, $address) || $_REQUEST["action"]=="") {
             if ($_REQUEST["action"]=="login") {
                 $email = $_REQUEST["email"];
@@ -835,8 +797,7 @@ class YellowEdit
     }
 
     // Check user without authentication
-    public function checkUserUnauth($scheme, $address, $base, $location, $fileName)
-    {
+    public function checkUserUnauth($scheme, $address, $base, $location, $fileName) {
         $ok = false;
         if ($_REQUEST["action"]=="" || $_REQUEST["action"]=="signup" || $_REQUEST["action"]=="forgot") {
             $ok = true;
@@ -854,8 +815,7 @@ class YellowEdit
     }
 
     // Check user failed
-    public function checkUserFailed($scheme, $address, $base, $location, $fileName)
-    {
+    public function checkUserFailed($scheme, $address, $base, $location, $fileName) {
         if (!empty($this->response->userFailedError)) {
             if ($this->response->userFailedExpire>time() && $this->users->isExisting($this->response->userFailedEmail)) {
                 $email = $this->response->userFailedEmail;
@@ -889,8 +849,7 @@ class YellowEdit
     }
     
     // Return user status changes
-    public function getUserStatus($email, $action)
-    {
+    public function getUserStatus($email, $action) {
         switch ($action) {
             case "confirm":     $statusExpected = "unconfirmed"; break;
             case "approve":     $statusExpected = "unapproved"; break;
@@ -904,8 +863,7 @@ class YellowEdit
     }
 
     // Return user account changes
-    public function getUserAccount($email, $password, $action)
-    {
+    public function getUserAccount($email, $password, $action) {
         $status = null;
         foreach ($this->yellow->plugins->plugins as $key=>$value) {
             if (method_exists($value["obj"], "onEditUserAccount")) {
@@ -922,8 +880,7 @@ class YellowEdit
     }
     
     // Return user restrictions
-    public function getUserRestrictions($email, $location, $fileName)
-    {
+    public function getUserRestrictions($email, $location, $fileName) {
         $userRestrictions = null;
         foreach ($this->yellow->plugins->plugins as $key=>$value) {
             if (method_exists($value["obj"], "onEditUserRestrictions")) {
@@ -939,24 +896,21 @@ class YellowEdit
     }
     
     // Return user language
-    public function getUserLanguage($email)
-    {
+    public function getUserLanguage($email) {
         $language = $this->users->getLanguage($email);
         if (!$this->yellow->text->isLanguage($language)) $language = $this->yellow->config->get("language");
         return $language;
     }
     
     // Check if request came from same site
-    public function isRequestSameSite($method, $scheme, $address)
-    {
+    public function isRequestSameSite($method, $scheme, $address) {
         if (preg_match("#^(\w+)://([^/]+)(.*)$#", $_SERVER["HTTP_REFERER"], $matches)) $origin = "$matches[1]://$matches[2]";
         if (isset($_SERVER["HTTP_ORIGIN"])) $origin = $_SERVER["HTTP_ORIGIN"];
         return $_SERVER["REQUEST_METHOD"]==$method && $origin=="$scheme://$address";
     }
 }
     
-class YellowResponse
-{
+class YellowResponse {
     public $yellow;             //access to API
     public $plugin;             //access to plugin
     public $active;             //location is active? (boolean)
@@ -973,15 +927,13 @@ class YellowResponse
     public $action;             //response action
     public $status;             //response status
     
-    public function __construct($yellow)
-    {
+    public function __construct($yellow) {
         $this->yellow = $yellow;
         $this->plugin = $yellow->plugins->get("edit");
     }
     
     // Return new page
-    public function getPageNew($scheme, $address, $base, $location, $fileName, $rawData, $endOfLine)
-    {
+    public function getPageNew($scheme, $address, $base, $location, $fileName, $rawData, $endOfLine) {
         $page = new YellowPage($this->yellow);
         $page->setRequestInformation($scheme, $address, $base, $location, $fileName);
         $page->parseData($this->normaliseLines($rawData, $endOfLine), false, 0);
@@ -1009,8 +961,7 @@ class YellowResponse
     }
     
     // Return modified page
-    public function getPageEdit($scheme, $address, $base, $location, $fileName, $rawDataSource, $rawDataEdit, $rawDataFile, $endOfLine)
-    {
+    public function getPageEdit($scheme, $address, $base, $location, $fileName, $rawDataSource, $rawDataEdit, $rawDataFile, $endOfLine) {
         $page = new YellowPage($this->yellow);
         $page->setRequestInformation($scheme, $address, $base, $location, $fileName);
         $rawData = $this->plugin->merge->merge(
@@ -1044,8 +995,7 @@ class YellowResponse
     }
     
     // Return deleted page
-    public function getPageDelete($scheme, $address, $base, $location, $fileName, $rawData, $endOfLine)
-    {
+    public function getPageDelete($scheme, $address, $base, $location, $fileName, $rawData, $endOfLine) {
         $page = new YellowPage($this->yellow);
         $page->setRequestInformation($scheme, $address, $base, $location, $fileName);
         $page->parseData($this->normaliseLines($rawData, $endOfLine), false, 0);
@@ -1057,8 +1007,7 @@ class YellowResponse
     }
 
     // Return preview page
-    public function getPagePreview($scheme, $address, $base, $location, $fileName, $rawData, $endOfLine)
-    {
+    public function getPagePreview($scheme, $address, $base, $location, $fileName, $rawData, $endOfLine) {
         $page = new YellowPage($this->yellow);
         $page->setRequestInformation($scheme, $address, $base, $location, $fileName);
         $page->parseData($this->normaliseLines($rawData, $endOfLine), false, 200);
@@ -1074,8 +1023,7 @@ class YellowResponse
     }
     
     // Return uploaded file
-    public function getFileUpload($scheme, $address, $base, $pageLocation, $fileNameTemp, $fileNameShort)
-    {
+    public function getFileUpload($scheme, $address, $base, $pageLocation, $fileNameTemp, $fileNameShort) {
         $file = new YellowPage($this->yellow);
         $file->setRequestInformation($scheme, $address, $base, "/".$fileNameTemp, $fileNameTemp);
         $file->parseData(null, false, 0);
@@ -1094,8 +1042,7 @@ class YellowResponse
     }
 
     // Return page data including status information
-    public function getPageData()
-    {
+    public function getPageData() {
         $data = array();
         if ($this->isUser()) {
             $data["title"] = $this->yellow->toolbox->getMetaData($this->rawDataEdit, "title");
@@ -1118,8 +1065,7 @@ class YellowResponse
     }
     
     // Return configuration data including user information
-    public function getConfigData()
-    {
+    public function getConfigData() {
         $data = $this->yellow->config->getData("", "Location");
         if ($this->isUser()) {
             $data["userEmail"] = $this->userEmail;
@@ -1157,8 +1103,7 @@ class YellowResponse
     }
     
     // Return request strings
-    public function getRequestData()
-    {
+    public function getRequestData() {
         $data = array();
         foreach ($_REQUEST as $key=>$value) {
             if ($key=="password" || $key=="authtoken" || $key=="csrftoken" || $key=="actiontoken" || substru($key, 0, 7)=="rawdata") continue;
@@ -1168,8 +1113,7 @@ class YellowResponse
     }
     
     // Return text strings
-    public function getTextData()
-    {
+    public function getTextData() {
         $textLanguage = $this->yellow->text->getData("language", $this->language);
         $textEdit = $this->yellow->text->getData("edit", $this->language);
         $textYellow = $this->yellow->text->getData("yellow", $this->language);
@@ -1177,8 +1121,7 @@ class YellowResponse
     }
     
     // Return toolbar buttons
-    public function getToolbarButtons($name)
-    {
+    public function getToolbarButtons($name) {
         if ($name=="edit") {
             $toolbarButtons = $this->yellow->config->get("editToolbarButtons");
             if ($toolbarButtons=="auto") {
@@ -1196,8 +1139,7 @@ class YellowResponse
     }
     
     // Return end of line format
-    public function getEndOfLine($rawData = "")
-    {
+    public function getEndOfLine($rawData = "") {
         $endOfLine = $this->yellow->config->get("editEndOfLine");
         if ($endOfLine=="auto") {
             $rawData = empty($rawData) ? PHP_EOL : substru($rawData, 0, 4096);
@@ -1207,8 +1149,7 @@ class YellowResponse
     }
     
     // Return raw data for new page
-    public function getRawDataNew($location = "")
-    {
+    public function getRawDataNew($location = "") {
         foreach ($this->yellow->pages->path($this->yellow->page->location)->reverse() as $page) {
             if ($page->isExisting("templateNew")) {
                 $name = $this->yellow->lookup->normaliseName($page->get("templateNew"));
@@ -1234,8 +1175,7 @@ class YellowResponse
     }
     
     // Return location for new/modified page
-    public function getPageNewLocation($rawData, $pageLocation, $pageNewLocation)
-    {
+    public function getPageNewLocation($rawData, $pageLocation, $pageNewLocation) {
         $location = empty($pageNewLocation) ? "@title" : $pageNewLocation;
         $location = preg_replace("/@title/i", $this->getPageNewTitle($rawData), $location);
         $location = preg_replace("/@timestamp/i", $this->getPageNewData($rawData, "published", true, "U"), $location);
@@ -1252,8 +1192,7 @@ class YellowResponse
     }
     
     // Return title for new/modified page
-    public function getPageNewTitle($rawData)
-    {
+    public function getPageNewTitle($rawData) {
         $title = $this->yellow->toolbox->getMetaData($rawData, "title");
         $titleSlug = $this->yellow->toolbox->getMetaData($rawData, "titleSlug");
         $value = empty($titleSlug) ? $title : $titleSlug;
@@ -1262,8 +1201,7 @@ class YellowResponse
     }
     
     // Return data for new/modified page
-    public function getPageNewData($rawData, $key, $filterFirst = false, $dateFormat = "")
-    {
+    public function getPageNewData($rawData, $key, $filterFirst = false, $dateFormat = "") {
         $value = $this->yellow->toolbox->getMetaData($rawData, $key);
         if ($filterFirst && preg_match("/^(.*?)\,(.*)$/", $value, $matches)) $value = $matches[1];
         if (!empty($dateFormat)) $value = date($dateFormat, strtotime($value));
@@ -1273,8 +1211,7 @@ class YellowResponse
     }
 
     // Return location for new file
-    public function getFileNewLocation($fileNameShort, $pageLocation, $fileNewLocation)
-    {
+    public function getFileNewLocation($fileNameShort, $pageLocation, $fileNewLocation) {
         $location = empty($fileNewLocation) ? $this->yellow->config->get("editUploadNewLocation") : $fileNewLocation;
         $location = preg_replace("/@timestamp/i", time(), $location);
         $location = preg_replace("/@type/i", $this->yellow->toolbox->getFileType($fileNameShort), $location);
@@ -1288,8 +1225,7 @@ class YellowResponse
     }
     
     // Return group for new file
-    public function getFileNewGroup($fileNameShort)
-    {
+    public function getFileNewGroup($fileNameShort) {
         $path = $this->yellow->config->get("mediaDir");
         $fileType = $this->yellow->toolbox->getFileType($fileNameShort);
         $fileName = $this->yellow->config->get(preg_match("/(gif|jpg|png|svg)$/", $fileType) ? "imageDir" : "downloadDir").$fileNameShort;
@@ -1298,16 +1234,14 @@ class YellowResponse
     }
 
     // Return folder for new file
-    public function getFileNewFolder($pageLocation)
-    {
+    public function getFileNewFolder($pageLocation) {
         $parentTopLocation = $this->yellow->pages->getParentTopLocation($pageLocation);
         if ($parentTopLocation==$this->yellow->pages->getHomeLocation($pageLocation)) $parentTopLocation .= "home";
         return strtoloweru(trim($parentTopLocation, "/"));
     }
     
     // Return next title
-    public function getTitleNext($rawData)
-    {
+    public function getTitleNext($rawData) {
         preg_match("/^(.*?)(\d*)$/", $this->yellow->toolbox->getMetaData($rawData, "title"), $matches);
         $titleText = $matches[1];
         $titleNumber = strempty($matches[2]) ? " 2" : $matches[2]+1;
@@ -1315,8 +1249,7 @@ class YellowResponse
     }
     
     // Return next file name
-    public function getFileNext($fileNameShort)
-    {
+    public function getFileNext($fileNameShort) {
         preg_match("/^(.*?)(\d*)(\..*?)?$/", $fileNameShort, $matches);
         $fileText = $matches[1];
         $fileNumber = strempty($matches[2]) ? "-2" : $matches[2]+1;
@@ -1325,8 +1258,7 @@ class YellowResponse
     }
 
     // Normalise text lines, convert line endings
-    public function normaliseLines($text, $endOfLine = "lf")
-    {
+    public function normaliseLines($text, $endOfLine = "lf") {
         if ($endOfLine=="lf") {
             $text = preg_replace("/\R/u", "\n", $text);
         } else {
@@ -1336,8 +1268,7 @@ class YellowResponse
     }
     
     // Create browser cookies
-    public function createCookies($scheme, $address, $base, $email)
-    {
+    public function createCookies($scheme, $address, $base, $email) {
         $expire = time() + $this->yellow->config->get("editLoginSessionTimeout");
         $authToken = $this->plugin->users->createAuthToken($email, $expire);
         $csrfToken = $this->plugin->users->createCsrfToken();
@@ -1346,15 +1277,13 @@ class YellowResponse
     }
     
     // Destroy browser cookies
-    public function destroyCookies($scheme, $address, $base)
-    {
+    public function destroyCookies($scheme, $address, $base) {
         setcookie("authtoken", "", 1, "$base/", "", $scheme=="https", true);
         setcookie("csrftoken", "", 1, "$base/", "", $scheme=="https", false);
     }
     
     // Send mail to user
-    public function sendMail($scheme, $address, $base, $email, $action)
-    {
+    public function sendMail($scheme, $address, $base, $email, $action) {
         if ($action=="welcome" || $action=="goodbye") {
             $url = "$scheme://$address$base/";
         } else {
@@ -1391,8 +1320,7 @@ class YellowResponse
     }
     
     // Change content file
-    public function editContentFile($page, $action)
-    {
+    public function editContentFile($page, $action) {
         if (!$page->isError()) {
             foreach ($this->yellow->plugins->plugins as $key=>$value) {
                 if (method_exists($value["obj"], "onEditContentFile")) $value["obj"]->onEditContentFile($page, $action);
@@ -1401,8 +1329,7 @@ class YellowResponse
     }
 
     // Change media file
-    public function editMediaFile($file, $action)
-    {
+    public function editMediaFile($file, $action) {
         if (!$file->isError()) {
             foreach ($this->yellow->plugins->plugins as $key=>$value) {
                 if (method_exists($value["obj"], "onEditMediaFile")) $value["obj"]->onEditMediaFile($file, $action);
@@ -1411,50 +1338,42 @@ class YellowResponse
     }
     
     // Check if active
-    public function isActive()
-    {
+    public function isActive() {
         return $this->active;
     }
     
     // Check if user is logged in
-    public function isUser()
-    {
+    public function isUser() {
         return !empty($this->userEmail);
     }
     
     // Check if user has restrictions
-    public function isUserRestrictions()
-    {
+    public function isUserRestrictions() {
         return empty($this->userEmail) || $this->userRestrictions;
     }
     
     // Check if user is webmaster
-    public function isUserWebmaster()
-    {
+    public function isUserWebmaster() {
         return !empty($this->userEmail) && $this->userEmail==$this->yellow->config->get("email");
     }
     
     // Check if login has restrictions
-    public function isLoginRestrictions()
-    {
+    public function isLoginRestrictions() {
         return $this->yellow->config->get("editLoginRestrictions");
     }
 }
 
-class YellowUsers
-{
+class YellowUsers {
     public $yellow;     //access to API
     public $users;      //registered users
     
-    public function __construct($yellow)
-    {
+    public function __construct($yellow) {
         $this->yellow = $yellow;
         $this->users = array();
     }
 
     // Load users from file
-    public function load($fileName)
-    {
+    public function load($fileName) {
         if (defined("DEBUG") && DEBUG>=2) echo "YellowUsers::load file:$fileName<br/>\n";
         $fileData = $this->yellow->toolbox->readFile($fileName);
         foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
@@ -1469,8 +1388,7 @@ class YellowUsers
     }
 
     // Save user to file
-    public function save($fileName, $email, $password = "", $name = "", $language = "", $status = "", $stamp = "", $modified = "", $errors = "", $pending = "", $home = "")
-    {
+    public function save($fileName, $email, $password = "", $name = "", $language = "", $status = "", $stamp = "", $modified = "", $errors = "", $pending = "", $home = "") {
         if (!empty($password)) $hash = $this->createHash($password);
         if ($this->isExisting($email)) {
             $email = strreplaceu(",", "-", $email);
@@ -1511,8 +1429,7 @@ class YellowUsers
     }
     
     // Remove user from file
-    public function remove($fileName, $email)
-    {
+    public function remove($fileName, $email) {
         unset($this->users[$email]);
         $fileData = $this->yellow->toolbox->readFile($fileName);
         foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
@@ -1523,8 +1440,7 @@ class YellowUsers
     }
     
     // Set user data
-    public function set($email, $hash, $name, $language, $status, $stamp, $modified, $errors, $pending, $home)
-    {
+    public function set($email, $hash, $name, $language, $status, $stamp, $modified, $errors, $pending, $home) {
         $this->users[$email] = array();
         $this->users[$email]["email"] = $email;
         $this->users[$email]["hash"] = $hash;
@@ -1539,16 +1455,14 @@ class YellowUsers
     }
     
     // Check user authentication from email and password
-    public function checkAuthLogin($email, $password)
-    {
+    public function checkAuthLogin($email, $password) {
         $algorithm = $this->yellow->config->get("editUserHashAlgorithm");
         return $this->isExisting($email) && $this->users[$email]["status"]=="active" &&
             $this->yellow->toolbox->verifyHash($password, $algorithm, $this->users[$email]["hash"]);
     }
 
     // Check user authentication from tokens
-    public function checkAuthToken($authToken, $csrfTokenExpected, $csrfTokenReceived, $ignoreCsrfToken)
-    {
+    public function checkAuthToken($authToken, $csrfTokenExpected, $csrfTokenReceived, $ignoreCsrfToken) {
         $signature = "$5y$".substrb($authToken, 0, 96);
         $email = $this->getAuthEmail($authToken);
         $expire = $this->getAuthExpire($authToken);
@@ -1558,38 +1472,33 @@ class YellowUsers
     }
     
     // Check action token
-    public function checkActionToken($actionToken, $email, $action, $expire)
-    {
+    public function checkActionToken($actionToken, $email, $action, $expire) {
         $signature = "$5y$".$actionToken;
         return $expire>time() && $this->isExisting($email) &&
             $this->yellow->toolbox->verifyHash($this->users[$email]["hash"].$action.$expire, "sha256", $signature);
     }
            
     // Create authentication token
-    public function createAuthToken($email, $expire)
-    {
+    public function createAuthToken($email, $expire) {
         $signature = $this->yellow->toolbox->createHash($this->users[$email]["hash"]."auth".$expire, "sha256");
         if (empty($signature)) $signature = "padd"."error-hash-algorithm-sha256";
         return substrb($signature, 4).$this->getStamp($email).dechex($expire);
     }
     
     // Create action token
-    public function createActionToken($email, $action, $expire)
-    {
+    public function createActionToken($email, $action, $expire) {
         $signature = $this->yellow->toolbox->createHash($this->users[$email]["hash"].$action.$expire, "sha256");
         if (empty($signature)) $signature = "padd"."error-hash-algorithm-sha256";
         return substrb($signature, 4);
     }
     
     // Create CSRF token
-    public function createCsrfToken()
-    {
+    public function createCsrfToken() {
         return $this->yellow->toolbox->createSalt(64);
     }
     
     // Create password hash
-    public function createHash($password)
-    {
+    public function createHash($password) {
         $algorithm = $this->yellow->config->get("editUserHashAlgorithm");
         $cost = $this->yellow->config->get("editUserHashCost");
         $hash = $this->yellow->toolbox->createHash($password, $algorithm, $cost);
@@ -1598,8 +1507,7 @@ class YellowUsers
     }
     
     // Create user stamp
-    public function createStamp()
-    {
+    public function createStamp() {
         $stamp = $this->yellow->toolbox->createSalt(20);
         while ($this->getAuthEmail("none", $stamp)) {
             $stamp = $this->yellow->toolbox->createSalt(20);
@@ -1608,8 +1516,7 @@ class YellowUsers
     }
     
     // Return user email from authentication, timing attack safe email lookup
-    public function getAuthEmail($authToken, $stamp = "")
-    {
+    public function getAuthEmail($authToken, $stamp = "") {
         if (empty($stamp)) $stamp = substrb($authToken, 96, 20);
         foreach ($this->users as $key=>$value) {
             if ($this->yellow->toolbox->verifyToken($value["stamp"], $stamp)) $email = $key;
@@ -1618,74 +1525,62 @@ class YellowUsers
     }
     
     // Return expiration time from authentication
-    public function getAuthExpire($authToken)
-    {
+    public function getAuthExpire($authToken) {
         return hexdec(substrb($authToken, 96+20));
     }
     
     // Return user hash
-    public function getHash($email)
-    {
+    public function getHash($email) {
         return $this->isExisting($email) ? $this->users[$email]["hash"] : "";
     }
     
     // Return user name
-    public function getName($email)
-    {
+    public function getName($email) {
         return $this->isExisting($email) ? $this->users[$email]["name"] : "";
     }
 
     // Return user language
-    public function getLanguage($email)
-    {
+    public function getLanguage($email) {
         return $this->isExisting($email) ? $this->users[$email]["language"] : "";
     }
     
     // Return user status
-    public function getStatus($email)
-    {
+    public function getStatus($email) {
         return $this->isExisting($email) ? $this->users[$email]["status"] : "";
     }
     
     // Return user stamp
-    public function getStamp($email)
-    {
+    public function getStamp($email) {
         return $this->isExisting($email) ? $this->users[$email]["stamp"] : "";
     }
     
     // Return user modified
-    public function getModified($email)
-    {
+    public function getModified($email) {
         return $this->isExisting($email) ? $this->users[$email]["modified"] : "";
     }
 
     // Return user errors
-    public function getErrors($email)
-    {
+    public function getErrors($email) {
         return $this->isExisting($email) ? $this->users[$email]["errors"] : "";
     }
 
     // Return user pending
-    public function getPending($email)
-    {
+    public function getPending($email) {
         return $this->isExisting($email) ? $this->users[$email]["pending"] : "";
     }
     
     // Return user home
-    public function getHome($email)
-    {
+    public function getHome($email) {
         return $this->isExisting($email) ? $this->users[$email]["home"] : "";
     }
     
     // Return number of users
-    public function getNumber()
-    {
+    public function getNumber() {
         return count($this->users);
     }
 
     // Return user data
-    public function getData()
-    {
+    public function getData() {
         $data = array();
         foreach ($this->users as $key=>$value) {
             $name = $value["name"];
@@ -1699,8 +1594,7 @@ class YellowUsers
     }
     
     // Check if user is taken
-    public function isTaken($email)
-    {
+    public function isTaken($email) {
         $taken = false;
         if ($this->isExisting($email)) {
             $status = $this->users[$email]["status"];
@@ -1711,28 +1605,24 @@ class YellowUsers
     }
     
     // Check if user exists
-    public function isExisting($email)
-    {
+    public function isExisting($email) {
         return !is_null($this->users[$email]);
     }
 }
     
-class YellowMerge
-{
+class YellowMerge {
     public $yellow;     //access to API
     const ADD = "+";    //merge types
     const MODIFY = "*";
     const REMOVE = "-";
     const SAME = " ";
     
-    public function __construct($yellow)
-    {
+    public function __construct($yellow) {
         $this->yellow = $yellow;
     }
     
     // Merge text, null if not possible
-    public function merge($textSource, $textMine, $textYours, $showDiff = false)
-    {
+    public function merge($textSource, $textMine, $textYours, $showDiff = false) {
         if ($textMine!=$textYours) {
             $diffMine = $this->buildDiff($textSource, $textMine);
             $diffYours = $this->buildDiff($textSource, $textYours);
@@ -1745,8 +1635,7 @@ class YellowMerge
     }
     
     // Build differences to common source
-    public function buildDiff($textSource, $textOther)
-    {
+    public function buildDiff($textSource, $textOther) {
         $diff = array();
         $lastRemove = -1;
         $textStart = 0;
@@ -1797,8 +1686,7 @@ class YellowMerge
     }
     
     // Build longest common subsequence
-    public function buildDiffLCS($textSource, $textOther, $textStart, $yEnd, $xEnd)
-    {
+    public function buildDiffLCS($textSource, $textOther, $textStart, $yEnd, $xEnd) {
         $lcs = array_fill(0, $yEnd+1, array_fill(0, $xEnd+1, 0));
         for ($y=$yEnd-1; $y>=0; --$y) {
             for ($x=$xEnd-1; $x>=0; --$x) {
@@ -1813,8 +1701,7 @@ class YellowMerge
     }
     
     // Merge differences
-    public function mergeDiff($diffMine, $diffYours)
-    {
+    public function mergeDiff($diffMine, $diffYours) {
         $diff = array();
         $posMine = $posYours = 0;
         while ($posMine<count($diffMine) && $posYours<count($diffYours)) {
@@ -1862,8 +1749,7 @@ class YellowMerge
     }
     
     // Merge potential conflict
-    public function mergeConflict(&$diff, $diffMine, $diffYours, $conflict)
-    {
+    public function mergeConflict(&$diff, $diffMine, $diffYours, $conflict) {
         if (!$conflict && $diffMine[1]==$diffYours[1]) {
             array_push($diff, $diffMine);
         } else {
@@ -1873,8 +1759,7 @@ class YellowMerge
     }
     
     // Return merged text, null if not possible
-    public function getOutput($diff, $showDiff = false)
-    {
+    public function getOutput($diff, $showDiff = false) {
         $output = "";
         if (!$showDiff) {
             for ($i=0; $i<count($diff); ++$i) {
