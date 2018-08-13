@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowGallery {
-    const VERSION = "0.7.4";
+    const VERSION = "0.7.6";
     public $yellow;         //access to API
 
     // Handle initialisation
@@ -35,7 +35,11 @@ class YellowGallery {
                     foreach ($files as $file) {
                         list($widthInput, $heightInput) = $this->yellow->toolbox->detectImageInfo($file->fileName);
                         list($src, $width, $height) = $this->yellow->plugins->get("image")->getImageInfo($file->fileName, $size, $size);
-                        $output .= "<a href=\"".$file->getLocation(true)."\" data-size=\"{$widthInput}x{$heightInput}\">";
+                        $caption = $this->getImageCaption($file->fileName);
+                        $output .= "<a href=\"".$file->getLocation(true)."\"";
+                        if ($widthInput && $heightInput) $output .= " data-size=\"".htmlspecialchars("{$widthInput}x{$heightInput}")."\"";
+                        if (!empty($caption)) $output .= " data-caption=\"".htmlspecialchars($caption)."\"";
+                        $output .= ">";
                         $output .= "<img src=\"".htmlspecialchars($src)."\" width=\"".htmlspecialchars($width)."\" height=\"".
                             htmlspecialchars($height)."\" alt=\"".basename($file->getLocation(true))."\" title=\"".
                             basename($file->getLocation(true))."\" />";
@@ -61,6 +65,12 @@ class YellowGallery {
             $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}gallery.js\"></script>\n";
         }
         return $output;
+    }
+
+    // Return image caption
+    public function getImageCaption($fileName) {
+        $key = substru($fileName, strlenu($this->yellow->config->get("imageDir")));
+        return $this->yellow->text->isExisting($key) ? $this->yellow->text->get($key) : "";
     }
 }
 

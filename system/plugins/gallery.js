@@ -1,5 +1,5 @@
 // Gallery plugin, https://github.com/datenstrom/yellow-plugins/tree/master/gallery
-// Copyright (c) 2013-2017 Datenstrom, https://datenstrom.se
+// Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
 /*! PhotoSwipe - v4.1.2 - 2017-04-05
@@ -33,12 +33,10 @@ var initPhotoSwipeFromDOM = function() {
                 src: el.getAttribute("href"),
                 w: parseInt(size[0], 10),
                 h: parseInt(size[1], 10),
+                caption: el.getAttribute("data-caption")
             };
             if (childElements.length>0) {
                 item.msrc = childElements[0].getAttribute("src");
-                if (childElements.length>1) {
-                    item.title = childElements[1].innerHTML;
-                }
             }
             item.el = el;
             items.push(item);
@@ -171,6 +169,16 @@ var initPhotoSwipeFromDOM = function() {
             var thumbnail = items[index].el.children[0],
             rect = thumbnail.getBoundingClientRect();
             return { x:rect.left, y:rect.top + window.pageYOffset, w:rect.width };
+        };
+        options["addCaptionHTMLFn"] = function(item, captionEl, isFake) {
+            if (item.caption) {
+                captionEl.children[0].innerText = item.caption;
+                item.title = true;
+            } else {
+                captionEl.children[0].innerText = "";
+                item.title = false;
+            }
+            return item.title;
         };
         if (options.thumbSquare) {
             options.showHideOpacity = true;
