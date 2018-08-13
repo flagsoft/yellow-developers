@@ -8,8 +8,8 @@ Link to another website: [Datenstrom](https://datenstrom.se), [W3Schools](https:
 Relative link to current page: [Content](api-content-files), [Images](image-parsing).  
 Special links for this page: [Read](@pageread), [Edit](@pageedit).
 
-URL autolinking: 
+URL autolinking:
 
-https://example.com, http://example.com, bla@example.com, pe.ter@example.com.  
+https://example.com, http://example.com, http://www.faqs.org/docs/artu/ch01s06.html.  
 "https://example.com" 'https://example.com' https://example.com: https://example.com;  
-http://www.faqs.org/docs/artu/ch01s06.html
+bla@example.com, pe.ter@example.com, list+subscribe@example.com.  

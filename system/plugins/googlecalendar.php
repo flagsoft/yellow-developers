@@ -1,10 +1,10 @@
 <?php
 // Googlecalendar plugin, https://github.com/datenstrom/yellow-plugins/tree/master/googlecalendar
-// Copyright (c) 2013-2017 Datenstrom, https://datenstrom.se
+// Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
 class YellowGooglecalendar {
-    const VERSION = "0.7.2";
+    const VERSION = "0.7.3";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -67,7 +67,7 @@ class YellowGooglecalendar {
         if ($name=="header") {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
             $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$pluginLocation}googlecalendar.css\" />\n";
-            $output .= "<script type=\"text/javascript\" src=\"{$pluginLocation}googlecalendar.js\"></script>\n";
+            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}googlecalendar.js\"></script>\n";
         }
         return $output;
     }

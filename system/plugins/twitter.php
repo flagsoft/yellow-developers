@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowTwitter {
-    const VERSION = "0.7.6";
+    const VERSION = "0.7.7";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -50,7 +50,7 @@ class YellowTwitter {
         $output = null;
         if ($name=="header") {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
-            $output = "<script type=\"text/javascript\" src=\"{$pluginLocation}twitter.js\"></script>\n";
+            $output = "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}twitter.js\"></script>\n";
         }
         return $output;
     }

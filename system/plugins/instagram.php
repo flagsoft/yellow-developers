@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowInstagram {
-    const VERSION = "0.7.4";
+    const VERSION = "0.7.5";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -43,7 +43,7 @@ class YellowInstagram {
         $output = null;
         if ($name=="header") {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
-            $output = "<script type=\"text/javascript\" src=\"{$pluginLocation}instagram.js\"></script>\n";
+            $output = "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}instagram.js\"></script>\n";
         }
         return $output;
     }

@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowMarkdownX {
-    const VERSION = "0.6.8";
+    const VERSION = "0.6.9";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -2713,7 +2713,7 @@ class YellowMarkdownExtraX extends ParsedownExtra {
     // Handle email links, autolink emails
     protected function inlineEmailLink($Excerpt) {
         if ($this->urlsLinked &&
-            preg_match("/([\w\-\.]+@[\w\-\.]+\.[\w]{2,4})/", $Excerpt["context"], $matches, PREG_OFFSET_CAPTURE)) {
+            preg_match("/([\w\+\-\.]+@[\w\-\.]+\.[\w]{2,4})/", $Excerpt["context"], $matches, PREG_OFFSET_CAPTURE)) {
             $email = $matches[1][0];
             return array(
                 "extent" => strlen($matches[1][0]),

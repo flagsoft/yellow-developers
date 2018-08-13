@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowWiki {
-    const VERSION = "0.7.5";
+    const VERSION = "0.7.6";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -20,143 +20,172 @@ class YellowWiki {
     // Handle page content parsing of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
-        if ($name=="wikiauthors" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
-            $wiki = $this->yellow->pages->find($location);
-            $pages = $this->getWikiPages($location);
-            $page->setLastModified($pages->getModified());
-            $authors = array();
+        if($shortcut) {
+            switch($name) {
+                case "wikiauthors": $output = $this->getShorcutWikiauthors($page, $name, $text); break;
+                case "wikipages":   $output = $this->getShorcutWikipages($page, $name, $text); break;
+                case "wikichanges": $output = $this->getShorcutWikichanges($page, $name, $text); break;
+                case "wikirelated": $output = $this->getShorcutWikirelated($page, $name, $text); break;
+                case "wikitags":    $output = $this->getShorcutWikitags($page, $name, $text); break;
+            }
+        }
+        return $output;
+    }
+    
+    // Return wikiauthors shortcut
+    public function getShorcutWikiauthors($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
+        $wiki = $this->yellow->pages->find($location);
+        $pages = $this->getWikiPages($location);
+        $page->setLastModified($pages->getModified());
+        $authors = array();
+        foreach ($pages as $page) {
+            if ($page->isExisting("author")) {
+                foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) {
+                    ++$authors[$author];
+                }
+            }
+        }
+        if (count($authors)) {
+            $authors = $this->yellow->lookup->normaliseUpperLower($authors);
+            if ($pagesMax!=0 && count($authors)>$pagesMax) {
+                uasort($authors, "strnatcasecmp");
+                $authors = array_slice($authors, -$pagesMax);
+            }
+            uksort($authors, "strnatcasecmp");
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
+            foreach ($authors as $key=>$value) {
+                $output .= "<li><a href=\"".$wiki->getLocation(true).$this->yellow->toolbox->normaliseArgs("author:$key")."\">";
+                $output .= htmlspecialchars($key)."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Wikiauthors '$location' does not exist!");
+        }
+        return $output;
+    }
+
+    // Return wikiauthors shortcut
+    public function getShorcutWikipages($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
+        $wiki = $this->yellow->pages->find($location);
+        $pages = $this->getWikiPages($location);
+        if (!empty($author)) $pages->filter("author", $author);
+        if (!empty($tag)) $pages->filter("tag", $tag);
+        $pages->sort("title");
+        $page->setLastModified($pages->getModified());
+        if (count($pages)) {
+            if ($pagesMax!=0) $pages->limit($pagesMax);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
             foreach ($pages as $page) {
-                if ($page->isExisting("author")) {
-                    foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) {
-                        ++$authors[$author];
-                    }
-                }
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
+                $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
-            if (count($authors)) {
-                $authors = $this->yellow->lookup->normaliseUpperLower($authors);
-                if ($pagesMax!=0 && count($authors)>$pagesMax) {
-                    uasort($authors, "strnatcasecmp");
-                    $authors = array_slice($authors, -$pagesMax);
-                }
-                uksort($authors, "strnatcasecmp");
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($authors as $key=>$value) {
-                    $output .= "<li><a href=\"".$wiki->getLocation(true).$this->yellow->toolbox->normaliseArgs("author:$key")."\">";
-                    $output .= htmlspecialchars($key)."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Wikiauthors '$location' does not exist!");
-            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Wikipages '$location' does not exist!");
         }
-        if ($name=="wikipages" && $shortcut) {
-            list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
-            $wiki = $this->yellow->pages->find($location);
-            $pages = $this->getWikiPages($location);
-            if (!empty($author)) $pages->filter("author", $author);
-            if (!empty($tag)) $pages->filter("tag", $tag);
-            $pages->sort("title");
-            $page->setLastModified($pages->getModified());
-            if (count($pages)) {
-                if ($pagesMax!=0) $pages->limit($pagesMax);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($pages as $page) {
-                    $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
-                    $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Wikipages '$location' does not exist!");
-            }
-        }
-        if (($name=="wikichanges" || $name=="wikirecent") && $shortcut) {
-            list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
-            $wiki = $this->yellow->pages->find($location);
-            $pages = $this->getWikiPages($location);
-            if (!empty($author)) $pages->filter("author", $author);
-            if (!empty($tag)) $pages->filter("tag", $tag);
-            $pages->sort("modified", false);
-            $page->setLastModified($pages->getModified());
-            if (count($pages)) {
-                if ($pagesMax!=0) $pages->limit($pagesMax);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($pages as $page) {
-                    $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
-                    $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Wikichanges '$location' does not exist!");
-            }
-        }
-        if ($name=="wikirelated" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
-            $wiki = $this->yellow->pages->find($location);
-            $pages = $this->getWikiPages($location);
-            $pages->similar($page->getPage("main"));
-            $page->setLastModified($pages->getModified());
-            if (count($pages)) {
-                if ($pagesMax!=0) $pages->limit($pagesMax);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($pages as $page) {
-                    $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
-                    $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Wikirelated '$location' does not exist!");
-            }
-        }
-        if ($name=="wikitags" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
-            $wiki = $this->yellow->pages->find($location);
-            $pages = $this->getWikiPages($location);
-            $page->setLastModified($pages->getModified());
-            $tags = array();
+        return $output;
+    }
+        
+    // Return wikiauthors shortcut
+    public function getShorcutWikichanges($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
+        $wiki = $this->yellow->pages->find($location);
+        $pages = $this->getWikiPages($location);
+        if (!empty($author)) $pages->filter("author", $author);
+        if (!empty($tag)) $pages->filter("tag", $tag);
+        $pages->sort("modified", false);
+        $page->setLastModified($pages->getModified());
+        if (count($pages)) {
+            if ($pagesMax!=0) $pages->limit($pagesMax);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
             foreach ($pages as $page) {
-                if ($page->isExisting("tag")) {
-                    foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
-                        ++$tags[$tag];
-                    }
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
+                $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Wikichanges '$location' does not exist!");
+        }
+        return $output;
+    }
+    
+    // Return wikiauthors shortcut
+    public function getShorcutWikirelated($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
+        $wiki = $this->yellow->pages->find($location);
+        $pages = $this->getWikiPages($location);
+        $pages->similar($page->getPage("main"));
+        $page->setLastModified($pages->getModified());
+        if (count($pages)) {
+            if ($pagesMax!=0) $pages->limit($pagesMax);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
+            foreach ($pages as $page) {
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
+                $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Wikirelated '$location' does not exist!");
+        }
+        return $output;
+    }
+    
+    // Return wikiauthors shortcut
+    public function getShorcutWikitags($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("wikiLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("wikiPagesMax");
+        $wiki = $this->yellow->pages->find($location);
+        $pages = $this->getWikiPages($location);
+        $page->setLastModified($pages->getModified());
+        $tags = array();
+        foreach ($pages as $page) {
+            if ($page->isExisting("tag")) {
+                foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
+                    ++$tags[$tag];
                 }
             }
-            if (count($tags)) {
-                $tags = $this->yellow->lookup->normaliseUpperLower($tags);
-                if ($pagesMax!=0 && count($tags)>$pagesMax) {
-                    uasort($tags, "strnatcasecmp");
-                    $tags = array_slice($tags, -$pagesMax);
-                }
-                uksort($tags, "strnatcasecmp");
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($tags as $key=>$value) {
-                    $output .= "<li><a href=\"".$wiki->getLocation(true).$this->yellow->toolbox->normaliseArgs("tag:$key")."\">";
-                    $output .= htmlspecialchars($key)."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Wikitags '$location' does not exist!");
+        }
+        if (count($tags)) {
+            $tags = $this->yellow->lookup->normaliseUpperLower($tags);
+            if ($pagesMax!=0 && count($tags)>$pagesMax) {
+                uasort($tags, "strnatcasecmp");
+                $tags = array_slice($tags, -$pagesMax);
             }
+            uksort($tags, "strnatcasecmp");
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
+            foreach ($tags as $key=>$value) {
+                $output .= "<li><a href=\"".$wiki->getLocation(true).$this->yellow->toolbox->normaliseArgs("tag:$key")."\">";
+                $output .= htmlspecialchars($key)."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Wikitags '$location' does not exist!");
         }
         return $output;
     }

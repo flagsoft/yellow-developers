@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowBlog {
-    const VERSION = "0.7.5";
+    const VERSION = "0.7.6";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -19,170 +19,204 @@ class YellowBlog {
     // Handle page content parsing of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
-        if ($name=="blogarchive" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("blogLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
-            $blog = $this->yellow->pages->find($location);
-            $pages = $this->getBlogPages($location);
-            $page->setLastModified($pages->getModified());
-            $months = array();
+        if($shortcut) {
+            switch($name) {
+                case "blogarchive": $output = $this->getShorcutBlogarchive($page, $name, $text); break;
+                case "blogauthors": $output = $this->getShorcutBlogauthors($page, $name, $text); break;
+                case "blogpages":   $output = $this->getShorcutBlogpages($page, $name, $text); break;
+                case "blogchanges": $output = $this->getShorcutBlogchanges($page, $name, $text); break;
+                case "blogrelated": $output = $this->getShorcutBlogrelated($page, $name, $text); break;
+                case "blogtags":    $output = $this->getShorcutBlogtags($page, $name, $text); break;
+            }
+        }
+        return $output;
+    }
+        
+    // Return blogarchive shortcut
+    public function getShorcutBlogarchive($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("blogLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
+        $blog = $this->yellow->pages->find($location);
+        $pages = $this->getBlogPages($location);
+        $page->setLastModified($pages->getModified());
+        $months = array();
+        foreach ($pages as $page) {
+            if (preg_match("/^(\d+\-\d+)\-/", $page->get("published"), $matches)) ++$months[$matches[1]];
+        }
+        if (count($months)) {
+            if ($pagesMax!=0) $months = array_slice($months, -$pagesMax);
+            uksort($months, "strnatcasecmp");
+            $months = array_reverse($months);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
+            foreach ($months as $key=>$value) {
+                $output .= "<li><a href=\"".$blog->getLocation(true).$this->yellow->toolbox->normaliseArgs("published:$key")."\">";
+                $output .= htmlspecialchars($this->yellow->text->normaliseDate($key))."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Blogarchive '$location' does not exist!");
+        }
+        return $output;
+    }
+    
+    // Return blogauthors shortcut
+    public function getShorcutBlogauthors($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("blogLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
+        $blog = $this->yellow->pages->find($location);
+        $pages = $this->getBlogPages($location);
+        $page->setLastModified($pages->getModified());
+        $authors = array();
+        foreach ($pages as $page) {
+            if ($page->isExisting("author")) {
+                foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) {
+                    ++$authors[$author];
+                }
+            }
+        }
+        if (count($authors)) {
+            $authors = $this->yellow->lookup->normaliseUpperLower($authors);
+            if ($pagesMax!=0 && count($authors)>$pagesMax) {
+                uasort($authors, "strnatcasecmp");
+                $authors = array_slice($authors, -$pagesMax);
+            }
+            uksort($authors, "strnatcasecmp");
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
+            foreach ($authors as $key=>$value) {
+                $output .= "<li><a href=\"".$blog->getLocation(true).$this->yellow->toolbox->normaliseArgs("author:$key")."\">";
+                $output .= htmlspecialchars($key)."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Blogauthors '$location' does not exist!");
+        }
+        return $output;
+    }
+
+    // Return blogpages shortcut
+    public function getShorcutBlogpages($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("blogLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
+        $blog = $this->yellow->pages->find($location);
+        $pages = $this->getBlogPages($location);
+        if (!empty($author)) $pages->filter("author", $author);
+        if (!empty($tag)) $pages->filter("tag", $tag);
+        $pages->sort("title");
+        $page->setLastModified($pages->getModified());
+        if (count($pages)) {
+            if ($pagesMax!=0) $pages->limit($pagesMax);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
             foreach ($pages as $page) {
-                if (preg_match("/^(\d+\-\d+)\-/", $page->get("published"), $matches)) ++$months[$matches[1]];
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
+                $output .=" href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
-            if (count($months)) {
-                if ($pagesMax!=0) $months = array_slice($months, -$pagesMax);
-                uksort($months, "strnatcasecmp");
-                $months = array_reverse($months);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($months as $key=>$value) {
-                    $output .= "<li><a href=\"".$blog->getLocation(true).$this->yellow->toolbox->normaliseArgs("published:$key")."\">";
-                    $output .= htmlspecialchars($this->yellow->text->normaliseDate($key))."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Blogarchive '$location' does not exist!");
-            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Blogpages '$location' does not exist!");
         }
-        if ($name=="blogauthors" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("blogLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
-            $blog = $this->yellow->pages->find($location);
-            $pages = $this->getBlogPages($location);
-            $page->setLastModified($pages->getModified());
-            $authors = array();
+        return $output;
+    }
+    
+    // Return blogchanges shortcut
+    public function getShorcutBlogchanges($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("blogLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
+        $blog = $this->yellow->pages->find($location);
+        $pages = $this->getBlogPages($location);
+        if (!empty($author)) $pages->filter("author", $author);
+        if (!empty($tag)) $pages->filter("tag", $tag);
+        $pages->sort("published", false);
+        $page->setLastModified($pages->getModified());
+        if (count($pages)) {
+            if ($pagesMax!=0) $pages->limit($pagesMax);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
             foreach ($pages as $page) {
-                if ($page->isExisting("author")) {
-                    foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) {
-                        ++$authors[$author];
-                    }
-                }
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
+                $output .=" href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
-            if (count($authors)) {
-                $authors = $this->yellow->lookup->normaliseUpperLower($authors);
-                if ($pagesMax!=0 && count($authors)>$pagesMax) {
-                    uasort($authors, "strnatcasecmp");
-                    $authors = array_slice($authors, -$pagesMax);
-                }
-                uksort($authors, "strnatcasecmp");
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($authors as $key=>$value) {
-                    $output .= "<li><a href=\"".$blog->getLocation(true).$this->yellow->toolbox->normaliseArgs("author:$key")."\">";
-                    $output .= htmlspecialchars($key)."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Blogauthors '$location' does not exist!");
-            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Blogchanges '$location' does not exist!");
         }
-        if ($name=="blogpages" && $shortcut) {
-            list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("blogLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
-            $blog = $this->yellow->pages->find($location);
-            $pages = $this->getBlogPages($location);
-            if (!empty($author)) $pages->filter("author", $author);
-            if (!empty($tag)) $pages->filter("tag", $tag);
-            $pages->sort("title");
-            $page->setLastModified($pages->getModified());
-            if (count($pages)) {
-                if ($pagesMax!=0) $pages->limit($pagesMax);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($pages as $page) {
-                    $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
-                    $output .=" href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Blogpages '$location' does not exist!");
-            }
-        }
-        if (($name=="blogchanges" || $name=="blogrecent") && $shortcut) {
-            list($location, $pagesMax, $author, $tag) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("blogLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
-            $blog = $this->yellow->pages->find($location);
-            $pages = $this->getBlogPages($location);
-            if (!empty($author)) $pages->filter("author", $author);
-            if (!empty($tag)) $pages->filter("tag", $tag);
-            $pages->sort("published", false);
-            $page->setLastModified($pages->getModified());
-            if (count($pages)) {
-                if ($pagesMax!=0) $pages->limit($pagesMax);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($pages as $page) {
-                    $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
-                    $output .=" href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Blogchanges '$location' does not exist!");
-            }
-        }
-        if ($name=="blogrelated" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("blogLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
-            $blog = $this->yellow->pages->find($location);
-            $pages = $this->getBlogPages($location);
-            $pages->similar($page->getPage("main"));
-            $page->setLastModified($pages->getModified());
-            if (count($pages)) {
-                if ($pagesMax!=0) $pages->limit($pagesMax);
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($pages as $page) {
-                    $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
-                    $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Blogrelated '$location' does not exist!");
-            }
-        }
-        if ($name=="blogtags" && $shortcut) {
-            list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
-            if (empty($location)) $location = $this->yellow->config->get("blogLocation");
-            if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
-            $blog = $this->yellow->pages->find($location);
-            $pages = $this->getBlogPages($location);
-            $page->setLastModified($pages->getModified());
-            $tags = array();
+        return $output;
+    }
+        
+    // Return blogrelated shortcut
+    public function getShorcutBlogrelated($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("blogLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
+        $blog = $this->yellow->pages->find($location);
+        $pages = $this->getBlogPages($location);
+        $pages->similar($page->getPage("main"));
+        $page->setLastModified($pages->getModified());
+        if (count($pages)) {
+            if ($pagesMax!=0) $pages->limit($pagesMax);
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
             foreach ($pages as $page) {
-                if ($page->isExisting("tag")) {
-                    foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
-                        ++$tags[$tag];
-                    }
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
+                $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Blogrelated '$location' does not exist!");
+        }
+        return $output;
+    }
+    
+    // Return blogtags shortcut
+    public function getShorcutBlogtags($page, $name, $text) {
+        $output = null;
+        list($location, $pagesMax) = $this->yellow->toolbox->getTextArgs($text);
+        if (empty($location)) $location = $this->yellow->config->get("blogLocation");
+        if (strempty($pagesMax)) $pagesMax = $this->yellow->config->get("blogPagesMax");
+        $blog = $this->yellow->pages->find($location);
+        $pages = $this->getBlogPages($location);
+        $page->setLastModified($pages->getModified());
+        $tags = array();
+        foreach ($pages as $page) {
+            if ($page->isExisting("tag")) {
+                foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
+                    ++$tags[$tag];
                 }
             }
-            if (count($tags)) {
-                $tags = $this->yellow->lookup->normaliseUpperLower($tags);
-                if ($pagesMax!=0 && count($tags)>$pagesMax) {
-                    uasort($tags, "strnatcasecmp");
-                    $tags = array_slice($tags, -$pagesMax);
-                }
-                uksort($tags, "strnatcasecmp");
-                $output = "<div class=\"".htmlspecialchars($name)."\">\n";
-                $output .= "<ul>\n";
-                foreach ($tags as $key=>$value) {
-                    $output .= "<li><a href=\"".$blog->getLocation(true).$this->yellow->toolbox->normaliseArgs("tag:$key")."\">";
-                    $output .= htmlspecialchars($key)."</a></li>\n";
-                }
-                $output .= "</ul>\n";
-                $output .= "</div>\n";
-            } else {
-                $page->error(500, "Blogtags '$location' does not exist!");
+        }
+        if (count($tags)) {
+            $tags = $this->yellow->lookup->normaliseUpperLower($tags);
+            if ($pagesMax!=0 && count($tags)>$pagesMax) {
+                uasort($tags, "strnatcasecmp");
+                $tags = array_slice($tags, -$pagesMax);
             }
+            uksort($tags, "strnatcasecmp");
+            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output .= "<ul>\n";
+            foreach ($tags as $key=>$value) {
+                $output .= "<li><a href=\"".$blog->getLocation(true).$this->yellow->toolbox->normaliseArgs("tag:$key")."\">";
+                $output .= htmlspecialchars($key)."</a></li>\n";
+            }
+            $output .= "</ul>\n";
+            $output .= "</div>\n";
+        } else {
+            $page->error(500, "Blogtags '$location' does not exist!");
         }
         return $output;
     }
