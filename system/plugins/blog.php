@@ -288,7 +288,7 @@ class YellowBlog {
     public function getMonths($pages, $key) {
         $data = array();
         foreach ($pages as $page) {
-            if (preg_match("/^(\d+\-\d+)\-/", $page->get("published"), $matches)) ++$data[$matches[1]];
+            if (preg_match("/^(\d+\-\d+)\-/", $page->get($key), $matches)) ++$data[$matches[1]];
         }
         return $data;
     }
