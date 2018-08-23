@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowYoutube {
-    const VERSION = "0.6.1";
+    const VERSION = "0.7.1";
     public $yellow;         //access to API
     
     // Handle initialisation
