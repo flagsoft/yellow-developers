@@ -12,7 +12,7 @@ class YellowToc {
         $this->yellow = $yellow;
     }
     
-    // Handle page content parsing
+    // Handle page content
     public function onParseContentText($page, $text) {
         $callback = function ($matches) use ($page) {
             $output = "<ul class=\"toc\">\n";

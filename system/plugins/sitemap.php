@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowSitemap {
-    const VERSION = "0.7.3";
+    const VERSION = "0.7.4";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -15,9 +15,9 @@ class YellowSitemap {
         $this->yellow->config->setDefault("sitemapPaginationLimit", "30");
     }
 
-    // Handle page parsing
-    public function onParsePage() {
-        if ($this->yellow->page->get("template")=="sitemap") {
+    // Handle page template
+    public function onParsePageTemplate($page, $name) {
+        if ($name=="sitemap") {
             $pages = $this->yellow->pages->index(false, false);
             if ($this->isRequestXml()) {
                 $this->yellow->page->setLastModified($pages->getModified());
@@ -39,8 +39,8 @@ class YellowSitemap {
         }
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $pagination = $this->yellow->config->get("contentPagination");

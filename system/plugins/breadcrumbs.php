@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowBreadcrumbs {
-    const VERSION = "0.6.2";
+    const VERSION = "0.6.3";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -14,7 +14,7 @@ class YellowBreadcrumbs {
         $this->yellow->config->setDefault("breadcrumbsStyle", "breadcrumbs");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="breadcrumbs" && $shortcut) {
@@ -24,19 +24,18 @@ class YellowBreadcrumbs {
             $pages = $this->yellow->pages->path($page->getLocation(true), true);
             $page->setLastModified($pages->getModified());
             $output = "<div class=\"".htmlspecialchars($style)."\">";
-            $currentPage = $page;
-            foreach ($pages as $page) {
-                $output .= "<a href=\"".$page->getLocation(true)."\">".$page->getHtml("titleNavigation")."</a>";
-                if ($page->getLocation(true)!=$currentPage->getLocation(true)) $output .= " ".htmlspecialchars($separator)." ";
+            foreach ($pages as $pageBreadcrumb) {
+                $output .= "<a href=\"".$pageBreadcrumb->getLocation(true)."\">".$pageBreadcrumb->getHtml("titleNavigation")."</a>";
+                if ($pageBreadcrumb->getLocation(true)!=$page->getLocation(true)) $output .= " ".htmlspecialchars($separator)." ";
             }
             $output .= "</div>\n";
         }
         return $output;
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
-        return $this->onParseContentBlock($this->yellow->page, $name, "", true);
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
+        return $this->onParseContentBlock($page, $name, "", true);
     }
 }
 

@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowEmojiawesome {
-    const VERSION = "0.7.2";
+    const VERSION = "0.7.3";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -14,7 +14,7 @@ class YellowEmojiawesome {
         $this->yellow->config->setDefault("emojiawesomeToolbarButtons", ":grinning: :smile: :angry: :frowning: :heart_eyes: :kissing_heart: :stuck_out_tongue_winking_eye: :joy: :heart: :fire: :sunny: :coffee: :ok_hand: :hand: :+1: :-1:");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ((empty($name) || $name=="ea") && $shortcut) {
@@ -36,8 +36,8 @@ class YellowEmojiawesome {
         $page->rawData = $this->normaliseText($page->rawData, true, false);
     }
 
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $locationStylesheet = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation")."emojiawesome.css";

@@ -47,11 +47,11 @@ TwitterMessage.prototype = {
             switch (this.options.mode) {
                 case "tweet":
                     promise = twttr.widgets.createTweet(this.options.id, this.element, this.options);
-                    promise.then(function(result) { if(result==null) { thisObject.onShowError(result); }});
+                    promise.then(function(result) { if (result==null) { thisObject.onShowError(result); }});
                     break;
                 case "timeline":
                     promise = twttr.widgets.createTimeline({ sourceType: "url", url: "https://twitter.com/"+this.options.id }, this.element, this.options);
-                    promise.then(function(result) { if(result==null) { thisObject.onShowError(result); }});
+                    promise.then(function(result) { if (result==null) { thisObject.onShowError(result); }});
                     break;
             }
         } else {

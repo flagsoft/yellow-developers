@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowContact {
-    const VERSION = "0.7.2";
+    const VERSION = "0.7.3";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -14,7 +14,7 @@ class YellowContact {
         $this->yellow->config->setDefault("contactSpamFilter", "href=|url=");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="contact" && $shortcut) {
@@ -35,9 +35,9 @@ class YellowContact {
         return $output;
     }
     
-    // Handle page parsing
-    public function onParsePage() {
-        if ($this->yellow->page->get("template")=="contact") {
+    // Handle page template
+    public function onParsePageTemplate($page, $name) {
+        if ($name=="contact") {
             if ($this->yellow->isCommandLine()) $this->yellow->page->error(500, "Static website not supported!");
             if (empty($_REQUEST["referer"])) {
                 $_REQUEST["referer"] = $_SERVER["HTTP_REFERER"];

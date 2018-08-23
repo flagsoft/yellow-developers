@@ -12,7 +12,7 @@ class YellowMarkdownX {
         $this->yellow = $yellow;
     }
     
-    // Handle page content parsing of raw format
+    // Handle page content in raw format
     public function onParseContentRaw($page, $text) {
         $markdown = new YellowMarkdownExtraX($this->yellow, $page);
         return $markdown->text($text);

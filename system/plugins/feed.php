@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowFeed {
-    const VERSION = "0.7.4";
+    const VERSION = "0.7.5";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -16,9 +16,9 @@ class YellowFeed {
         $this->yellow->config->setDefault("feedPaginationLimit", "30");
     }
 
-    // Handle page parsing
-    public function onParsePage() {
-        if ($this->yellow->page->get("template")=="feed") {
+    // Handle page template
+    public function onParsePageTemplate($page, $name) {
+        if ($name=="feed") {
             $pages = $this->yellow->pages->index(false, false);
             $pagesFilter = array();
             if ($_REQUEST["tag"]) {
@@ -77,8 +77,8 @@ class YellowFeed {
         }
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $pagination = $this->yellow->config->get("contentPagination");

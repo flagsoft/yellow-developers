@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowSlider {
-    const VERSION = "0.7.5";
+    const VERSION = "0.7.6";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -14,7 +14,7 @@ class YellowSlider {
         $this->yellow->config->setDefault("sliderAutoplay", "0");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="slider" && $shortcut) {
@@ -35,7 +35,7 @@ class YellowSlider {
                     if ($autoplay!=0) $output .= " data-autoplay=\"".htmlspecialchars($autoplay)."\"";
                     $output .= ">\n";
                     foreach ($files as $file) {
-                        list($src, $width, $height) = $this->yellow->plugins->get("image")->getImageInfo($file->fileName, $size, $size);
+                        list($src, $width, $height) = $this->yellow->plugins->get("image")->getImageInformation($file->fileName, $size, $size);
                         $output .= "<img src=\"".htmlspecialchars($src)."\" width=\"".htmlspecialchars($width)."\" height=\"".
                             htmlspecialchars($height)."\" alt=\"".basename($file->getLocation(true))."\" title=\"".
                             basename($file->getLocation(true))."\" />\n";
@@ -51,12 +51,13 @@ class YellowSlider {
         return $output;
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
             $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$pluginLocation}slider.css\" />\n";
+            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}slider-flickity.min.js\"></script>\n";
             $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}slider.js\"></script>\n";
         }
         return $output;

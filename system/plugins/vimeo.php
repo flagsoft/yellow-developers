@@ -13,7 +13,7 @@ class YellowVimeo {
         $this->yellow->config->setDefault("vimeoStyle", "flexible");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="vimeo" && $shortcut) {

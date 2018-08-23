@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowDisqus {
-    const VERSION = "0.7.3";
+    const VERSION = "0.7.4";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -13,7 +13,7 @@ class YellowDisqus {
         $this->yellow->config->setDefault("disqusShortname", "yellow");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="disqus" && $shortcut) {
@@ -36,11 +36,11 @@ class YellowDisqus {
         return $output;
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="disqus" || $name=="comments") {
-            $output = $this->onParseContentBlock($this->yellow->page, "disqus", "", true);
+            $output = $this->onParseContentBlock($page, "disqus", "", true);
         }
         return $output;
     }

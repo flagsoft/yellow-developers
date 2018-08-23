@@ -12,7 +12,7 @@ class YellowDemo {
         $this->yellow = $yellow;
     }
     
-    // Handle page meta data parsing
+    // Handle page meta data
     public function onParseMeta($page) {
         if ($page==$this->yellow->page) {
             $prefix = strtoloweru($this->yellow->text->getText("LanguageDescription", $page->get("language")));

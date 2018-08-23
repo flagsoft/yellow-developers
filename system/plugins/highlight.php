@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowHighlight {
-    const VERSION = "0.7.4";
+    const VERSION = "0.7.5";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -15,7 +15,7 @@ class YellowHighlight {
         $this->yellow->config->setDefault("highlightAutodetectLanguages", "html, css, javascript, php");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if (!empty($name) && !$shortcut) {
@@ -41,8 +41,8 @@ class YellowHighlight {
         return $output;
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $locationStylesheet = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation")."highlight.css";
@@ -56,16 +56,16 @@ class YellowHighlight {
     
     // Highlight
     public function highlight($language, $text) {
-        $hl = new Highlighter();
+        $highlighter = new Highlighter();
         $autodetectLanguages = preg_split("/\s*,\s*/", $this->yellow->config->get("highlightAutodetectLanguages"));
         if (!in_array($language, $autodetectLanguages)) array_push($autodetectLanguages, $language);
         foreach ($autodetectLanguages as $autodetectLanguage) {
             list($languageId, $fileName) = $this->getLanguageInformation($autodetectLanguage);
-            if (is_readable($fileName)) $hl->registerLanguage($languageId, $fileName);
+            if (is_readable($fileName)) $highlighter->registerLanguage($languageId, $fileName);
         }
         try {
-            $hl->setAutodetectLanguages($autodetectLanguages);
-            $result = $hl->highlight($language, $text);
+            $highlighter->setAutodetectLanguages($autodetectLanguages);
+            $result = $highlighter->highlight($language, $text);
             $language = $result->language;
             $text = $result->value;
         } catch (DomainException $e) {
@@ -88,7 +88,7 @@ class YellowHighlight {
         return array($language, $class, $id, $lineNumber);
     }
     
-    // Return highlight file name
+    // Return language information
     public function getLanguageInformation($language) {
         $aliases = array("c" => "cpp", "html" => "xml");
         $language = isset($aliases[$language]) ? $aliases[$language] : $language;

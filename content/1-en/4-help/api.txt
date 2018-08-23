@@ -77,19 +77,19 @@ Return page [meta data](markdown-cheat-sheet#settings) with custom date format, 
 Return page content, HTML encoded or raw format
 
 **$yellow->page->getParent()**  
-Return parent page of current page, null if none
+Return parent page, null if none
 
 **$yellow->page->getParentTop($homeFailback = true)**  
-Return top-level page for current page, null if none
+Return top-level parent page, null if none
 
 **$yellow->page->getSiblings($showInvisible = false)**  
-Return [page collection](#yellow-page-collection) with pages on the same level as current page
+Return [page collection](#yellow-page-collection) with pages on the same level
 
 **$yellow->page->getChildren($showInvisible = false)**  
-Return [page collection](#yellow-page-collection) with child pages of current page
+Return [page collection](#yellow-page-collection) with child pages
 
 **$yellow->page->getPages()**  
-Return [page collection](#yellow-page-collection) with additional pages for current page
+Return [page collection](#yellow-page-collection) with additional pages
 
 **$yellow->page->getPage($key)**  
 Return related page
@@ -104,7 +104,7 @@ Return page location
 Return page URL
 
 **$yellow->page->getExtra($name)**  
-Return page extra HTML data
+Return page extra data
 
 **$yellow->page->getHeader($key)**  
 Return page response header
@@ -131,7 +131,7 @@ Check if page is available
 Check if page is visible
 
 **$yellow->page->isActive()**  
-Check if page is within current request
+Check if page is within current HTTP request
 
 **$yellow->page->isCacheable()**  
 Check if page is cacheable
@@ -490,7 +490,7 @@ Here's an example for registering a theme:
 ``` php
 <?php
 class YellowThemeExample {
-    const VERSION = "0.1.0";    
+    const VERSION = "0.1.0";
 }
 
 $yellow->themes->register("example", "YellowThemeExample", YellowThemeExample::VERSION);
@@ -702,8 +702,9 @@ onLoad ─────▶ onStartup ─────▶ onRequest
               onCommandHelp    onParseContentRaw    onEditUserAccount
                   │            onParseContentBlock  onEditContentFile
                   │            onParseContentText   onEditMediaFile
-                  │            onParsePage              │
-                  │            onExtra                  │
+                  │            onParsePageTemplate      │
+                  │            onParsePageExtra         │
+                  │            onParsePageOutput        │
                   ▼                │                    │
 exit ◀─────── onShutDown ◀─────────┴────────────────────┘
 ```
@@ -718,37 +719,40 @@ When a command is executed, the plugins are loaded and `onLoad` will be called. 
 
 Yellow core events notify when a state has changed.
 
-**function onLoad($yellow)**  
+**public function onLoad($yellow)**  
 Handle initialisation
 
-**function onStartup($update)**  
+**public function onStartup($update)**  
 Handle startup
 
-**function onRequest($scheme, $address, $base, $location, $fileName)**  
+**public function onRequest($scheme, $address, $base, $location, $fileName)**  
 Handle request
 
-**function onParseMeta($page)**  
-Handle page [meta data](markdown-cheat-sheet#settings) parsing
+**public function onParseMeta($page)**  
+Handle page [meta data](markdown-cheat-sheet#settings)
 
-**function onParseContentRaw($page, $text)**  
-Handle page content parsing of raw format
+**public function onParseContentRaw($page, $text)**  
+Handle page content in raw format
 
-**function onParseContentBlock($page, $name, $text, $shortcut)**  
-Handle page content parsing of custom block
+**public function onParseContentBlock($page, $name, $text, $shortcut)**  
+Handle page content of custom block
 
-**function onParseContentText($page, $text)**  
-Handle page content parsing
+**public function onParseContentText($page, $text)**  
+Handle page content
 
-**function onParsePage()**  
-Handle page parsing
+**public function onParsePageTemplate($page, $name)**  
+Handle page template
 
-**function onExtra($name)**  
-Handle page extra HTML data
+**public function onParsePageExtra($page, $name)**  
+Handle page extra data
 
-**function onShutdown()**  
+**public function onParsePageOutput($page, $text)**  
+Handle page output data
+
+**public function onShutdown()**  
 Handle shutdown
 
-Here's an example plugin for parsing an `[example]` shortcut:
+Here's an example plugin for handling an `[example]` shortcut:
 
 ``` php
 <?php
@@ -760,8 +764,8 @@ class YellowExample {
     public function onLoad($yellow) {
         $this->yellow = $yellow;
     }
-
-    // Handle page content parsing of custom block
+    
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="example" && $shortcut) {
@@ -780,16 +784,16 @@ $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 
 Yellow edit events notify when a page is edited.
 
-**function onEditUserRestrictions($email, $location, $fileName, $users)**  
+**public function onEditUserRestrictions($email, $location, $fileName, $users)**  
 Handle user restrictions
 
-**function onEditUserAccount($email, $password, $action, $users)**  
+**public function onEditUserAccount($email, $password, $action, $users)**  
 Handle user account changes
 
-**function onEditContentFile($page, $action)**  
+**public function onEditContentFile($page, $action)**  
 Handle content file changes
 
-**function onEditMediaFile($file, $action)**  
+**public function onEditMediaFile($file, $action)**  
 Handle media file changes
 
 Here's an example plugin for restricting certain users:
@@ -804,7 +808,7 @@ class YellowExample {
     public function onLoad($yellow) {
         $this->yellow = $yellow;
     }
-
+    
     // Handle user restrictions
     public function onEditUserRestrictions($email, $location, $fileName, $users) {
         return $users->getHome($email)=="/guests/";
@@ -818,10 +822,10 @@ $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 
 Yellow command events notify when a command is executed.
 
-**function onCommand($args)**  
+**public function onCommand($args)**  
 Handle command
 
-**function onCommandHelp()**  
+**public function onCommandHelp()**  
 Handle command help
 
 Here's an example plugin for handling a command:
@@ -836,7 +840,7 @@ class YellowExample {
     public function onLoad($yellow) {
         $this->yellow = $yellow;
     }
-
+    
     // Handle command help
     public function onCommandHelp() {
         return "example\n";
@@ -961,6 +965,7 @@ YellowConfig::load Language:en
 YellowConfig::load Timezone:Europe/Stockholm
 YellowConfig::load Theme:flatsite
 ```
+
 We run [automated tests](/tests/) and code analysis.
 
 [Next: Customising themes →](customising-themes)

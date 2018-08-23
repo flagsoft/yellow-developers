@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowTwitter {
-    const VERSION = "0.7.7";
+    const VERSION = "0.7.8";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -13,7 +13,7 @@ class YellowTwitter {
         $this->yellow->config->setDefault("twitterTheme", "light");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="twitter" && $shortcut) {
@@ -45,8 +45,8 @@ class YellowTwitter {
         return $output;
     }
 
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");

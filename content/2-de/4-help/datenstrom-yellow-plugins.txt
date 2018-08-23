@@ -10,6 +10,8 @@ Available plugins:
   Blog for your website.
 * [Breadcrumbs](https://github.com/datenstrom/yellow-plugins/tree/master/breadcrumbs): 
   Breadcrumbs navigation.
+* [Bundle](https://github.com/datenstrom/yellow-plugins/tree/master/bundle): 
+  Bundle CSS and JavaScript.
 * [Command](https://github.com/datenstrom/yellow-plugins/tree/master/command): 
   Run commands in a terminal window.
 * [Contact](https://github.com/datenstrom/yellow-plugins/tree/master/contact): 

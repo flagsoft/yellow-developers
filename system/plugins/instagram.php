@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowInstagram {
-    const VERSION = "0.7.5";
+    const VERSION = "0.7.6";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -13,7 +13,7 @@ class YellowInstagram {
         $this->yellow->config->setDefault("instagramStyle", "instagram");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="instagram" && $shortcut) {
@@ -29,6 +29,16 @@ class YellowInstagram {
         return $output;
     }
 
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
+        $output = null;
+        if ($name=="header") {
+            $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
+            $output = "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}instagram.js\"></script>\n";
+        }
+        return $output;
+    }
+
     // Return CSS style
     public function getInstagramStyle($width, $height) {
         if (is_numeric($width)) $width .= "px";
@@ -36,16 +46,6 @@ class YellowInstagram {
         if (!empty($width)) $css .= " width:$width;";
         if (!empty($height)) $css .= " height:$height;";
         return trim($css);
-    }
-    
-    // Handle page extra HTML data
-    public function onExtra($name) {
-        $output = null;
-        if ($name=="header") {
-            $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
-            $output = "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}instagram.js\"></script>\n";
-        }
-        return $output;
     }
 }
 

@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowLinks {
-    const VERSION = "0.7.1";
+    const VERSION = "0.7.2";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -15,7 +15,7 @@ class YellowLinks {
         $this->yellow->config->setDefault("linksStyle", "entry-links");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="links" && $shortcut) {
@@ -43,9 +43,9 @@ class YellowLinks {
         return $output;
     }
     
-    // Handle page extra HTML data
-    public function onExtra($name) {
-        return $this->onParseContentBlock($this->yellow->page, $name, "", true);
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
+        return $this->onParseContentBlock($page, $name, "", true);
     }
     
     // Return link pages

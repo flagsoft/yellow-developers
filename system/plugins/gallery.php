@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowGallery {
-    const VERSION = "0.7.6";
+    const VERSION = "0.7.7";
     public $yellow;         //access to API
 
     // Handle initialisation
@@ -13,7 +13,7 @@ class YellowGallery {
         $this->yellow->config->setDefault("galleryStyle", "photoswipe");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="gallery" && $shortcut) {
@@ -33,8 +33,8 @@ class YellowGallery {
                     if (substru($size, -1, 1)!="%") $output .= " data-thumbsquare=\"true\"";
                     $output .= ">\n";
                     foreach ($files as $file) {
-                        list($widthInput, $heightInput) = $this->yellow->toolbox->detectImageInfo($file->fileName);
-                        list($src, $width, $height) = $this->yellow->plugins->get("image")->getImageInfo($file->fileName, $size, $size);
+                        list($widthInput, $heightInput) = $this->yellow->toolbox->detectImageInformation($file->fileName);
+                        list($src, $width, $height) = $this->yellow->plugins->get("image")->getImageInformation($file->fileName, $size, $size);
                         $caption = $this->getImageCaption($file->fileName);
                         $output .= "<a href=\"".$file->getLocation(true)."\"";
                         if ($widthInput && $heightInput) $output .= " data-size=\"".htmlspecialchars("{$widthInput}x{$heightInput}")."\"";
@@ -56,12 +56,13 @@ class YellowGallery {
         return $output;
     }
 
-    // Handle page extra HTML data
-    public function onExtra($name) {
+    // Handle page extra data
+    public function onParsePageExtra($page, $name) {
         $output = null;
         if ($name=="header") {
             $pluginLocation = $this->yellow->config->get("serverBase").$this->yellow->config->get("pluginLocation");
             $output = "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"{$pluginLocation}gallery.css\" />\n";
+            $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}gallery-photoswipe.min.js\"></script>\n";
             $output .= "<script type=\"text/javascript\" defer=\"defer\" src=\"{$pluginLocation}gallery.js\"></script>\n";
         }
         return $output;

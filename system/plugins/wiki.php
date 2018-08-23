@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowWiki {
-    const VERSION = "0.7.6";
+    const VERSION = "0.7.7";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -17,10 +17,10 @@ class YellowWiki {
         $this->yellow->config->setDefault("wikiPaginationLimit", "30");
     }
 
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
-        if($shortcut) {
+        if ($shortcut) {
             switch($name) {
                 case "wikiauthors": $output = $this->getShorcutWikiauthors($page, $name, $text); break;
                 case "wikipages":   $output = $this->getShorcutWikipages($page, $name, $text); break;
@@ -41,14 +41,7 @@ class YellowWiki {
         $wiki = $this->yellow->pages->find($location);
         $pages = $this->getWikiPages($location);
         $page->setLastModified($pages->getModified());
-        $authors = array();
-        foreach ($pages as $page) {
-            if ($page->isExisting("author")) {
-                foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) {
-                    ++$authors[$author];
-                }
-            }
-        }
+        $authors = $this->getMeta($pages, "author");
         if (count($authors)) {
             $authors = $this->yellow->lookup->normaliseUpperLower($authors);
             if ($pagesMax!=0 && count($authors)>$pagesMax) {
@@ -87,7 +80,7 @@ class YellowWiki {
             $output = "<div class=\"".htmlspecialchars($name)."\">\n";
             $output .= "<ul>\n";
             foreach ($pages as $page) {
-                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getClass($page)."\"" : "");
                 $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
             $output .= "</ul>\n";
@@ -115,7 +108,7 @@ class YellowWiki {
             $output = "<div class=\"".htmlspecialchars($name)."\">\n";
             $output .= "<ul>\n";
             foreach ($pages as $page) {
-                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getClass($page)."\"" : "");
                 $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
             $output .= "</ul>\n";
@@ -141,7 +134,7 @@ class YellowWiki {
             $output = "<div class=\"".htmlspecialchars($name)."\">\n";
             $output .= "<ul>\n";
             foreach ($pages as $page) {
-                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getWikiClass($page)."\"" : "");
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getClass($page)."\"" : "");
                 $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
             $output .= "</ul>\n";
@@ -161,14 +154,7 @@ class YellowWiki {
         $wiki = $this->yellow->pages->find($location);
         $pages = $this->getWikiPages($location);
         $page->setLastModified($pages->getModified());
-        $tags = array();
-        foreach ($pages as $page) {
-            if ($page->isExisting("tag")) {
-                foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
-                    ++$tags[$tag];
-                }
-            }
-        }
+        $tags = $this->getMeta($pages, "tag");
         if (count($tags)) {
             $tags = $this->yellow->lookup->normaliseUpperLower($tags);
             if ($pagesMax!=0 && count($tags)>$pagesMax) {
@@ -190,9 +176,9 @@ class YellowWiki {
         return $output;
     }
     
-    // Handle page parsing
-    public function onParsePage() {
-        if ($this->yellow->page->get("template")=="wikipages") {
+    // Handle page template
+    public function onParsePageTemplate($page, $name) {
+        if ($name=="wikipages") {
             $pages = $this->getWikiPages($this->yellow->page->location);
             $pagesFilter = array();
             if ($_REQUEST["special"]=="pages") {
@@ -228,7 +214,7 @@ class YellowWiki {
             $this->yellow->page->setLastModified($pages->getModified());
             $this->yellow->page->setHeader("Cache-Control", "max-age=60");
         }
-        if ($this->yellow->page->get("template")=="wiki") {
+        if ($name=="wiki") {
             $location = $this->yellow->config->get("wikiLocation");
             if (empty($location)) $location = $this->yellow->lookup->getDirectoryLocation($this->yellow->page->location);
             $wiki = $this->yellow->pages->find($location);
@@ -257,14 +243,27 @@ class YellowWiki {
         return $pages;
     }
     
-    // Return wiki class for page
-    public function getWikiClass($page) {
+    // Return class for page
+    public function getClass($page) {
         if ($page->isExisting("tag")) {
             foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
                 $class .= " tag-".$this->yellow->toolbox->normaliseArgs($tag, false);
             }
         }
         return trim($class);
+    }
+    
+    // Return meta data from page collection
+    public function getMeta($pages, $key) {
+        $data = array();
+        foreach ($pages as $page) {
+            if ($page->isExisting($key)) {
+                foreach (preg_split("/\s*,\s*/", $page->get($key)) as $entry) {
+                    ++$data[$entry];
+                }
+            }
+        }
+        return $data;
     }
 }
 

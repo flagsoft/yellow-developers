@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowBlog {
-    const VERSION = "0.7.6";
+    const VERSION = "0.7.7";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -16,10 +16,10 @@ class YellowBlog {
         $this->yellow->config->setDefault("blogPaginationLimit", "5");
     }
     
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
-        if($shortcut) {
+        if ($shortcut) {
             switch($name) {
                 case "blogarchive": $output = $this->getShorcutBlogarchive($page, $name, $text); break;
                 case "blogauthors": $output = $this->getShorcutBlogauthors($page, $name, $text); break;
@@ -41,10 +41,7 @@ class YellowBlog {
         $blog = $this->yellow->pages->find($location);
         $pages = $this->getBlogPages($location);
         $page->setLastModified($pages->getModified());
-        $months = array();
-        foreach ($pages as $page) {
-            if (preg_match("/^(\d+\-\d+)\-/", $page->get("published"), $matches)) ++$months[$matches[1]];
-        }
+        $months = $this->getMonths($pages, "published");
         if (count($months)) {
             if ($pagesMax!=0) $months = array_slice($months, -$pagesMax);
             uksort($months, "strnatcasecmp");
@@ -72,14 +69,7 @@ class YellowBlog {
         $blog = $this->yellow->pages->find($location);
         $pages = $this->getBlogPages($location);
         $page->setLastModified($pages->getModified());
-        $authors = array();
-        foreach ($pages as $page) {
-            if ($page->isExisting("author")) {
-                foreach (preg_split("/\s*,\s*/", $page->get("author")) as $author) {
-                    ++$authors[$author];
-                }
-            }
-        }
+        $authors = $this->getMeta($pages, "author");
         if (count($authors)) {
             $authors = $this->yellow->lookup->normaliseUpperLower($authors);
             if ($pagesMax!=0 && count($authors)>$pagesMax) {
@@ -118,7 +108,7 @@ class YellowBlog {
             $output = "<div class=\"".htmlspecialchars($name)."\">\n";
             $output .= "<ul>\n";
             foreach ($pages as $page) {
-                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getClass($page)."\"" : "");
                 $output .=" href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
             $output .= "</ul>\n";
@@ -146,7 +136,7 @@ class YellowBlog {
             $output = "<div class=\"".htmlspecialchars($name)."\">\n";
             $output .= "<ul>\n";
             foreach ($pages as $page) {
-                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getClass($page)."\"" : "");
                 $output .=" href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
             $output .= "</ul>\n";
@@ -172,7 +162,7 @@ class YellowBlog {
             $output = "<div class=\"".htmlspecialchars($name)."\">\n";
             $output .= "<ul>\n";
             foreach ($pages as $page) {
-                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getBlogClass($page)."\"" : "");
+                $output .= "<li><a".($page->isExisting("tag") ? " class=\"".$this->getClass($page)."\"" : "");
                 $output .= " href=\"".$page->getLocation(true)."\">".$page->getHtml("title")."</a></li>\n";
             }
             $output .= "</ul>\n";
@@ -192,14 +182,7 @@ class YellowBlog {
         $blog = $this->yellow->pages->find($location);
         $pages = $this->getBlogPages($location);
         $page->setLastModified($pages->getModified());
-        $tags = array();
-        foreach ($pages as $page) {
-            if ($page->isExisting("tag")) {
-                foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
-                    ++$tags[$tag];
-                }
-            }
-        }
+        $tags = $this->getMeta($pages, "tag");
         if (count($tags)) {
             $tags = $this->yellow->lookup->normaliseUpperLower($tags);
             if ($pagesMax!=0 && count($tags)>$pagesMax) {
@@ -221,9 +204,9 @@ class YellowBlog {
         return $output;
     }
     
-    // Handle page parsing
-    public function onParsePage() {
-        if ($this->yellow->page->get("template")=="blogpages") {
+    // Handle page template
+    public function onParsePageTemplate($page, $name) {
+        if ($name=="blogpages") {
             $pages = $this->getBlogPages($this->yellow->page->location);
             $pagesFilter = array();
             if ($_REQUEST["tag"]) {
@@ -250,7 +233,7 @@ class YellowBlog {
             $this->yellow->page->setLastModified($pages->getModified());
             $this->yellow->page->setHeader("Cache-Control", "max-age=60");
         }
-        if ($this->yellow->page->get("template")=="blog") {
+        if ($name=="blog") {
             $location = $this->yellow->config->get("blogLocation");
             if (empty($location)) $location = $this->yellow->lookup->getDirectoryLocation($this->yellow->page->location);
             $blog = $this->yellow->pages->find($location);
@@ -278,14 +261,36 @@ class YellowBlog {
         return $pages;
     }
     
-    // Return blog class for page
-    public function getBlogClass($page) {
+    // Return class for page
+    public function getClass($page) {
         if ($page->isExisting("tag")) {
             foreach (preg_split("/\s*,\s*/", $page->get("tag")) as $tag) {
                 $class .= " tag-".$this->yellow->toolbox->normaliseArgs($tag, false);
             }
         }
         return trim($class);
+    }
+    
+    // Return meta data from page collection
+    public function getMeta($pages, $key) {
+        $data = array();
+        foreach ($pages as $page) {
+            if ($page->isExisting($key)) {
+                foreach (preg_split("/\s*,\s*/", $page->get($key)) as $entry) {
+                    ++$data[$entry];
+                }
+            }
+        }
+        return $data;
+    }
+    
+    // Return months from page collection
+    public function getMonths($pages, $key) {
+        $data = array();
+        foreach ($pages as $page) {
+            if (preg_match("/^(\d+\-\d+)\-/", $page->get("published"), $matches)) ++$data[$matches[1]];
+        }
+        return $data;
     }
 }
 

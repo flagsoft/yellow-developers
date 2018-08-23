@@ -78,19 +78,19 @@ Hole die [Metadaten](markdown-cheat-sheet#einstellungen) der Seite mit maßgesch
 Hole den Seitenhalt, HTML-kodiert oder Rohformat
 
 **$yellow->page->getParent()**  
-Hole die Elternseite der aktuellen Seite, null falls nicht vorhanden
+Hole die Elternseite, null falls nicht vorhanden
 
 **$yellow->page->getParentTop($homeFailback = true)**  
-Hole die Hauptseite der aktuellen Seite, null falls nicht vorhanden
+Hole die oberste Elternseite, null falls nicht vorhanden
 
 **$yellow->page->getSiblings($showInvisible = false)**  
-Hole eine [Page-Collection](#yellow-page-collection) mit Seiten auf dem selben Level wie die aktuelle Seite 
+Hole eine [Page-Collection](#yellow-page-collection) mit Seiten auf dem selben Level
 
 **$yellow->page->getChildren($showInvisible = false)**  
-Hole eine [Page-Collection](#yellow-page-collection) mit Kinderseiten der aktuellen Seite
+Hole eine [Page-Collection](#yellow-page-collection) mit Kinderseiten
 
 **$yellow->page->getPages()**  
-Hole eine [Page-Collection](#yellow-page-collection) mit zusätzlichen Seiten für die aktuellen Seite
+Hole eine [Page-Collection](#yellow-page-collection) mit zusätzlichen Seiten
 
 **$yellow->page->getPage($key)**  
 Hole eine zugehörige Seite
@@ -105,7 +105,7 @@ Hole den Ort der Seite
 Hole die URL der Seite 
 
 **$yellow->page->getExtra($name)**  
-Hole extra HTML-Daten der Seite
+Hole Extradaten der Seite
 
 **$yellow->page->getHeader($key)**  
 Hole den Responseheader der Seite
@@ -132,7 +132,7 @@ Teste ob die Seite vorhanden ist
 Teste ob die Seite sichtbar ist
 
 **$yellow->page->isActive()**  
-Teste ob die Seite innerhalb der aktuellen Anfrage ist
+Teste ob die Seite innerhalb der aktuellen HTTP-Anfrage ist
 
 **$yellow->page->isCacheable()**  
 Teste ob die Seite cachebar ist
@@ -491,7 +491,7 @@ Hier ist ein Beispiel um ein Theme zu registrieren:
 ``` php
 <?php
 class YellowThemeExample {
-    const VERSION = "0.1.0";    
+    const VERSION = "0.1.0";
 }
 
 $yellow->themes->register("example", "YellowThemeExample", YellowThemeExample::VERSION);
@@ -611,7 +611,7 @@ Hier ist ein Beispiel-Snippet um Sprachen und Übersetzer anzuzeigen:
 Yellow-Toolbox gibt Zugang zur Werkzeugkiste mit Helfern:
 
 **$yellow->toolbox->getLocation($filterStrict = true)**  
-Hole den Ort aktuellen HTTP-Anfrage
+Hole den Ort der aktuellen HTTP-Anfrage
 
 **$yellow->toolbox->getLocationArgs()**  
 Hole die Ortargumente der aktuellen HTTP-Anfrage
@@ -703,10 +703,11 @@ onLoad ─────▶ onStartup ─────▶ onRequest
               onCommandHelp    onParseContentRaw    onEditUserAccount
                   │            onParseContentBlock  onEditContentFile
                   │            onParseContentText   onEditMediaFile
-                  │            onParsePage              │
-                  │            onExtra                  │
+                  │            onParsePageTemplate      │
+                  │            onParsePageExtra         │
+                  │            onParsePageOutput        │
                   ▼                │                    │
-Exit ◀─────── onShutDown ◀─────────┴────────────────────┘
+exit ◀─────── onShutDown ◀─────────┴────────────────────┘
 ```
 
 Wird eine Seite angezeigt, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der [Core](https://github.com/datenstrom/yellow-plugins/tree/master/core) mit `onRequest` dass es eine Anfrage gibt. Die Seite kann mit verschiedenen `onParse`-Ereignisse analysiert werden. Dann wird der Quellcode der Seite mit Hilfe von [Templates und Snippets](customising-templates) erzeugt. Sollte ein Fehler auftreten, wird eine Fehlerseite erzeugt. Zum Schluss wird die Seite ausgegeben und es wird `onShutdown` aufgerufen.
@@ -719,37 +720,40 @@ Wird ein Befehl ausgeführt, dann werden die Plugins geladen und es wird `onLoad
 
 Yellow-Core-Ereignisse unterrichten wenn sich ein Zustand ändert:
 
-**function onLoad($yellow)**  
+**public function onLoad($yellow)**  
 Behandle die Initialisierung
 
-**function onStartup($update)**  
+**public function onStartup($update)**  
 Behandle das Hochfahren
 
-**function onRequest($scheme, $address, $base, $location, $fileName)**  
-Behandle eine Anfrage
+**public function onRequest($scheme, $address, $base, $location, $fileName)**  
+Behandle die Anfrage
 
-**function onParseMeta($page)**  
-Behandle das Parsen von [Metadaten](markdown-cheat-sheet#einstellungen) einer Seite
+**public function onParseMeta($page)**  
+Behandle die [Metadaten](markdown-cheat-sheet#einstellungen) einer Seite
 
-**function onParseContentRaw($page, $text)**  
-Behandle das Parsen des Seiteninhaltes im Rohformat
+**public function onParseContentRaw($page, $text)**  
+Behandle den Seiteninhalt im Rohformat
 
-**function onParseContentBlock($page, $name, $text, $shortcut)**  
-Behandle das Parsen des Seiteninhaltes eines Teilblockes
+**public function onParseContentBlock($page, $name, $text, $shortcut)**  
+Behandle den Seiteninhalt eines Teilblocks
 
-**function onParseContentText($page, $text)**  
-Behandle das Parsen des Seiteninhaltes
+**public function onParseContentText($page, $text)**  
+Behandle den Seiteninhalt
 
-**function onParsePage()**  
-Behandle das Parsen einer Seite
+**public function onParsePageTemplate($page, $name)**  
+Behandle das Template einer Seite
 
-**function onExtra($name)**  
-Behandle das Parsen von extra HTML-Daten einer Seite
+**public function onParsePageExtra($page, $name)**  
+Behandle die Extradaten einer Seite
 
-**function onShutdown()**  
+**public function onParsePageOutput($page, $text)**  
+Behandle die Ausgabedaten einer Seite
+
+**public function onShutdown()**  
 Behandle das Runterfahren
 
-Hier ist ein Beispiel-Plugin um eine `[example]`-Abkürzung zu parsen:
+Hier ist ein Beispiel-Plugin um eine `[example]`-Abkürzung zu behandeln:
 
 ``` php
 <?php
@@ -762,7 +766,7 @@ class YellowExample {
         $this->yellow = $yellow;
     }
 
-    // Handle page content parsing of custom block
+    // Handle page content of custom block
     public function onParseContentBlock($page, $name, $text, $shortcut) {
         $output = null;
         if ($name=="example" && $shortcut) {
@@ -781,16 +785,16 @@ $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 
 Yellow-Edit-Ereignisse unterrichten wenn eine Seite bearbeitet wird:
 
-**function onEditUserRestrictions($email, $location, $fileName, $users)**  
+**public function onEditUserRestrictions($email, $location, $fileName, $users)**  
 Behandle Benutzerbeschränkungen
 
-**function onEditUserAccount($email, $password, $action, $users)**  
+**public function onEditUserAccount($email, $password, $action, $users)**  
 Behandle Änderungen am Benutzerkonto
 
-**function onEditContentFile($page, $action)**  
+**public function onEditContentFile($page, $action)**  
 Behandle Änderungen an Inhaltsdatei
 
-**function onEditMediaFile($file, $action)**  
+**public function onEditMediaFile($file, $action)**  
 Behandle Änderungen an Mediendatei
 
 Hier ist ein Beispiel-Plugin um Schreibrechte von bestimmten Benutzern zu beschränken:
@@ -819,10 +823,10 @@ $yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 
 Yellow-Command-Ereignisse unterrichten wenn ein Befehl ausgeführt wird:
 
-**function onCommand($args)**  
+**public function onCommand($args)**  
 Behandle Befehle
 
-**function onCommandHelp()**  
+**public function onCommandHelp()**  
 Behandle Hilfe für Befehle
 
 
