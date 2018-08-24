@@ -3,8 +3,8 @@ Title: Tests
 ---
 Made with [yellow].
 
-[![Build status](https://travis-ci.org/datenstrom/yellow.svg?branch=master)](https://travis-ci.org/datenstrom/yellow) [![Code quality](https://img.shields.io/codacy/grade/f565b048bdff4b0e90391d3d93384b2f/master.svg)](https://www.codacy.com/app/markseu/yellow)  
-[![Build status](https://travis-ci.org/datenstrom/yellow-developers.svg?branch=master)](https://travis-ci.org/datenstrom/yellow-developers) [![Code quality](https://img.shields.io/codacy/grade/238ea263acd94e36a8dc105a9c0c80fa/master.svg)](https://www.codacy.com/app/markseu/yellow-developers)  
+[![Build status](https://travis-ci.org/datenstrom/yellow.svg?branch=master)](https://travis-ci.org/datenstrom/yellow) [![Code quality](https://img.shields.io/codacy/grade/f565b048bdff4b0e90391d3d93384b2f/master.svg)](https://app.codacy.com/project/markseu/yellow/dashboard)  
+[![Build status](https://travis-ci.org/datenstrom/yellow-developers.svg?branch=master)](https://travis-ci.org/datenstrom/yellow-developers) [![Code quality](https://img.shields.io/codacy/grade/238ea263acd94e36a8dc105a9c0c80fa/master.svg)](https://app.codacy.com/project/markseu/yellow-developers/dashboard)  
 
 Here's a collection of our tests:
 
