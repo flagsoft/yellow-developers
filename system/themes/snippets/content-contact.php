@@ -1,6 +1,6 @@
 <div class="content">
 <?php $yellow->snippet("sidebar") ?>
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php if($yellow->page->get("status")!="done"): ?>
 <p class="<?php echo $yellow->page->getHtml("status") ?>"><?php echo $yellow->text->getHtml("contactStatus".ucfirst($yellow->page->get("status"))) ?></p>

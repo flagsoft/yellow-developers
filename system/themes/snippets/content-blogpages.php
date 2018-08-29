@@ -1,6 +1,6 @@
 <div class="content">
 <?php $yellow->snippet("sidebar") ?>
-<div class="main">
+<div class="main" role="main">
 <?php if($yellow->page->isExisting("titleBlog")): ?>
 <h1><?php echo $yellow->page->getHtml("titleBlog") ?></h1>
 <?php endif ?>

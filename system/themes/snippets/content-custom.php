@@ -2,7 +2,7 @@
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <?php $yellow->page->setHeader("Cache-Control", "max-age=60") ?>
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 <table>

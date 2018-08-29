@@ -1,6 +1,6 @@
 <div class="content">
 <?php $yellow->snippet("sidebar") ?>
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php if($yellow->page->get("navigation")!="navigation-search"): ?>
 <form class="search-form" action="<?php echo $yellow->page->getLocation(true) ?>" method="post">

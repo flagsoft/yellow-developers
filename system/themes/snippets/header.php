@@ -17,7 +17,7 @@
 <?php if($yellow->page->isPage("sidebar")) $yellow->page->set("pageClass", $yellow->page->get("pageClass")." with-sidebar") ?>
 <div class="<?php echo $yellow->page->getHtml("pageClass") ?>">
 <div class="header">
-<div class="sitename">
+<div class="sitename" role="banner">
 <h1><a href="<?php echo $yellow->page->getBase()."/" ?>"><i class="sitename-logo"></i><?php echo $yellow->page->getHtml("sitename") ?></a></h1>
 <?php if($yellow->page->isExisting("tagline")): ?><h2><?php echo $yellow->page->getHtml("tagline") ?></h2><?php endif ?>
 </div>

@@ -1,6 +1,6 @@
 <div class="content">
 <?php $yellow->snippet("sidebar") ?>
-<div class="main">
+<div class="main" role="main">
 <?php $yellow->page->set("entryClass", "entry") ?>
 <?php if($yellow->page->isExisting("tag")): ?>
 <?php foreach(preg_split("/\s*,\s*/", $yellow->page->get("tag")) as $tag) { $yellow->page->set("entryClass", $yellow->page->get("entryClass")." tag-".$yellow->toolbox->normaliseArgs($tag, false)); } ?>

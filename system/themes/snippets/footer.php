@@ -1,4 +1,4 @@
-<div class="footer">
+<div class="footer" role="contentinfo">
 <div class="siteinfo">
 <div class="siteinfo-left">
 <a href="https://datenstrom.se<?php echo $yellow->pages->getHomeLocation($yellow->page->location) ?>">&copy; 2018 Datenstrom</a>
