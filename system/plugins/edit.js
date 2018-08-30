@@ -140,6 +140,7 @@ yellow.edit = {
         var elementPane = document.createElement("div");
         elementPane.className = "yellow-pane";
         elementPane.setAttribute("id", paneId);
+        elementPane.setAttribute("role", "dialog");
         elementPane.style.display = "none";
         if (paneId=="yellow-pane-edit") {
             yellow.toolbox.addEvent(elementPane, "input", yellow.onUpdate);
