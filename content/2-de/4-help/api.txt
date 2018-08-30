@@ -153,7 +153,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt anzuzeigen:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 </div>
@@ -164,7 +164,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Metadaten anz
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getHtml("author") ?></p>
 <?php echo $yellow->page->getContent() ?>
@@ -176,7 +176,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Tags anzuzeig
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 <?php if($yellow->page->isExisting("tag")): ?>
@@ -879,7 +879,7 @@ Hier ist ein Beispiel-Snippet um ein Datum anzuzeigen:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getDateHtml("modified", "dateFormatMedium") ?></p>
 <?php echo $yellow->page->getContent() ?>
@@ -891,7 +891,7 @@ Hier ist ein Beispiel-Snippet um ein Datum anzuzeigen wie `gestern` oder `vor 14
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getDateRelativeHtml("modified") ?></p>
 <?php echo $yellow->page->getContent() ?>

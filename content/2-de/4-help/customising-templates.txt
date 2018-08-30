@@ -25,7 +25,7 @@ Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/content-custom.php`:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 </div>
@@ -36,7 +36,7 @@ Hier ist ein Beispiel-Snippet um den Seiteninhalt und zusätzliche Metadaten anz
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getHtml("author") ?></p>
 <?php echo $yellow->page->getContent() ?>
@@ -51,7 +51,7 @@ Hier ist ein Beispiel-Snippet um die neusten Blogseiten anzuzeigen:
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
 <?php $yellow->page->setHeader("Cache-Control", "max-age=60") ?>
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 <table>
@@ -83,7 +83,7 @@ Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/navigation.php`:
 ``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
-<div class="navigation">
+<div class="navigation" role="navigation">
 <ul>
 <?php foreach($pages as $page): ?>
 <li><a<?php echo $page->isActive() ? " class=\"active\"" : "" ?> href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("titleNavigation") ?></a></li>
@@ -98,7 +98,7 @@ Hier ist ein Beispiel-Snippet um zusätzliche Links in der Navigation anzuzeigen
 ``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
-<div class="navigation">
+<div class="navigation" role="navigation">
 <ul>
 <?php foreach($pages as $page): ?>
 <li><a<?php echo $page->isActive() ? " class=\"active\"" : "" ?> href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("titleNavigation") ?></a></li>
@@ -116,7 +116,7 @@ Hier ist ein Beispiel-Snippet um [Icons und Symbole](https://github.com/datenstr
 ``` html
 <?php $pages = $yellow->pages->top() ?>
 <?php $yellow->page->setLastModified($pages->getModified()) ?>
-<div class="navigation">
+<div class="navigation" role="navigation">
 <ul>
 <?php foreach($pages as $page): ?>
 <li><a<?php echo $page->isActive() ? " class=\"active\"" : "" ?> href="<?php echo $page->getLocation(true) ?>"><?php echo $page->getHtml("titleNavigation") ?></a></li>
@@ -136,7 +136,7 @@ Unten befindet sich die Fußzeile. Um die Fußzeile anzupassen, ändere das ents
 Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/footer.php`:
 
 ``` html
-<div class="footer">
+<div class="footer" role="contentinfo">
 <div class="siteinfo">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.
 <a href="<?php echo $yellow->text->get("yellowUrl") ?>">Erstellt mit Datenstrom Yellow</a>.
@@ -151,7 +151,7 @@ Hier ist eine Beispiel-Snippetdatei `system/themes/snippets/footer.php`:
 Hier ist ein Beispiel-Snippet um zusätzliche Links in der Fußzeile anzuzeigen:
 
 ``` html
-<div class="footer">
+<div class="footer" role="contentinfo">
 <div class="siteinfo">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.
 <a href="<?php echo $yellow->page->base."/sitemap/" ?>">Sitemap</a>.
@@ -169,7 +169,7 @@ Hier ist ein Beispiel-Snippet um zusätzliche Links in der Fußzeile anzuzeigen:
 Hier ist ein Beispiel-Snippet um die Fußzeile in Links und Rechts aufzuteilen:
 
 ``` html
-<div class="footer">
+<div class="footer" role="contentinfo">
 <div class="siteinfo">
 <div class="siteinfo-left">
 <a href="<?php echo $yellow->page->base."/" ?>">&copy; 2018 <?php echo $yellow->page->getHtml("sitename") ?></a>.

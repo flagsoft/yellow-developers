@@ -155,7 +155,7 @@ Here's an example snippet for showing page content:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 </div>
@@ -166,7 +166,7 @@ Here's an example snippet for showing page content with additional meta data:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getHtml("author") ?></p>
 <?php echo $yellow->page->getContent() ?>
@@ -178,7 +178,7 @@ Here's an example snippet for showing page content with additional tags:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <?php echo $yellow->page->getContent() ?>
 <?php if($yellow->page->isExisting("tag")): ?>
@@ -880,7 +880,7 @@ Here's an example snippet for showing a date:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getDateHtml("modified", "dateFormatMedium") ?></p>
 <?php echo $yellow->page->getContent() ?>
@@ -892,7 +892,7 @@ Here's an example snippet for showing a date like `yesterday` or `14 days ago`:
 
 ``` html
 <div class="content">
-<div class="main">
+<div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
 <p><?php echo $yellow->page->getDateRelativeHtml("modified") ?></p>
 <?php echo $yellow->page->getContent() ?>
