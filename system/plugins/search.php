@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowSearch {
-    const VERSION = "0.7.5";
+    const VERSION = "0.7.6";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -21,7 +21,7 @@ class YellowSearch {
         if ($name=="search" && $shortcut) {
             list($location) = $this->yellow->toolbox->getTextArgs($text);
             if (empty($location)) $location = $this->yellow->config->get("searchLocation");
-            $output = "<div class=\"".htmlspecialchars($name)."\">\n";
+            $output = "<div class=\"".htmlspecialchars($name)."\" role=\"search\">\n";
             $output .= "<form class=\"search-form\" action=\"".$this->yellow->page->base.$location."\" method=\"post\">\n";
             $output .= "<input class=\"form-control\" type=\"text\" name=\"query\" placeholder=\"".$this->yellow->text->getHtml("searchButton")."\" />\n";
             $output .= "<input type=\"hidden\" name=\"clean-url\" />\n";
