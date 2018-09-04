@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowRelease {
-    const VERSION = "0.7.13";
+    const VERSION = "0.7.14";
     public $yellow;         //access to API
     public $plugins;        //number of plugins
     public $themes;         //number of archives
@@ -151,7 +151,7 @@ class YellowRelease {
         $fileNameInformation = $pathSource.$this->yellow->config->get("updateInformationFile");
         if (is_file($fileNameInformation) && !empty($software)) {
             $zip = new ZipArchive();
-            list($softwareName, $softwareType) = $this->getSoftwareInformation($software);
+            list($softwareName, $softwareType) = $this->getSoftwareName($software);
             $fileNameZipArchive = $pathDestination."zip/$softwareName.zip";
             if ($zip->open($fileNameZipArchive, ZIPARCHIVE::CREATE|ZIPARCHIVE::OVERWRITE)===true) {
                 $modified = 0;
@@ -194,23 +194,26 @@ class YellowRelease {
         $statusCode = 200;
         $fileNameVersion = $pathDestination.$this->yellow->config->get("updateVersionFile");
         if (is_file($fileNameVersion)) {
-            list($software, $version) = $this->getSoftwareVersion($pathSource);
+            list($software, $version, $description) = $this->getSoftwareInformation($pathSource);
+            if (substru($pathSource, 0, strlenu($pathDestination))!=$pathDestination) {
+                $description .= " Experimental";
+            }
             $fileData = $this->yellow->toolbox->readFile($fileNameVersion);
             foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
                 preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
                 if (!empty($matches[1]) && !empty($matches[2]) && $matches[1]==$software) {
                     list($dummy, $url) = explode(",", $matches[2]);
-                    $fileDataNew .= "$matches[1]: $version,$url\n";
+                    $fileDataNew .= "$matches[1]: $version,$url,$description\n";
                     $found = true;
                 } else {
                     $fileDataNew .= $line;
                 }
             }
             if (!$found) {
-                list($softwareName, $softwareType) = $this->getSoftwareInformation($software);
+                list($softwareName, $softwareType) = $this->getSoftwareName($software);
                 $url = "https://github.com/datenstrom/yellow-{$softwareType}s/raw/master/zip/$softwareName.zip";
                 $fileDataNew .= "\n# Datenstrom Yellow version, new $softwareType\n\n";
-                $fileDataNew .= "$software: $version,$url\n";
+                $fileDataNew .= "$software: $version,$url,$description\n";
             }
             if ($fileData!=$fileDataNew) {
                 if (!$this->yellow->toolbox->createFile($fileNameVersion, $fileDataNew)) {
@@ -242,7 +245,7 @@ class YellowRelease {
                 }
             }
             if (!$found) {
-                list($softwareName, $softwareType) = $this->getSoftwareInformation($software);
+                list($softwareName, $softwareType) = $this->getSoftwareName($software);
                 $fileDataNew .= "\n# Datenstrom Yellow resource, new $softwareType\n\n";
                 $fileDataNew .= $resource;
             }
@@ -291,6 +294,20 @@ class YellowRelease {
         return array($software, $version);
     }
 
+    // Return software information
+    public function getSoftwareInformation($path) {
+        $software = $version = $description = "";
+        $fileNameInformation = $path.$this->yellow->config->get("updateInformationFile");
+        $fileData = $this->yellow->toolbox->readFile($fileNameInformation);
+        foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
+            preg_match("/^\s*(.*?)\s*:\s*(.*?)\s*$/", $line, $matches);
+            if (lcfirst($matches[1])=="plugin" || lcfirst($matches[1])=="theme") $software = $matches[2];
+            if (lcfirst($matches[1])=="version") $version = $matches[2];
+            if (lcfirst($matches[1])=="description") $description = $matches[2];
+        }
+        return array($software, $version, $description);
+    }
+
     // Return software resource
     public function getSoftwareResource($path) {
         $software = $resource = "";
@@ -319,7 +336,7 @@ class YellowRelease {
     }
     
     // Return software name
-    public function getSoftwareInformation($software) {
+    public function getSoftwareName($software) {
         $softwareName = $this->yellow->lookup->normaliseName($software, true, false, true);
         $softwareName = preg_replace("/yellowtheme|yellow/", "", $softwareName);
         $softwareType = preg_match("/^YellowTheme/", $software) ? "theme" : "plugin";
