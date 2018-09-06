@@ -3,7 +3,7 @@
 Language: de
 LanguageDescription: Deutsch
 LanguageTranslator: David Fehrmann
-LanguageVersion: 0.7.13
+LanguageVersion: 0.7.14
 
 BlogBy: von
 BlogTag: Tags:
@@ -28,7 +28,9 @@ DateFormatMedium: d.m.Y
 DateFormatLong: d.m.Y H:i
 EditInstallationTitle: Hallo
 EditInstallationFeature: Was willst du machen?
+EditInstallationHomeTitle: Home
 EditInstallationHomePage: Deine Webseite funktioniert!\n\n[edit - Du kannst diese Seite bearbeiten] oder einen Texteditor benutzen.
+EditInstallationAboutTitle: Über
 EditInstallationAboutPage: Diese Webseite ist erstellt mit [Datenstrom Yellow](https://datenstrom.se/de/yellow/). [edit - Anmelden].
 EditLoginTitle: Willkommen
 EditLoginEmail: E-Mail:

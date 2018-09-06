@@ -10,7 +10,7 @@ Lerne wie man ein eigenes Wiki erstellt. [Demo anschauen](/de/plugins/wiki/).
 2. Kopiere alle Dateien auf dein Webhosting.
 3. Öffne deine Webseite im Webbrowser und wähle "Wiki" aus.
 
-Dein Wiki ist sofort erreichbar. Die Installation kommt mit mehreren Seiten, "Home", "Wiki" und "About". Das ist nur ein Beispiel um loszulegen, verändere alles so wie du willst. Du kannst "Home" löschen, wenn du das Wiki auf der Startseite anzeigen willst.
+Dein Wiki ist sofort erreichbar. Die Installation kommt mit mehreren Seiten, "Home", "Wiki" und "Über". Das ist nur ein Beispiel um loszulegen, verändere alles so wie du willst. Du kannst "Home" löschen, wenn du das Wiki auf der Startseite anzeigen willst.
 
 Falls Probleme auftreten, überprüfe bitte die [Servereinstellungen](server-configuration) oder frage den [Support](support).
 

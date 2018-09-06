@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowLanguage {
-    const VERSION = "0.7.13";
+    const VERSION = "0.7.14";
 }
 
 $yellow->plugins->register("language", "YellowLanguage", YellowLanguage::VERSION);

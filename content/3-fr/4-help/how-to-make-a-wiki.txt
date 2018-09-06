@@ -10,7 +10,7 @@ Apprenez à faire un propre wiki. [Voir la démo](/fr/plugins/wiki/).
 2. Copiez tout les fichiers chez votre hébergeur.
 3. Accédez à votre site depuis un navigateur web et choisissez 'Wiki'.
 
-Votre wiki est immédiatement accessible. L'installation est fournie avec plusieurs pages, 'Home', 'Wiki' et 'About'. Elles sont juste un exemple pour commencer, vous pouvez les modifier comme il vous convient. Vous pouvez supprimer 'Home', si vous souhaitez faire de votre wiki la page d'accueil.
+Votre wiki est immédiatement accessible. L'installation est fournie avec plusieurs pages, 'Home', 'Wiki' et 'À propos'. Elles sont juste un exemple pour commencer, vous pouvez les modifier comme il vous convient. Vous pouvez supprimer 'Home', si vous souhaitez faire de votre wiki la page d'accueil.
 
 S'il y a des problèmes, vérifiez la [configuration du serveur](server-configuration) ou demandez le [support](support).
 

@@ -3,7 +3,7 @@
 Language: fr
 LanguageDescription: Français
 LanguageTranslator: Juh Nibreh
-LanguageVersion: 0.7.13
+LanguageVersion: 0.7.14
 
 BlogBy: par
 BlogTag: Tags:
@@ -28,7 +28,9 @@ DateFormatMedium: d/m/Y
 DateFormatLong: d/m/Y H:i
 EditInstallationTitle: Bonjour
 EditInstallationFeature: Que voulez-vous faire?
+EditInstallationHomeTitle: Home
 EditInstallationHomePage: Votre site web fonctionne!\n\n[edit - Vous pouvez modifier cette page] ou utiliser un éditeur de texte.
+EditInstallationAboutTitle: À propos
 EditInstallationAboutPage: Ce site web est fait avec [Datenstrom Yellow](https://datenstrom.se/fr/yellow/). [edit - Se connecter].
 EditLoginTitle: Bienvenue
 EditLoginEmail: Email:

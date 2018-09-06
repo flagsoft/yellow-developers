@@ -10,7 +10,7 @@ Apprenez à faire un propre blog. [Voir la démo](/fr/plugins/blog/).
 2. Copiez tout les fichiers chez votre hébergeur.
 3. Accédez à votre site depuis un navigateur web et choisissez 'Blog'.
 
-Votre blog est immédiatement accessible. L'installation est fournie avec plusieurs pages, 'Home', 'Blog' et 'About'. Elles sont juste un exemple pour commencer, vous pouvez les modifier comme il vous convient. Vous pouvez supprimer 'Home', si vous souhaitez faire de votre blog la page d'accueil.
+Votre blog est immédiatement accessible. L'installation est fournie avec plusieurs pages, 'Home', 'Blog' et 'À propos'. Elles sont juste un exemple pour commencer, vous pouvez les modifier comme il vous convient. Vous pouvez supprimer 'Home', si vous souhaitez faire de votre blog la page d'accueil.
 
 S'il y a des problèmes, vérifiez la [configuration du serveur](server-configuration) ou demandez le [support](support).
 
