@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowRelease {
-    const VERSION = "0.7.14";
+    const VERSION = "0.7.15";
     public $yellow;         //access to API
     public $plugins;        //number of plugins
     public $themes;         //number of archives
@@ -27,14 +27,14 @@ class YellowRelease {
     public function onCommand($args) {
         list($command) = $args;
         switch ($command) {
-            case "release": $statusCode = $this->releaseCommand($args); break;
+            case "release": $statusCode = $this->processCommandRelease($args); break;
             default:        $statusCode = 0;
         }
         return $statusCode;
     }
 
-    // Create software releases
-    public function releaseCommand($args) {
+    // Process command to create software releases
+    public function processCommandRelease($args) {
         $statusCode = 0;
         list($command, $path) = $args;
         $pathSoftware = rtrim($this->yellow->config->get("releaseSoftwareDir"), "/")."/";

@@ -29,7 +29,7 @@ Another configuration file is `system/config/text.ini`. Here's an example:
     DateFormatMedium: Y-m-d
     DateFormatLong: Y-m-d H:i
 
-You can define the text settings here, for example text that is displayed on your website and the [date format](http://php.net/manual/en/function.date.php). The default text is defined in the corresponding [language file](https://github.com/datenstrom/yellow/blob/master/system/plugins/language-en.txt). This text can be customised in the text settings.
+You can define the text settings here, for example text that is displayed on your website and the [date format](http://php.net/manual/en/function.date.php). The default text is defined in the corresponding [language file](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-en.txt). This text can be customised in the text settings.
 
 ## User accounts
 

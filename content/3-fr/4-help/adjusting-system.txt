@@ -29,7 +29,7 @@ Un autre fichier de configuration est `system/config/text.ini`. Voici un exemple
     DateFormatMedium: d/m/Y
     DateFormatLong: d/m/Y H:i
 
-Vous pouvez définir ici les paramètres de texte, par exemple le texte affiché sur votre site web et le [format de la date](http://php.net/manual/fr/function.date.php). Le texte par défaut est défini dans le [fichier de langue](https://github.com/datenstrom/yellow/blob/master/system/plugins/language-fr.txt) correspondant. Ce texte peut être personnalisé dans les paramètres de texte.
+Vous pouvez définir ici les paramètres de texte, par exemple le texte affiché sur votre site web et le [format de la date](http://php.net/manual/fr/function.date.php). Le texte par défaut est défini dans le [fichier de langue](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-fr.txt) correspondant. Ce texte peut être personnalisé dans les paramètres de texte.
 
 ## Comptes d'utilisateurs
 

@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowTraffic {
-    const VERSION = "0.7.7";
+    const VERSION = "0.7.8";
     public $yellow;         //access to API
     public $days;           //number of days
     public $views;          //number of views
@@ -28,14 +28,14 @@ class YellowTraffic {
     public function onCommand($args) {
         list($command) = $args;
         switch ($command) {
-            case "traffic": $statusCode = $this->trafficCommand($args); break;
+            case "traffic": $statusCode = $this->processCommandTraffic($args); break;
             default:        $statusCode = 0;
         }
         return $statusCode;
     }
 
-    // Create traffic analytics
-    public function trafficCommand($args) {
+    // Process command to create traffic analytics
+    public function processCommandTraffic($args) {
         $statusCode = 0;
         list($command, $days, $location, $fileName) = $args;
         if (empty($location) || $location[0]=="/") {
