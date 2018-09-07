@@ -3,7 +3,7 @@
 Language: de
 LanguageDescription: Deutsch
 LanguageTranslator: David Fehrmann
-LanguageVersion: 0.7.14
+LanguageVersion: 0.7.15
 
 BlogBy: von
 BlogTag: Tags:
@@ -26,12 +26,6 @@ DateWeekstart: Montag
 DateFormatShort: F Y
 DateFormatMedium: d.m.Y
 DateFormatLong: d.m.Y H:i
-EditInstallationTitle: Hallo
-EditInstallationFeature: Was willst du machen?
-EditInstallationHomeTitle: Home
-EditInstallationHomePage: Deine Webseite funktioniert!\n\n[edit - Du kannst diese Seite bearbeiten] oder einen Texteditor benutzen.
-EditInstallationAboutTitle: Über
-EditInstallationAboutPage: Diese Webseite ist erstellt mit [Datenstrom Yellow](https://datenstrom.se/de/yellow/). [edit - Anmelden].
 EditLoginTitle: Willkommen
 EditLoginEmail: E-Mail:
 EditLoginPassword: Kennwort:
@@ -147,6 +141,12 @@ SearchResultsNone: Bitte einen Suchbegriff eingeben.
 SearchResultsEmpty: Keine Treffer für diese Suchanfrage.
 SearchSpecialChanges: Letzte Änderungen
 SearchButton: Suchen
+SetupTitle: Hallo
+SetupFeature: Was willst du machen?
+SetupHomeTitle: Home
+SetupHomePage: Deine Webseite funktioniert!\n\n[edit - Du kannst diese Seite bearbeiten] oder einen Texteditor benutzen.
+SetupAboutTitle: Über
+SetupAboutPage: Diese Webseite ist erstellt mit [Datenstrom Yellow](https://datenstrom.se/de/yellow/). [edit - Anmelden].
 TimeFormatShort: H:i
 TimeFormatMedium: H:i:s
 TimeFormatLong: H:i:s T

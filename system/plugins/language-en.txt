@@ -3,7 +3,7 @@
 Language: en
 LanguageDescription: English
 LanguageTranslator: Mark Seuffert
-LanguageVersion: 0.7.14
+LanguageVersion: 0.7.15
 
 BlogBy: by
 BlogTag: Tags:
@@ -26,12 +26,6 @@ DateWeekstart: Monday
 DateFormatShort: F Y
 DateFormatMedium: Y-m-d
 DateFormatLong: Y-m-d H:i
-EditInstallationTitle: Hello
-EditInstallationFeature: What do you want to make?
-EditInstallationHomeTitle: Home
-EditInstallationHomePage: Your website works!\n\n[edit - You can edit this page] or use your text editor.
-EditInstallationAboutTitle: About
-EditInstallationAboutPage: This website is made with [Datenstrom Yellow](https://datenstrom.se/yellow/). [edit - Log in].
 EditLoginTitle: Welcome
 EditLoginEmail: Email:
 EditLoginPassword: Password:
@@ -147,6 +141,12 @@ SearchResultsNone: Enter a search term.
 SearchResultsEmpty: No results found.
 SearchSpecialChanges: Recent changes
 SearchButton: Search
+SetupTitle: Hello
+SetupFeature: What do you want to make?
+SetupHomeTitle: Home
+SetupHomePage: Your website works!\n\n[edit - You can edit this page] or use your text editor.
+SetupAboutTitle: About
+SetupAboutPage: This website is made with [Datenstrom Yellow](https://datenstrom.se/yellow/). [edit - Log in].
 TimeFormatShort: H:i
 TimeFormatMedium: H:i:s
 TimeFormatLong: H:i:s T

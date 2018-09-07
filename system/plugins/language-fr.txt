@@ -3,7 +3,7 @@
 Language: fr
 LanguageDescription: Français
 LanguageTranslator: Juh Nibreh
-LanguageVersion: 0.7.14
+LanguageVersion: 0.7.15
 
 BlogBy: par
 BlogTag: Tags:
@@ -26,12 +26,6 @@ DateWeekstart: lundi
 DateFormatShort: F Y
 DateFormatMedium: d/m/Y
 DateFormatLong: d/m/Y H:i
-EditInstallationTitle: Bonjour
-EditInstallationFeature: Que voulez-vous faire?
-EditInstallationHomeTitle: Home
-EditInstallationHomePage: Votre site web fonctionne!\n\n[edit - Vous pouvez modifier cette page] ou utiliser un éditeur de texte.
-EditInstallationAboutTitle: À propos
-EditInstallationAboutPage: Ce site web est fait avec [Datenstrom Yellow](https://datenstrom.se/fr/yellow/). [edit - Se connecter].
 EditLoginTitle: Bienvenue
 EditLoginEmail: Email:
 EditLoginPassword: Mot de passe:
@@ -147,6 +141,12 @@ SearchResultsNone: Entrez un mot dans le champ de recherche.
 SearchResultsEmpty: Pas de résultats.
 SearchSpecialChanges: Changements récents
 SearchButton: Rechercher
+SetupTitle: Bonjour
+SetupFeature: Que voulez-vous faire?
+SetupHomeTitle: Home
+SetupHomePage: Votre site web fonctionne!\n\n[edit - Vous pouvez modifier cette page] ou utiliser un éditeur de texte.
+SetupAboutTitle: À propos
+SetupAboutPage: Ce site web est fait avec [Datenstrom Yellow](https://datenstrom.se/fr/yellow/). [edit - Se connecter].
 TimeFormatShort: H:i
 TimeFormatMedium: H:i:s
 TimeFormatLong: H:i:s T
