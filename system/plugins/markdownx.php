@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowMarkdownX {
-    const VERSION = "0.7.1";
+    const VERSION = "0.7.2";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -2686,7 +2686,7 @@ class YellowMarkdownExtraX extends ParsedownExtra {
         $this->yellow = $yellow;
         $this->page = $page;
         $this->idAttributes = array();
-        $this->setSafeMode($page->parserSafeMode);
+        $this->setSafeMode($page->safeMode);
         $this->InlineTypes["@"][]= "EmailLink";
         $this->inlineMarkerList .= "@";
         $this->InlineTypes["["][]= "ShortcutText";
@@ -2704,7 +2704,7 @@ class YellowMarkdownExtraX extends ParsedownExtra {
                 $href = $this->yellow->config->get("serverBase").$this->yellow->config->get("imageLocation").$href;
             }
             $href = $this->yellow->lookup->normaliseLocation($href,
-                $this->page->location, $this->page->parserSafeMode && $this->page->statusCode==200);
+                $this->page->location, $this->page->safeMode && $this->page->statusCode==200);
             $Link["element"]["attributes"]["href"] = $href;
         }
         return $Link;

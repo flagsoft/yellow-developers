@@ -8,7 +8,7 @@ API für Entwickler. Wir :heart: Entwickler.
 
 ## Hallo Welt
 
-[Installiere das Entwickler-Kit](https://github.com/datenstrom/yellow-developers). Das Entwickler-Kit für Datenstrom Yellow enthält Plugins, Themes und Beispiele. Du kannst ausprobieren wie man kleine Webseite, Blogs und Wikis macht. Du kannst den [eingebauten Webserver](server-configuration#dynamische-webseite) benutzen. Es ist eine grossartige Art um loszulegen.
+[Installiere das Entwickler-Kit](https://github.com/datenstrom/yellow-developers). Das Entwickler-Kit für Datenstrom Yellow enthält Plugins, Themes und Beispiele. Du kannst ausprobieren wie man kleine Webseite, Blogs und Wikis macht. Du kannst lernen wie man eine statische Webseite erstellt. Es ist eine grossartige Art um loszulegen.
 
 ## Dateien
 

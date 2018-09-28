@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowContact {
-    const VERSION = "0.7.3";
+    const VERSION = "0.7.4";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -68,10 +68,10 @@ class YellowContact {
         $spamFilter = $this->yellow->config->get("contactSpamFilter");
         $author = $this->yellow->config->get("author");
         $email = $this->yellow->config->get("email");
-        if ($this->yellow->page->isExisting("author") && !$this->yellow->page->parserSafeMode) {
+        if ($this->yellow->page->isExisting("author") && !$this->yellow->page->safeMode) {
             $author = $this->yellow->page->get("author");
         }
-        if ($this->yellow->page->isExisting("email") && !$this->yellow->page->parserSafeMode) {
+        if ($this->yellow->page->isExisting("email") && !$this->yellow->page->safeMode) {
             $email = $this->yellow->page->get("email");
         }
         if (empty($name) || empty($from) || empty($message) || empty($consent)) $status = "incomplete";

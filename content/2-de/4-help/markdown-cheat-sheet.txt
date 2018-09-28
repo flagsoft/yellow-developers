@@ -145,5 +145,4 @@ HTML-Blöcke benutzen:
 `Sidebar` = Sidebar der Seite  
 `Sitename` = Name der Webseite  
 `Siteicon` = Icon der Webseite  
-`Tagline` = Slogan der Webseite  
 `Email` = E-Mail des Webmasters  

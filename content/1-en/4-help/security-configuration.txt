@@ -17,6 +17,6 @@ If you don't want pages to be changed in the web browser, then restrict [user ac
 
 ## Content restrictions
 
-If you want to protect your website from nuisance, then restrict the content to [Markdown](markdown-cheat-sheet). Open file `system/config/config.ini` and change `ParserSafeMode: 1`. Users are only allowed to use Markdown for text formatting, but no HTML and JavaScript.
+If you want to protect your website from nuisance, then restrict the content to [Markdown](markdown-cheat-sheet). Open file `system/config/config.ini` and change `SafeMode: 1`. Users are no longer allowed to use HTML and JavaScript, text formatting and further features are restricted.
 
 [Next: API for developers →](api)

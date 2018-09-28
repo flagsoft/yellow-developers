@@ -17,6 +17,6 @@ Falls du nicht willst dass Seiten im Webbrowser verändert werden, beschränke [
 
 ## Inhaltsbeschränkungen
 
-Falls du deine Webseite vor Unfug schützen willst, beschränke den Inhalt auf [Markdown](markdown-cheat-sheet). Öffne die Datei `system/config/config.ini` und ändere `ParserSafeMode: 1`. Benutzer dürfen dann nur noch Markdown zur Textformatierung benutzen, aber kein HTML und JavaScript.
+Falls du deine Webseite vor Unfug schützen willst, beschränke den Inhalt auf [Markdown](markdown-cheat-sheet). Öffne die Datei `system/config/config.ini` und ändere `SafeMode: 1`. Benutzer dürfen dann nicht mehr HTML und JavaScript benutzen, Textformatierung und weitere Funktionen sind eingeschränkt.
 
 [Weiter: API für Entwickler →](api)

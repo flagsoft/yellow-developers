@@ -19,7 +19,7 @@ RewriteRule ^ yellow.php [L]
 </IfModule>
 ```
 
-When your website doesn't work, please check the following steps. Add `RewriteBase` to the configuration file, this will fix most Apache web server problems. Here's an example for a subfolder:
+When your website doesn't work, it shows "Datenstrom Yellow requires Apache rewrite module". Please check the following steps. Add `RewriteBase` to your configuration file, this will fix most Apache web server problems. Here's an example for a subfolder:
 
 ```apache
 <IfModule mod_rewrite.c>
@@ -33,23 +33,9 @@ RewriteRule ^ yellow.php [L]
 </IfModule>
 ```
 
-Here's an example for a subdomain:
+When your website still doesn't work and complains about the rewrite module, then please check the Apache web server. You probably have to enable the [rewrite module](https://stackoverflow.com/questions/869092/how-to-enable-mod-rewrite-for-apache-2-2) and configure `AllowOverride All` in the [web server settings](https://stackoverflow.com/questions/18740419/how-to-set-allowoverride-all). 
 
-```apache
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteBase /
-DirectoryIndex index.html yellow.php
-RewriteRule ^(cache|content|system)/ error [L]
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^ yellow.php [L]
-</IfModule>
-```
-
-
-When your website still doesn't work, please check the Apache web server. If you use a selfhosted web server, you probably have to enable the [rewrite module](https://stackoverflow.com/questions/869092/how-to-enable-mod-rewrite-for-apache-2-2) and configure `AllowOverride All` in the [web server settings](https://stackoverflow.com/questions/18740419/how-to-set-allowoverride-all). 
-
+When file access doesn't work, it shows "Datenstrom Yellow requires Apache read/write access".
 Make sure that the web server can read and write files. You can manually adjust [file permissions](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) so that the web server can overwrite files, for example with command `chmod -R a+rw *`. As an alternative you can assign the group `www-data` and `umask 002` to the web server and users.
 
 ## Nginx
@@ -91,21 +77,10 @@ server {
 }
 ```
 
-When your website doesn't work, please check `server_name` and `root` in the configuration file. If the configuration file has been changed, you need to [restart/reload](https://stackoverflow.com/questions/21292533/reload-nginx-configuration) the Nginx web server.
+When your website doesn't work, it shows "Datenstrom Yellow requires Nginx rewrite module".
+Please check `server_name` and `root` in the configuration file. If the configuration file has been changed, you need to [restart/reload](https://stackoverflow.com/questions/21292533/reload-nginx-configuration) the Nginx web server.
 
-Make sure that the web server can read and write files. You can manually adjust [file permissions](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) so that the web server can overwrite files, for example with command `chmod -R a+rw *`. As an alternative you can assign the group `www-data` and `umask 002` to the web server and users.
-
-## Dynamic website
-
-If you want to test a dynamic website, use the built-in web server. This is especially handy for developers, since everything runs on your own computer. With this philosophy you completely bypass any web server problem.
-
-You can start the built-in web server from the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command):
-
-1. Open a terminal window.
-2. Go to your installation folder, where the `yellow.php` is.
-3. Type the following line: `php -S localhost:8000 yellow.php`
-
-The website is available as `http://localhost:8000`.
+When file access doesn't work, it shows "Datenstrom Yellow requires Nginx read/write access". Make sure that the web server can read and write files. You can manually adjust [file permissions](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) so that the web server can overwrite files, for example with command `chmod -R a+rw *`. As an alternative you can assign the group `www-data` and `umask 002` to the web server and users.
 
 ## Static website
 
@@ -115,11 +90,23 @@ You can create a static website from the [command line](https://github.com/daten
 
 1. Open a terminal window.
 2. Go to your installation folder, where the `yellow.php` is.
-3. Type the following line: `php yellow.php build /var/www/website`
+3. Type the following line: `php yellow.php build`
 
-This will build a static website in folder `/var/www/website`. Upload the folder to your web hosting and build a new version when needed. The URL can be defined in the [system settings](adjusting-system#system-settings), for example `StaticUrl: http://website/`.
+This will build a static website in folder `public`. Upload the folder to your web hosting and build a new version when needed. The URL of the website can be defined in the [system settings](adjusting-system#system-settings), for example `StaticUrl: http://website/`.
 
-As an alternative to a static website you can build a cache. This will speed up your website, but the cache has to be updated repeatedly. Here's an example: `php yellow.php build`. To clean the cache type the following line: `php yellow.php clean`.
+As an alternative to a static website you can build a cache. This will speed up your website, but the cache has to be updated repeatedly. Here's an example: `php yellow.php build cache`. To clean the cache type the following line: `php yellow.php clean cache`.
+
+## Test static website
+
+If you want to test a static website, use the built-in web server. This is especially handy for developers, since everything runs on your own computer. With this philosophy you completely bypass any web server problem.
+
+You can start the built-in web server from the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command):
+
+1. Open a terminal window.
+2. Go to your installation folder, where the `yellow.php` is.
+3. Type the following line: `php -S localhost:8000 yellow.php`
+
+The website is available as `http://localhost:8000`. Furthermore, you can edited your website in a [web browser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) with `http://localhost:8000/edit/`. You can browse your website, make some changes and see the result immediately.
 
 ## Error page
 

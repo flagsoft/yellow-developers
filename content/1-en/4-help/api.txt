@@ -7,7 +7,7 @@ API for developers. We :heart: developers.
 
 ## Hello world
 
-[Install the developer kit](https://github.com/datenstrom/yellow-developers). The developer kit for Datenstrom Yellow includes plugins, themes and examples. You can try out how to make small web pages, blogs and wikis. You can use the [built-in web server](server-configuration#dynamic-website) for testing. It's a great place to get started.
+[Install the developer kit](https://github.com/datenstrom/yellow-developers). The developer kit for Datenstrom Yellow includes plugins, themes and examples. You can try out how to make small web pages, blogs and wikis. You can learn how to create a static website. It's a great place to get started.
 
 ## Files
 

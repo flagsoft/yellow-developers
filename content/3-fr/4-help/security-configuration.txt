@@ -19,6 +19,6 @@ Si vous ne voulez pas que les pages soient modifiées dans le navigateur, restre
 
 ## Restrictions de contenu
 
-Si vous souhaitez protéger votre site web contre les nuisances, restreignez le contenu à [Markdown](markdown-cheat-sheet). Ouvrez le fichier `system/config/config.ini` et changez `ParserSafeMode: 1`. Les utilisateurs ne peuvent utiliser Markdown, mais pas HTML et JavaScript.
+Si vous souhaitez protéger votre site web contre les nuisances, restreignez le contenu à [Markdown](markdown-cheat-sheet). Ouvrez le fichier `system/config/config.ini` et changez `SafeMode: 1`. Les utilisateurs ne sont plus autorisés à utiliser HTML et JavaScript, la mise en forme du texte et les fonctionnalités supplémentaires sont limitées.
 
 [Suivant: API pour les développeurs →](api)

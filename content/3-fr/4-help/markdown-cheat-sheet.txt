@@ -145,5 +145,4 @@ En utilisant des blocs HTML:
 `Sidebar` = sidebar pour la page  
 `Sitename` = nom su site web  
 `Siteicon` = icône du site web  
-`Tagline` = slogan du site web  
 `Email` = email du webmaster  
