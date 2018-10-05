@@ -11,13 +11,13 @@ BlogMore: Lire la suite…
 ContactName: Nom:
 ContactEmail: Email:
 ContactMessage: Message:
-ContactConsent: Je consens que ce site stocke mon message.
+ContactConsent: Je consens à ce que ce site stocke mon message.
 ContactButton: Envoyer le message
-ContactStatusNone: Dites bonjour! Vos commentaires sont les bienvenus.
+ContactStatusNone: Dites bonjour ! Vos commentaires sont les bienvenus.
 ContactStatusIncomplete: S'il vous plaît, veuillez remplir tous les champs.
 ContactStatusInvalid: S'il vous plaît, veuillez entrer une adresse email valide.
-ContactStatusDone: Votre message a bien été envoyé. Merci!
-ContactStatusError: Votre message n'a pas pu être envoyé, réessayez plus tard s'il vous plaît!
+ContactStatusDone: Votre message a bien été envoyé. Merci !
+ContactStatusError: Votre message n'a pas pu être envoyé, réessayez plus tard s'il vous plaît !
 DatePast: aujourd'hui, hier, il y a @x jours, il ya 1 mois, il y a @x mois, il y a 1 an, il y a @x ans
 DateFuture: bientôt, demain, dans @x jours, en 1 mois, dans @x mois, en 1 an, dans @x ans
 DateMonths: janvier, février, mars, avril, mai, juin, juillet, août, septembre, octobre, novembre, décembre
@@ -29,14 +29,14 @@ DateFormatLong: d/m/Y H:i
 EditLoginTitle: Bienvenue
 EditLoginEmail: Email:
 EditLoginPassword: Mot de passe:
-EditLoginForgot: Mot de passe oublié?
-EditLoginSignup: Créer un compte utilisateur?
+EditLoginForgot: Mot de passe oublié ?
+EditLoginSignup: Créer un compte utilisateur ?
 EditLoginButton: Se connecter
 EditSignupTitle: Créer un compte utilisateur
 EditSignupName: Nom:
 EditSignupEmail: Email:
 EditSignupPassword: Mot de passe:
-EditSignupConsent: Je consens que ce site web stocke mes données personnelles.
+EditSignupConsent: Je consens à ce que ce site web stocke mes données personnelles.
 EditSignupButton: Créer
 EditSignupStatusNone: Ici, vous pouvez créer un nouveau compte utilisateur.
 EditSignupStatusIncomplete: Veuillez remplir tous les champs.
@@ -65,25 +65,25 @@ EditQuitStatusMismatch: S'il vous plaît entrer un nom différent.
 EditQuitStatusNext: Votre compte sera supprimé, vérifier vos emails.
 EditConfirmSubject: Confirmation d'un compte utilisateur
 EditConfirmMessage: Bonjour @usershort,\n\nveuillez confirmer votre compte utilisateur. Cliquez sur le lien suivant.
-EditConfirmStatusDone: Votre compte utilisateur est confirmé et en attente d'approbation. Merci!
+EditConfirmStatusDone: Votre compte utilisateur est confirmé et en attente d'approbation. Merci !
 EditApproveSubject: Approuver un nouvel utilisateur
 EditApproveMessage: Bonjour @usershort,\n\nveuillez approuver la création d'un nouveau compte utilisateur pour @useraccount. Cliquez sur le lien suivant.
-EditApproveStatusDone: Compte utilisateur approuvé. Merci!
+EditApproveStatusDone: Compte utilisateur approuvé. Merci !
 EditReactivateSubject: Réactivation d'un compte utilisateur
 EditReactivateMessage: Bonjour @usershort,\n\nveuillez réactivér votre compte utilisateur. Il y a eu trop de tentatives de connexion échouées. Cliquez sur le lien suivant.
-EditReactivateStatusDone: Compte d'utilisateur réactivé. Merci!
+EditReactivateStatusDone: Compte d'utilisateur réactivé. Merci !
 EditRecoverSubject: Restauration d'un compte utilisateur
 EditRecoverMessage: Bonjour @usershort,\n\nveuillez confirmer que vous avez oublié votre mot de passe. Cliquez sur le lien suivant.
-EditRecoverStatusDone: Compte utilisateur restauré. Merci!
+EditRecoverStatusDone: Compte utilisateur restauré. Merci !
 EditVerifySubject: Confirmation d'un compte utilisateur
 EditVerifyMessage: Bonjour @usershort,\n\nveuillez confirmer une nouvelle adresse email pour votre compte utilisateur. Cliquez sur le lien suivant.
-EditVerifyStatusDone: Votre compte utilisateur est confirmé. Merci!
+EditVerifyStatusDone: Votre compte utilisateur est confirmé. Merci !
 EditChangeSubject: Changement d'un compte utilisateur
 EditChangeMessage: Bonjour @usershort,\n\nveuillez confirmer que vous souhaitez modifier votre compte utilisateur. Cliquez sur le lien suivant.
-EditChangeStatusDone: Compte utilisateur changé. Merci!
+EditChangeStatusDone: Compte utilisateur changé. Merci !
 EditRemoveSubject: Supprimer le compte d'utilisateur
 EditRemoveMessage: Bonjour @usershort,\n\nveuillez confirmer que vous souhaitez supprimer votre compte d'utilisateur. Cliquez sur le lien suivant.
-EditRemoveStatusDone: Compte d'utilisateur supprimé. Merci!
+EditRemoveStatusDone: Compte d'utilisateur supprimé. Merci !
 EditWelcomeSubject: Bienvenue
 EditWelcomeMessage: Bonjour @usershort,\n\nvotre compte utilisateur a bien été créé. Amusez-vous bien en éditant le site web.
 EditGoodbyeSubject: Au revoir
@@ -134,9 +134,9 @@ EditToolbarHelp: Aide
 EditUserHelp: Aide
 EditUserLogout: Déconnexion
 InstallTitle: Bonjour
-InstallFeature: Que voulez-vous faire?
+InstallFeature: Que voulez-vous faire ?
 InstallHomeTitle: Home
-InstallHomeText: Votre site web fonctionne!\n\n[edit - Vous pouvez modifier cette page] ou utiliser un éditeur de texte.
+InstallHomeText: Votre site web fonctionne !\n\n[edit - Vous pouvez modifier cette page] ou utiliser un éditeur de texte.
 InstallAboutTitle: À propos
 InstallAboutText: Ce site web est fait avec [Datenstrom Yellow](https://datenstrom.se/fr/yellow/). [edit - Se connecter].
 PagePrevious: ← Précédent: @title
