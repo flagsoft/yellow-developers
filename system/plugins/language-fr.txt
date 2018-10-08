@@ -119,8 +119,8 @@ EditToolbarItalic: Italique
 EditToolbarStrikethrough: Barré
 EditToolbarCode: Code
 EditToolbarList: Liste
-EditToolbarUl: • Liste non ordonnée
-EditToolbarOl: 1. Liste commandée
+EditToolbarUl: • Liste à puces
+EditToolbarOl: 1. Liste numérotée
 EditToolbarTl: ✓ Liste des tâches
 EditToolbarLink: Lien
 EditToolbarFile: Fichier
