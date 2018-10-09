@@ -95,5 +95,3 @@ class YellowFeed {
         return $_REQUEST[$pagination]==$this->yellow->config->get("feedFileXml");
     }
 }
-
-$yellow->plugins->register("feed", "YellowFeed", YellowFeed::VERSION);

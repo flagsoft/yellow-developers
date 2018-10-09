@@ -40,5 +40,3 @@ class YellowFontawesome {
         return $output;
     }
 }
-
-$yellow->plugins->register("fontawesome", "YellowFontawesome", YellowFontawesome::VERSION);

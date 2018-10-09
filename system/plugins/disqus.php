@@ -45,5 +45,3 @@ class YellowDisqus {
         return $output;
     }
 }
-
-$yellow->plugins->register("disqus", "YellowDisqus", YellowDisqus::VERSION);

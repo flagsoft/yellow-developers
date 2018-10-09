@@ -34,5 +34,3 @@ class YellowToc {
         return preg_replace_callback("/<p>\[toc\]<\/p>\n/i", $callback, $text);
     }
 }
-
-$yellow->plugins->register("toc", "YellowToc", YellowToc::VERSION);

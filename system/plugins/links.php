@@ -74,5 +74,3 @@ class YellowLinks {
         return $pages;
     }
 }
-
-$yellow->plugins->register("links", "YellowLinks", YellowLinks::VERSION);

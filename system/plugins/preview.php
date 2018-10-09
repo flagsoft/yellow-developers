@@ -74,5 +74,3 @@ class YellowPreview {
         return $this->onParseContentBlock($page, $name, "", true);
     }
 }
-
-$yellow->plugins->register("preview", "YellowPreview", YellowPreview::VERSION);

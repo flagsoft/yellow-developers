@@ -38,5 +38,3 @@ class YellowBreadcrumbs {
         return $this->onParseContentBlock($page, $name, "", true);
     }
 }
-
-$yellow->plugins->register("breadcrumbs", "YellowBreadcrumbs", YellowBreadcrumbs::VERSION);

@@ -260,5 +260,3 @@ class YellowTraffic {
         }
     }
 }
-
-$yellow->plugins->register("traffic", "YellowTraffic", YellowTraffic::VERSION);

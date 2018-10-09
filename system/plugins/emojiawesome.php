@@ -934,5 +934,3 @@ class YellowEmojiawesome {
         );
     }
 }
-
-$yellow->plugins->register("emojiawesome", "YellowEmojiawesome", YellowEmojiawesome::VERSION);

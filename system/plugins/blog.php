@@ -293,5 +293,3 @@ class YellowBlog {
         return $data;
     }
 }
-
-$yellow->plugins->register("blog", "YellowBlog", YellowBlog::VERSION);

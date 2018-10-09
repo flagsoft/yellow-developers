@@ -55,5 +55,3 @@ class YellowTwitter {
         return $output;
     }
 }
-
-$yellow->plugins->register("twitter", "YellowTwitter", YellowTwitter::VERSION);

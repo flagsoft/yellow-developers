@@ -266,5 +266,3 @@ class YellowWiki {
         return $data;
     }
 }
-
-$yellow->plugins->register("wiki", "YellowWiki", YellowWiki::VERSION);

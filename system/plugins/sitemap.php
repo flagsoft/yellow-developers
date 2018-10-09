@@ -57,5 +57,3 @@ class YellowSitemap {
         return $_REQUEST[$pagination]==$this->yellow->config->get("sitemapFileXml");
     }
 }
-
-$yellow->plugins->register("sitemap", "YellowSitemap", YellowSitemap::VERSION);

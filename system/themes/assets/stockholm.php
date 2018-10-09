@@ -6,5 +6,3 @@
 class YellowThemeStockholm {
     const VERSION = "0.7.6";
 }
-
-$yellow->themes->register("stockholm", "YellowThemeStockholm", YellowThemeStockholm::VERSION);

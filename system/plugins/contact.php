@@ -92,5 +92,3 @@ class YellowContact {
         return $status;
     }
 }
-
-$yellow->plugins->register("contact", "YellowContact", YellowContact::VERSION);

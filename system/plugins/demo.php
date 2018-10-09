@@ -21,5 +21,3 @@ class YellowDemo {
         }
     }
 }
-
-$yellow->plugins->register("demo", "YellowDemo", YellowDemo::VERSION);

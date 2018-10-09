@@ -48,5 +48,3 @@ class YellowInstagram {
         return trim($css);
     }
 }
-
-$yellow->plugins->register("instagram", "YellowInstagram", YellowInstagram::VERSION);

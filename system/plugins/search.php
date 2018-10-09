@@ -113,5 +113,3 @@ class YellowSearch {
         return array($tokens, $filters);
     }
 }
-
-$yellow->plugins->register("search", "YellowSearch", YellowSearch::VERSION);

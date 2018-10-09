@@ -74,5 +74,3 @@ class YellowGallery {
         return $this->yellow->text->isExisting($key) ? $this->yellow->text->get($key) : "";
     }
 }
-
-$yellow->plugins->register("gallery", "YellowGallery", YellowGallery::VERSION);

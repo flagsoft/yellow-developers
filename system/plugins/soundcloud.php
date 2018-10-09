@@ -29,5 +29,3 @@ class YellowSoundcloud {
         return $output;
     }
 }
-
-$yellow->plugins->register("soundcloud", "YellowSoundcloud", YellowSoundcloud::VERSION);

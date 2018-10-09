@@ -2833,5 +2833,3 @@ class YellowMarkdownExtraX extends ParsedownExtra {
         return $text;
     }
 }
-
-$yellow->plugins->register("markdownx", "YellowMarkdownX", YellowMarkdownX::VERSION);

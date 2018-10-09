@@ -1005,5 +1005,3 @@ class JsonRef
         return $x;
     }
 }
-
-$yellow->plugins->register("highlight", "YellowHighlight", YellowHighlight::VERSION);

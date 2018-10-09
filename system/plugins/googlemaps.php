@@ -30,5 +30,3 @@ class YellowGooglemaps {
         return $output;
     }
 }
-
-$yellow->plugins->register("googlemaps", "YellowGooglemaps", YellowGooglemaps::VERSION);

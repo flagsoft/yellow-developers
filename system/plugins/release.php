@@ -343,5 +343,3 @@ class YellowRelease {
         return array($softwareName, $softwareType);
     }
 }
-
-$yellow->plugins->register("release", "YellowRelease", YellowRelease::VERSION);

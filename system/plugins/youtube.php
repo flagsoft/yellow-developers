@@ -27,5 +27,3 @@ class YellowYoutube {
         return $output;
     }
 }
-
-$yellow->plugins->register("youtube", "YellowYoutube", YellowYoutube::VERSION);

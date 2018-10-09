@@ -63,5 +63,3 @@ class YellowSlider {
         return $output;
     }
 }
-
-$yellow->plugins->register("slider", "YellowSlider", YellowSlider::VERSION);

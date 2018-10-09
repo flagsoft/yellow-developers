@@ -142,5 +142,3 @@ class YellowGooglecalendar {
         return 1+(($index+1)%7);
     }
 }
-
-$yellow->plugins->register("googlecalendar", "YellowGooglecalendar", YellowGooglecalendar::VERSION);

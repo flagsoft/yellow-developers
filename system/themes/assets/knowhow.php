@@ -6,5 +6,3 @@
 class YellowThemeKnowhow {
     const VERSION = "0.7.6";
 }
-
-$yellow->themes->register("knowhow", "YellowThemeKnowhow", YellowThemeKnowhow::VERSION);

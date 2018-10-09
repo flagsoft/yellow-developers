@@ -27,5 +27,3 @@ class YellowVimeo {
         return $output;
     }
 }
-
-$yellow->plugins->register("vimeo", "YellowVimeo", YellowVimeo::VERSION);

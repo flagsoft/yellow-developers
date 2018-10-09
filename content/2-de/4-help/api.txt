@@ -410,9 +410,6 @@ Hole die Versionsinformationen von Plugins
 **$yellow->plugins->getModified($httpFormat = false)**  
 Hole das Änderungsdatum von Plugins, Unix-Zeit oder HTTP-Format
 
-**$yellow->plugins->register($name, $plugin, $version, $priority = 0)**  
-Registriere ein Plugin
-
 **$yellow->plugins->isExisting($name)**  
 Teste ob ein Plugin existiert
 
@@ -429,22 +426,20 @@ Hier ist ein Beispiel-Snippet um Informationen über Plugins anzuzeigen:
 Hier ist ein Beispiel-Snippet um zu testen ob ein Plugin existiert:
 
 ``` html
+<div class="plugins">
+<?php $blog = $yellow->plugins->isExisting("blog") ?>
+Blog plugin <?php echo htmlspecialchars($blog ? "" : "not") ?> installed.
+</div>
+```
+
+Hier ist ein Beispiel-Snippet um sicherzustellen dass ein Plugin existiert:
+
+``` html
 <?php if($yellow->plugins->isExisting("fontawesome")): ?>
 <a href="https://twitter.com/username"><i class="fa fa-twitter"></i></a>
 <?php else: ?>
 <?php $yellow->page->error(500, "Snippet requires 'fontawesome' plugin!") ?>
 <?php endif ?>
-```
-
-Hier ist ein Beispiel um ein Plugin zu registrieren: 
-
-``` php
-<?php
-class YellowExample {
-    const VERSION = "0.1.0";
-}
-
-$yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 ```
 
 ### Yellow-Themes
@@ -459,9 +454,6 @@ Hole die Versionsinformationen von Themes
 
 **$yellow->themes->getModified($httpFormat = false)**  
 Hole das Änderungsdatum von Themes, Unix-Zeit oder HTTP-Format
-
-**$yellow->themes->register($name, $theme, $version, $priority = 0)**  
-Registriere ein Theme
 
 **$yellow->themes->isExisting($name)**  
 Teste ob ein Theme existiert
@@ -479,22 +471,20 @@ Hier ist ein Beispiel-Snippet um Informationen über Themes anzuzeigen:
 Hier ist ein Beispiel-Snippet um zu testen ob ein Theme existiert:
 
 ``` html
+<div class="themes">
+<?php $stockholm = $yellow->themes->isExisting("stockholm") ?>
+Stockholm theme <?php echo htmlspecialchars($stockholm ? "" : "not") ?> installed.
+</div>
+```
+
+Hier ist ein Beispiel-Snippet um sicherzustellen dass ein Theme existiert:
+
+``` html
 <?php if($yellow->themes->isExisting("flatsite")): ?>
 <p>Flatsite theme installed.</p>
 <?php else: ?>
 <?php $yellow->page->error(500, "Snippet requires 'flatsite' theme!") ?>
 <?php endif ?>
-```
-
-Hier ist ein Beispiel um ein Theme zu registrieren:
-
-``` php
-<?php
-class YellowThemeExample {
-    const VERSION = "0.1.0";
-}
-
-$yellow->themes->register("example", "YellowThemeExample", YellowThemeExample::VERSION);
 ```
 
 ### Yellow-Config
@@ -540,8 +530,8 @@ Hier ist ein Beispiel-Snippet um zu testen ob der sichere Modus aktiviert ist:
 
 ``` html
 <div class="config">
-<?php $parserSafeMode = $yellow->config->get("parserSafeMode") ?>
-Safe mode is <?php echo htmlspecialchars($parserSafeMode ? "on" : "off") ?>.
+<?php $safeMode = $yellow->config->get("safeMode") ?>
+Safe mode is <?php echo htmlspecialchars($safeMode ? "on" : "off") ?>.
 </div>
 ```
 
@@ -591,7 +581,7 @@ Hier ist ein Beispiel-Snippet um zu testen ob eine Sprache existiert:
 ``` html
 <div class="text">
 <?php $swedish = $yellow->text->isLanguage("sv") ?>
-Swedish language <?php echo htmlspecialchars($swedish ? "" : "not") ?> found.
+Swedish language <?php echo htmlspecialchars($swedish ? "" : "not") ?> installed.
 </div>
 ```
 
@@ -777,8 +767,6 @@ class YellowExample {
         return $output;
     }
 }
-
-$yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 ```
 
 ### Yellow-Edit-Ereignisse
@@ -815,8 +803,6 @@ class YellowExample {
         return $users->getHome($email)=="/guests/";
     }
 }
-
-$yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 ```
 
 ### Yellow-Command-Ereignisse
@@ -859,8 +845,6 @@ class YellowExample {
         return $statusCode;
     }
 }
-
-$yellow->plugins->register("example", "YellowExample", YellowExample::VERSION);
 ```
 
 ## Formate
