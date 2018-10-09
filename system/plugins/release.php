@@ -4,7 +4,7 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowRelease {
-    const VERSION = "0.7.15";
+    const VERSION = "0.7.16";
     public $yellow;         //access to API
     public $plugins;        //number of plugins
     public $themes;         //number of archives
@@ -286,7 +286,7 @@ class YellowRelease {
             foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
                 preg_match("/^\s*(\S+)\s+(\S+)/", $line, $matches);
                 if ($matches[1]=="class") $software = $matches[2];
-                if ($matches[1]=="const" && preg_match("/\"([0-9\.]+)\"/", $line, $matches)) $version = $matches[1];
+                if ($matches[1]=="const" && $matches[2]=="VERSION" && preg_match("/\"([0-9\.]+)\"/", $line, $matches)) $version = $matches[1];
                 if ($matches[1]=="function" || $matches[2]=="function") break;
             }
             if (!empty($software) && !empty($version)) break;
