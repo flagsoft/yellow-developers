@@ -17,8 +17,8 @@ Si vous ne voulez pas créer de compte d'utilisateurs dans le navigateur, restre
 
 Si vous ne voulez pas que les pages soient modifiées dans le navigateur, restreignez les [compte d'utilisateurs](adjusting-system#comptes-d-utilisateurs). Ouvrez le fichier `system/config/user.ini` et à la fin de la ligne de changer la page d'accueil. Les utilisateurs ne peuvent éditer uniquement que leur page d'accueil.
 
-## Restrictions de contenu
+## Mode de sécurité
 
-Si vous souhaitez protéger votre site web contre les nuisances, restreignez le contenu à [Markdown](markdown-cheat-sheet). Ouvrez le fichier `system/config/config.ini` et changez `SafeMode: 1`. Les utilisateurs ne sont plus autorisés à utiliser HTML et JavaScript, la mise en forme du texte et les fonctionnalités supplémentaires sont limitées.
+Si vous souhaitez protéger votre site web contre les nuisances, restreignez les autres fonctionnalités. Ouvrez le fichier `system/config/config.ini` et changez `SafeMode: 1`. Les utilisateurs ne sont plus autorisés à utiliser HTML et JavaScript, [Markdown](markdown-cheat-sheet) et d'autres fonctionnalités sont restreintes.
 
 [Suivant: API pour les développeurs →](api)

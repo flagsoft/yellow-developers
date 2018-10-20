@@ -10,7 +10,6 @@ Voici une collection de nos tests:
 
 * [Tester l'API des pages](api-content-files)
 * [Tester l'API des fichiers](api-media-files)
-* [Tester les restrictions de contenu](content-restrictions)
 * [Tester le template personnalisé](custom-template)
 * [Tester le thème personnalisé](custom-theme)
 * [Tester le nom de fichier Unicode](file-name-unicode-åäö)
@@ -18,6 +17,7 @@ Voici une collection de nos tests:
 * [Tester l'analyse des images](image-parsing)
 * [Tester l'analyse des liens](link-parsing)
 * [Tester la redirection vers la page d'accueil](redirect-to-home)
+* [Tester le mode de sécurité](safe-mode)
 
 Voici une collection de nos tests d'erreur:
 

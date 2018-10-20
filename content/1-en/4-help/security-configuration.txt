@@ -15,8 +15,8 @@ If you don't want user accounts to be created in the web browser, then restrict 
 
 If you don't want pages to be changed in the web browser, then restrict [user accounts](adjusting-system#user-accounts). Open file `system/config/user.ini` and at the end of the line change the user's home page. Users are only allowed to edit pages within their home page.
 
-## Content restrictions
+## Safe mode
 
-If you want to protect your website from nuisance, then restrict the content to [Markdown](markdown-cheat-sheet). Open file `system/config/config.ini` and change `SafeMode: 1`. Users are no longer allowed to use HTML and JavaScript, text formatting and further features are restricted.
+If you want to protect your website from nuisance, then restrict further features. Open file `system/config/config.ini` and change `SafeMode: 1`. Users are no longer allowed to use HTML and JavaScript, [Markdown](markdown-cheat-sheet) and other features are restricted.
 
 [Next: API for developers →](api)

@@ -10,7 +10,6 @@ Here's a collection of our tests:
 
 * [Test API content files](api-content-files)
 * [Test API media files](api-media-files)
-* [Test content restrictions](content-restrictions)
 * [Test custom template](custom-template)
 * [Test custom theme](custom-theme)
 * [Test file name Unicode](file-name-unicode-åäö)
@@ -18,6 +17,7 @@ Here's a collection of our tests:
 * [Test image parsing](image-parsing)
 * [Test link parsing](link-parsing)
 * [Test redirect to home](redirect-to-home)
+* [Test safe mode](safe-mode)
 
 Here's a collection of our error tests:
 
