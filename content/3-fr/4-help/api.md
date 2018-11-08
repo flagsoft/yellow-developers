@@ -4,7 +4,7 @@ TitleContent: API
 ---
 API pour les développeurs. Nous :heart: les développeurs.
 
->>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/api.txt)
+>>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/api.md)
 
 [toc]
 
