@@ -79,7 +79,7 @@ Return page content, HTML encoded or raw format
 **$yellow->page->getParent()**  
 Return parent page, null if none
 
-**$yellow->page->getParentTop($homeFailback = true)**  
+**$yellow->page->getParentTop($homeFallback = false)**  
 Return top-level parent page, null if none
 
 **$yellow->page->getSiblings($showInvisible = false)**  
@@ -626,6 +626,9 @@ Copy file
 **$yellow->toolbox->renameFile($fileNameSource, $fileNameDestination, $mkdir = false)**  
 Rename file  
 
+**$yellow->toolbox->renameDirectory($pathSource, $pathDestination, $mkdir = false)**  
+Rename directory  
+
 **$yellow->toolbox->deleteFile($fileName, $pathTrash = "")**  
 Delete file  
 
@@ -685,18 +688,18 @@ The following events are available:
 ```
 onLoad ─────▶ onStartup ─────▶ onRequest
                   │                │
-                  │                ├────────────────────┐
-                  │                │                    │
-                  ▼                ▼                    ▼
-              onCommand        onParseMeta          onEditUserRestrictions
-              onCommandHelp    onParseContentRaw    onEditUserAccount
-                  │            onParseContentBlock  onEditContentFile
-                  │            onParseContentText   onEditMediaFile
-                  │            onParsePageTemplate      │
-                  │            onParsePageExtra         │
-                  │            onParsePageOutput        │
-                  ▼                │                    │
-exit ◀─────── onShutDown ◀─────────┴────────────────────┘
+                  │                ├──────────────────────┐
+                  │                │                      │
+                  ▼                ▼                      ▼
+              onCommand        onParseMeta             onEditUserRestrictions
+              onCommandHelp    onParseContentRaw       onEditUserAccount
+                  │            onParseContentShortcut  onEditContentFile
+                  │            onParseContentText      onEditMediaFile
+                  │            onParsePageTemplate        │
+                  │            onParsePageExtra           │
+                  │            onParsePageOutput          │
+                  ▼                │                      │
+exit ◀─────── onShutDown ◀─────────┴──────────────────────┘
 ```
 
 When a page is displayed, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the [core](https://github.com/datenstrom/yellow-plugins/tree/master/core) informs with `onRequest` that there's a request. The page can be analysed with various `onParse` events. Then the source code of the page will be generated with the help of [templates and snippets](customising-templates). If an error occurs, an error page will be generated. Finally the page is output and `onShutdown` will be called.
@@ -724,8 +727,8 @@ Handle page [meta data](markdown-cheat-sheet#settings)
 **public function onParseContentRaw($page, $text)**  
 Handle page content in raw format
 
-**public function onParseContentBlock($page, $name, $text, $shortcut)**  
-Handle page content of custom block
+**public function onParseContentShortcut($page, $name, $text, $type)**  
+Handle page content of [shortcut](markdown-cheat-sheet#shortcuts)
 
 **public function onParseContentText($page, $text)**  
 Handle page content
@@ -755,10 +758,10 @@ class YellowExample {
         $this->yellow = $yellow;
     }
     
-    // Handle page content of custom block
-    public function onParseContentBlock($page, $name, $text, $shortcut) {
+    // Handle page content of shortcut
+    public function onParseContentShortcut($page, $name, $text, $type) {
         $output = null;
-        if ($name=="example" && $shortcut) {
+        if ($name=="example" && ($type=="block" || $type=="inline")) {
             $output = "<div class=\"".htmlspecialchars($name)."\">";
             $output .= "Add more HTML code here";
             $output .= "</div>";
@@ -923,13 +926,13 @@ YellowCore::sendPage Content-Type: text/html; charset=utf-8
 YellowCore::sendPage Page-Modified: Sat, 15 Jul 2017 12:19:01 GMT
 YellowCore::sendPage Last-Modified: Thu, 19 Apr 2018 06:25:14 GMT
 YellowCore::sendPage theme:flatsite template:blogpages parser:markdown
-YellowCore::processRequest file:content/1-en/2-plugins/1-blog/page.txt
+YellowCore::processRequest file:content/1-en/2-plugins/1-blog/page.md
 YellowCore::request status:200 handler:core time:19 ms
 ```
 
 Get file system information by increasing debug level to `<?php define("DEBUG", 2);`
 ```
-Datenstrom Yellow 0.7.5, PHP 7.1.16, Apache/2.4.33 Darwin
+Datenstrom Yellow 0.8.1, PHP 7.1.16, Apache/2.4.33 Darwin
 YellowConfig::load file:system/config/config.ini
 YellowUsers::load file:system/config/user.ini
 YellowText::load file:system/plugins/language-de.txt
@@ -940,7 +943,7 @@ YellowText::load file:system/config/text.ini
 
 Get maximum information by increasing debug level to `<?php define("DEBUG", 3);`
 ```
-Datenstrom Yellow 0.7.5, PHP 7.1.16, Apache/2.4.33 Darwin
+Datenstrom Yellow 0.8.1, PHP 7.1.16, Apache/2.4.33 Darwin
 YellowConfig::load file:system/config/config.ini
 YellowConfig::load Sitename:Datenstrom developers
 YellowConfig::load Author:Datenstrom

@@ -1,13 +1,13 @@
 ---
-Title: Customising templates
+Title: Personnaliser des templates
 ---
-You can customise the source code of your website. [See demo](/tests/custom-template).
+Vous pouvez personnaliser le code source de votre site web. [Voir la démo](/fr/tests/custom-template).
 
-## Templates
+>>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/customising-templates.md)
 
 Templates generate the source code of your website. Let's see how templates are made. The default template is defined in the [system settings](adjusting-system#system-settings). A different template can be defined in the [settings](markdown-cheat-sheet#settings) at the top of each page, for example `Template: default`.
 
-Snippets are the building blocks of your website. They are small pieces of [HTML](https://www.w3schools.com/html/) and [PHP](https://www.w3schools.com/php/). You can put everything into one template, but it's often more practical to split up a template into multiple snippets and to reuse them. Do what works best for you. 
+Snippets are the building blocks of your website. They are small pieces of [HTML](https://www.w3schools.com/html/) and [PHP](https://www.w3schools.com/php/). You can put everything into one template, but it's often more practical to split a template up into multiple snippets and to reuse them. Do what works best for you. 
 
 ## Custom template
 
@@ -188,9 +188,9 @@ Here's an example snippet to divide the footer into left and right:
 
 ## Custom sidebar
 
-To show a sidebar add the file `sidebar.txt` to a `content` folder. The sidebar will be shown on all pages in the same folder. A different sidebar can be defined in the [settings](markdown-cheat-sheet#settings) at the top of each page, for example `Sidebar: sidebar`.
+To show a sidebar add the file `sidebar.md` to a `content` folder. The sidebar will be shown on all pages in the same folder. A different sidebar can be defined in the [settings](markdown-cheat-sheet#settings) at the top of each page, for example `Sidebar: sidebar`.
 
-Here's an example sidebar file `content/1-home/sidebar.txt`:
+Here's an example sidebar file `content/1-home/sidebar.md`:
 
 ```
 ---
@@ -204,4 +204,4 @@ Links
 * [Datenstrom](https://datenstrom.se)
 ```
 
-[Next: Get support →](support)
+[Suivant: Obtenir de l'aide →](support)

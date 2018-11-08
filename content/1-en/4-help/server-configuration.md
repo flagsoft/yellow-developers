@@ -110,7 +110,7 @@ The website is available as `http://localhost:8000`. Furthermore, you can edited
 
 ## Error page
 
-When there are problems an error page is shown. When a web browser requests a file that the web server doesn't find, your website will show an error page with “File not found”. The file `system/config/page-error-404.txt` defines how this error page looks like:
+When there are problems an error page is shown. When a web browser requests a file that the web server doesn't find, your website will show an error page with “File not found”. The file `system/config/page-error-404.md` defines how this error page looks like:
 
 ~~~~
 ---

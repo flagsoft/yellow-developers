@@ -109,7 +109,7 @@ Daraufhin ist die Webseite vorhanden als `http://localhost:8000`. Ausserdem kann
 
 ## Fehlerseite
 
-Falls Probleme auftreten wird eine Fehlerseite angezeigt. Wenn der Webbrowser eine Datei anfragt die der Webserver nicht findet, dann wird eine "File not found"-Fehlerseite angezeigt. Die Datei `system/config/page-error-404.txt` legt fest wie diese Fehlerseite aussieht:
+Falls Probleme auftreten wird eine Fehlerseite angezeigt. Wenn der Webbrowser eine Datei anfragt die der Webserver nicht findet, dann wird eine "File not found"-Fehlerseite angezeigt. Die Datei `system/config/page-error-404.md` legt fest wie diese Fehlerseite aussieht:
 
 ~~~~
 ---

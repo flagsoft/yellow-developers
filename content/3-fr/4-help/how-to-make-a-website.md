@@ -16,7 +16,7 @@ S'il y a des problèmes, vérifiez la [configuration du serveur](server-configur
 
 ## Écrire une page web
 
-Jetons un oeil dans le dossier `content`, où se trouvent toutes vos pages web. Ouvrer le fichier `content/1-home/page.txt`. Vous y verrez les paramètres et le texte de la page. Vous pouvez changer le titre de la page `Title` ainsi que d'autres [paramètres](markdown-cheat-sheet#paramètres) en haut de la page. Voici un exemple:
+Jetons un oeil dans le dossier `content`, où se trouvent toutes vos pages web. Ouvrer le fichier `content/1-home/page.md`. Vous y verrez les paramètres et le texte de la page. Vous pouvez changer le titre de la page `Title` ainsi que d'autres [paramètres](markdown-cheat-sheet#paramètres) en haut de la page. Voici un exemple:
 
 ```
 ---
@@ -55,7 +55,7 @@ Vous pouvez utiliser [Markdown](markdown-cheat-sheet) pour éditer des pages web
 
 ## Afficher une sidebar
 
-Pour afficher une sidebar (menu latéral), ajoutez le fichier `sidebar.txt` dans un dossier de `content`. La sidebar est visible sur toutes les pages présentes dans le même dossier. Vous pouvez décider si vous souhaitez avoir une sidebar ou non. Voici un exemple de sidebar:
+Pour afficher une sidebar (menu latéral), ajoutez le fichier `sidebar.md` dans un dossier de `content`. La sidebar est visible sur toutes les pages présentes dans le même dossier. Vous pouvez décider si vous souhaitez avoir une sidebar ou non. Voici un exemple de sidebar:
 
 ```
 ---

@@ -3,7 +3,7 @@ Title: Configuration du serveur
 ---
 Comment configurer différents serveurs web.
 
->>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/server-configuration.txt)
+>>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/server-configuration.md)
 
 ## Apache
 
@@ -111,7 +111,7 @@ Vous pouvez naviguer sur votre site, effectuer quelques changements et voir le r
 
 ## Page d'erreurs
 
-Quand un problème existe, une page d'erreur s'affiche. Quand le navigateur web accède à un fichier qui n'est pas disponible sur le serveur web, le site web affiche  “File not found”. Le fichier `system/config/page-error-404.txt` permet de définir à quoi ressemblera cette page:
+Quand un problème existe, une page d'erreur s'affiche. Quand le navigateur web accède à un fichier qui n'est pas disponible sur le serveur web, le site web affiche  “File not found”. Le fichier `system/config/page-error-404.md` permet de définir à quoi ressemblera cette page:
 
 ~~~~
 ---

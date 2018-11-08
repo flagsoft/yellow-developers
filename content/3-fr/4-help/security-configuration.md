@@ -3,7 +3,7 @@ Title: Configuration de la sécurité
 ---
 Comment configurer la sécurité et la confidentialité.
 
->>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/security-configuration.txt)
+>>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/security-configuration.md)
 
 ## Chiffrement des données
 

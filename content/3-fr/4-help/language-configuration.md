@@ -3,7 +3,7 @@ Title: Configuration de la langue
 ---
 Comment configurer différents langages.
 
->>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/language-configuration.txt)
+>>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/language-configuration.md)
 
 ## Le mode uni-langue
 

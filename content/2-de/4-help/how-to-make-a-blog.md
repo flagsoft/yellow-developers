@@ -16,7 +16,7 @@ Falls Probleme auftreten, überprüfe bitte die [Servereinstellungen](server-con
  
 ## Blogeinträge schreiben
 
-Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Blogverzeichnis mit allen Blogseiten. Öffne die Datei `2013-04-07-blog-example.txt`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Hier ist ein Beispiel:
+Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Blogverzeichnis mit allen Blogseiten. Öffne die Datei `2013-04-07-blog-example.md`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Hier ist ein Beispiel:
 
 ```
 ---
@@ -92,7 +92,7 @@ Du kannst [Markdown](markdown-cheat-sheet) benutzen um Blogseiten zu bearbeiten.
 
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.txt` in deinem Blogverzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Du kannst entscheiden ob du eine Sidebar haben möchtest oder nicht. Hier ist eine Beispiel-Sidebar:
+Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.md` in deinem Blogverzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Du kannst entscheiden ob du eine Sidebar haben möchtest oder nicht. Hier ist eine Beispiel-Sidebar:
 
 ```
 ---

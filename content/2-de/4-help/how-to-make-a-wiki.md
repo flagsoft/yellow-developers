@@ -16,7 +16,7 @@ Falls Probleme auftreten, überprüfe bitte die [Servereinstellungen](server-con
 
 ## Wikiseiten schreiben
 
-Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Wikiverzeichnis mit allen Wikiseiten. Öffne die Datei `wiki-page.txt`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Hier ist ein Beispiel:
+Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Wikiverzeichnis mit allen Wikiseiten. Öffne die Datei `wiki-page.md`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Hier ist ein Beispiel:
 
 ```
 ---
@@ -77,7 +77,7 @@ Du kannst [Markdown](markdown-cheat-sheet) benutzen um Wikiseiten zu bearbeiten.
 
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.txt` in deinem Wikiverzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Du kannst entscheiden ob du eine Sidebar haben möchtest oder nicht. Hier ist eine Beispiel-Sidebar:
+Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.md` in deinem Wikiverzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Du kannst entscheiden ob du eine Sidebar haben möchtest oder nicht. Hier ist eine Beispiel-Sidebar:
 
 ```
 ---

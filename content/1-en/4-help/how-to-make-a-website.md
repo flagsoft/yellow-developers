@@ -16,7 +16,7 @@ When there are problems, please check the [server configuration](server-configur
 
 ## Writing web pages
 
-Have a look inside your `content` folder, here are all your web pages. Open the file `content/1-home/page.txt`. You'll see settings and text of the page. You can change `Title` and other [settings](markdown-cheat-sheet#settings) at the top of a page. Here's an example:
+Have a look inside your `content` folder, here are all your web pages. Open the file `content/1-home/page.md`. You'll see settings and text of the page. You can change `Title` and other [settings](markdown-cheat-sheet#settings) at the top of a page. Here's an example:
 
 ```
 ---
@@ -55,7 +55,7 @@ You can use [Markdown](markdown-cheat-sheet) to edit web pages.
 
 ## Showing a sidebar
 
-To show a sidebar add the file `sidebar.txt` to a `content` folder. The sidebar will be shown on all pages in the same folder. You can decide if you like to have a sidebar or not. Here's an example sidebar:
+To show a sidebar add the file `sidebar.md` to a `content` folder. The sidebar will be shown on all pages in the same folder. You can decide if you like to have a sidebar or not. Here's an example sidebar:
 
 ```
 ---

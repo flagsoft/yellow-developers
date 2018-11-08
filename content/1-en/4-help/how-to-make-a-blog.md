@@ -16,7 +16,7 @@ When there are problems, please check the [server configuration](server-configur
  
 ## Writing blog pages
 
-Have a look inside your `content` folder, there's the blog folder with all your blog pages. Open the file `2013-04-07-blog-example.txt`. You'll see settings and text of the page. You can change `Title` and other [settings](markdown-cheat-sheet#settings) at the top of a page. Here's an example:
+Have a look inside your `content` folder, there's the blog folder with all your blog pages. Open the file `2013-04-07-blog-example.md`. You'll see settings and text of the page. You can change `Title` and other [settings](markdown-cheat-sheet#settings) at the top of a page. Here's an example:
 
 ```
 ---
@@ -92,7 +92,7 @@ You can use [Markdown](markdown-cheat-sheet) to edit blog pages.
 
 ## Showing a sidebar
 
-To show a sidebar add the file `sidebar.txt` to your blog folder. The sidebar will be shown on all pages in the same folder. You can decide if you like to have a sidebar or not. Here's an example sidebar:
+To show a sidebar add the file `sidebar.md` to your blog folder. The sidebar will be shown on all pages in the same folder. You can decide if you like to have a sidebar or not. Here's an example sidebar:
 
 ```
 ---

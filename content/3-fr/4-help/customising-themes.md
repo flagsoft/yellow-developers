@@ -3,7 +3,7 @@ Title: Personnaliser des thèmes
 ---
 Vous pouvez personnaliser l'apparence de votre site web. [Voir la démo](/fr/tests/custom-theme).
 
->>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/customising-themes.txt)
+>>> [Vous pouvez nous aider à traduire cette page.](https://github.com/datenstrom/yellow-developers/blob/master/content/3-fr/4-help/customising-themes.md)
 
 ## Thèmes
 

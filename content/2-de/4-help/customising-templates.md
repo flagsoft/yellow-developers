@@ -188,9 +188,9 @@ Hier ist ein Beispiel-Snippet um die Fußzeile in Links und Rechts aufzuteilen:
 
 ## Sidebar anpassen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.txt` in einem `content`-Verzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Eine andere Sidebar lässt sich in den [Einstellungen](markdown-cheat-sheet#einstellungen) ganz oben auf jeder Seite festlegen, zum Beispiel `Sidebar: sidebar`. 
+Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.md` in einem `content`-Verzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Eine andere Sidebar lässt sich in den [Einstellungen](markdown-cheat-sheet#einstellungen) ganz oben auf jeder Seite festlegen, zum Beispiel `Sidebar: sidebar`. 
 
-Hier ist eine Beispiel-Sidebar-Datei `content/1-home/sidebar.txt`:
+Hier ist eine Beispiel-Sidebar-Datei `content/1-home/sidebar.md`:
 
 ```
 ---

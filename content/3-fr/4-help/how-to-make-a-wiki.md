@@ -16,7 +16,7 @@ S'il y a des problèmes, vérifiez la [configuration du serveur](server-configur
 
 ## Écrire une page de wiki
 
-Jetons un oeil dans le dossier `content`, où se trouve le dossier de votre wiki avec toutes vos pages de wiki. Ouvrez le fichier `wiki-page.txt`. Vous y verrez les paramètres et le texte de la page. Vous pouvez changer le titre de la page `Title` ainsi que d'autres [paramètres](markdown-cheat-sheet#paramètres) en haut de la page. Voici un exemple:
+Jetons un oeil dans le dossier `content`, où se trouve le dossier de votre wiki avec toutes vos pages de wiki. Ouvrez le fichier `wiki-page.md`. Vous y verrez les paramètres et le texte de la page. Vous pouvez changer le titre de la page `Title` ainsi que d'autres [paramètres](markdown-cheat-sheet#paramètres) en haut de la page. Voici un exemple:
 
 ```
 ---
@@ -77,7 +77,7 @@ Vous pouvez utiliser [Markdown](markdown-cheat-sheet) pour éditer les pages du 
 
 ## Afficher une sidebar
 
-Pour afficher une sidebar (menu latéral), ajoutez le fichier `sidebar.txt` dans le dossier de votre wiki. La sidebar est visible sur toutes les pages présentes dans le même dossier. Vous pouvez décider si vous souhaitez avoir une sidebar ou non. Voici un exemple de sidebar:
+Pour afficher une sidebar (menu latéral), ajoutez le fichier `sidebar.md` dans le dossier de votre wiki. La sidebar est visible sur toutes les pages présentes dans le même dossier. Vous pouvez décider si vous souhaitez avoir une sidebar ou non. Voici un exemple de sidebar:
 
 ```
 ---
