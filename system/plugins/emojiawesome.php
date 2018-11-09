@@ -49,7 +49,7 @@ class YellowEmojiawesome {
                 $cdn = $this->yellow->config->get("emojiawesomeCdn");
                 foreach ($this->getLookupData() as $entry) {
                     $class = $this->normaliseClass("ea-$entry[shortname]");
-                    $image = $entry[image];
+                    $image = $entry["image"];
                     $outputData .= ".$class {\n";
                     $outputData .= "    background-image: url(\"{$cdn}svg/$image.svg\");\n";
                     $outputData .= "}\n";
