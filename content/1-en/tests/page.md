@@ -1,5 +1,6 @@
 ---
 Title: Tests
+TitleSlug: Tests
 ---
 Made with [yellow].
 
