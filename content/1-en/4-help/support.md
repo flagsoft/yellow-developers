@@ -14,10 +14,10 @@ Connect with other users and find professional support.
 
 ## How to contribute
 
-* [Create useful plugins](https://github.com/datenstrom/yellow-plugins): Better features for websites.
-* [Create beautiful themes](https://github.com/datenstrom/yellow-themes): Better appearance for websites.
-* [Create translations](https://github.com/datenstrom/yellow-plugins/tree/master/language) and [documentation](https://github.com/datenstrom/yellow-developers/tree/master/content/1-en/4-help): Different languages.
 * [Follow us on GitHub](https://github.com/datenstrom): Write feedback and answer questions.
-* [Follow us on Twitter](https://twitter.com/datenstromse): Show what you have made.
+* [Follow us on Twitter](https://twitter.com/datenstromse): Tell others about Datenstrom Yellow.
+* [Create plugins](https://github.com/datenstrom/yellow-plugins): Develop useful features for websites.
+* [Create themes](https://github.com/datenstrom/yellow-themes): Design beautiful appearance for websites.
+* [Create languages](https://github.com/datenstrom/yellow-plugins/tree/master/language): Translate and correct language files.
 
 At the heart of open source is the idea that we make better software together. [API for developers](api).

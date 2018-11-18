@@ -15,10 +15,10 @@ Entrez en contact avec d'autres utilisateurs et trouvez de l'aide professionnell
 
 ## Comment contribuer
 
-* [Créer des plugins utiles](https://github.com/datenstrom/yellow-plugins/): De meilleures fonctions pour les sites web.
-* [Créer des thèmes magnifiques](https://github.com/datenstrom/yellow-themes/): Une meilleure apparence pour les sites web.
-* [Créer des traductions](https://github.com/datenstrom/yellow-plugins/tree/master/language) et de la [documentation](https://github.com/datenstrom/yellow-developers/tree/master/content/3-fr/4-help): Différents langues.
 * [Suivez-nous sur GitHub](https://github.com/datenstrom): Écrivez vos commentaires et répondez aux questions.
-* [Suivez-nous sur Twitter](https://twitter.com/datenstromse): Montrez ce que vous avez fait.
+* [Suivez-nous sur Twitter](https://twitter.com/datenstromse): Parler aux autres de Datenstrom Yellow.
+* [Créer des plugins](https://github.com/datenstrom/yellow-plugins/): Développer des fonctionnalités utiles pour les sites web.
+* [Créer des thèmes](https://github.com/datenstrom/yellow-themes/): Concevez une belle apparence pour les sites web.
+* [Créer des traductions](https://github.com/datenstrom/yellow-plugins/tree/master/language): Traduire et corriger les fichiers de langue.
 
 Au cœur de l'open source se trouve l'idée que nous faisons de meilleurs logiciels ensemble. [API pour les développeurs](api).
