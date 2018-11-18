@@ -15,7 +15,7 @@ Tausche dich mit anderen Benutzern aus und finde professionelle Unterstützung.
 
 ## Mitmachen
 
-* [Folge uns auf GitHub](https://github.com/datenstrom): Schreibe Feedback und beantworte Fragen.
+* [Beobachte uns auf GitHub](https://github.com/datenstrom/yellow): Beantworte Fragen und helfe anderen.
 * [Folge uns auf Twitter](https://twitter.com/datenstromse): Erzähle anderen von Datenstrom Yellow.
 * [Erstelle Plugins](https://github.com/datenstrom/yellow-plugins/): Entwickle nützliche Funktionen für Webseiten.
 * [Erstelle Themes](https://github.com/datenstrom/yellow-themes/): Entwerfe schönes Aussehen für Webseiten.

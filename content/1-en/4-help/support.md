@@ -14,7 +14,7 @@ Connect with other users and find professional support.
 
 ## How to contribute
 
-* [Follow us on GitHub](https://github.com/datenstrom): Write feedback and answer questions.
+* [Watch us on GitHub](https://github.com/datenstrom/yellow): Answer questions and help others.
 * [Follow us on Twitter](https://twitter.com/datenstromse): Tell others about Datenstrom Yellow.
 * [Create plugins](https://github.com/datenstrom/yellow-plugins): Develop useful features for websites.
 * [Create themes](https://github.com/datenstrom/yellow-themes): Design beautiful appearance for websites.
