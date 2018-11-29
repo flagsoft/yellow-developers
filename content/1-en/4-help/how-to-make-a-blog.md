@@ -66,7 +66,7 @@ colleagues at work. You can invite your friends to fika. Fika is such
 an important part of life in Sweden that it is both a verb and a noun. 
 How often do you fika?
 
-[youtube c7J6AXX3otA]
+[youtube aIMR73COZQU]
 ```
 
 Let's show the video when a visitor clicks on the blog page. You can use `[--more--]` to add a page break at the desired spot:
@@ -85,7 +85,7 @@ colleagues at work. You can invite your friends to fika. Fika is such
 an important part of life in Sweden that it is both a verb and a noun. 
 How often do you fika? [--more--]
 
-[youtube c7J6AXX3otA]
+[youtube aIMR73COZQU]
 ```
 
 You can use [Markdown](markdown-cheat-sheet) to edit blog pages.
