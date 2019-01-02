@@ -1,7 +1,7 @@
 <div class="footer" role="contentinfo">
 <div class="siteinfo">
 <div class="siteinfo-left">
-<a href="https://datenstrom.se<?php echo $yellow->pages->getHomeLocation($yellow->page->location) ?>">&copy; 2018 Datenstrom</a>
+<a href="https://datenstrom.se<?php echo $yellow->pages->getHomeLocation($yellow->page->location) ?>">&copy; 2019 Datenstrom</a>
 </div>
 <div class="siteinfo-right">
 <a href="<?php echo $yellow->page->getBase(true)."/help/support" ?>">Support</a> &nbsp;
