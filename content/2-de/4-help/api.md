@@ -674,7 +674,7 @@ Hier ist ein Beispiel-Snippet um Textzeilen von Datei zu lesen:
 
 ``` html
 <div class="toolbox">
-<?php $fileName = $yellow->config->get("configDir").$yellow->config->get("robotsFile") ?>
+<?php $fileName = $yellow->config->get("configDir").$yellow->config->get("configFile") ?>
 <?php $fileData = $this->yellow->toolbox->readFile($fileName) ?>
 <?php foreach($this->yellow->toolbox->getTextLines($fileData) as $line): ?>
 <?php echo htmlspecialchars($line) ?><br />
