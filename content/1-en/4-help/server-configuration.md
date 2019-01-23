@@ -38,6 +38,12 @@ When your website still doesn't work and complains about the rewrite module, the
 When file access doesn't work, it shows "Datenstrom Yellow requires Apache read/write access".
 Make sure that the web server can read and write files. You can manually adjust [file permissions](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) so that the web server can overwrite files, for example with command `chmod -R a+rw *`. As an alternative you can assign the group `www-data` and `umask 002` to the web server and users.
 
+When you have a [static website](#static-website) you should use the following configuration file:
+
+```apache
+ErrorDocument 404 /404.html
+```
+
 ## Nginx
 
 The `nginx.conf` configuration file for the [Nginx](https://nginx.org/) web server:
@@ -82,6 +88,17 @@ Please check `server_name` and `root` in the configuration file. If the configur
 
 When file access doesn't work, it shows "Datenstrom Yellow requires Nginx read/write access". Make sure that the web server can read and write files. You can manually adjust [file permissions](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) so that the web server can overwrite files, for example with command `chmod -R a+rw *`. As an alternative you can assign the group `www-data` and `umask 002` to the web server and users.
 
+When you have a [static website](#static-website) you should use the following configuration file:
+
+```nginx
+server {
+    listen 80;
+    server_name website.com;
+    root /var/www/website/;
+    error_page 404 /404.html;
+}
+```
+
 ## Static website
 
 If you want to create a static website, use the static site generator. This is done by running a build command from within the installation folder. It generates a static website, that works on almost any web server.
@@ -92,41 +109,10 @@ You can create a static website from the [command line](https://github.com/daten
 2. Go to your installation folder, where the `yellow.php` is.
 3. Type the following line: `php yellow.php build`
 
-This will build a static website in folder `public`. Upload the folder to your web hosting and build a new version when needed. The URL of the website can be defined in the [system settings](adjusting-system#system-settings), for example `StaticUrl: http://website/`.
+This will build a static website in the `public` folder. Upload the folder to your web server and build a new version when needed. The URL of the website can be defined in the [system settings](adjusting-system#system-settings), for example `StaticUrl: http://website/`.
 
-As an alternative to a static website you can build a cache. This will speed up your website, but the cache has to be updated repeatedly. Here's an example: `php yellow.php build cache`. To clean the cache type the following line: `php yellow.php clean cache`.
+You can test a static website without uploading it to a web server. Start the built-in web server. This is especially handy for developers, since everything runs on your own computer. Here's an example: `php yellow.php serve`. Now the website is available as `http://localhost:8000`.
 
-## Test static website
-
-If you want to test a static website, use the built-in web server. This is especially handy for developers, since everything runs on your own computer. With this philosophy you completely bypass any web server problem.
-
-You can start the built-in web server from the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command):
-
-1. Open a terminal window.
-2. Go to your installation folder, where the `yellow.php` is.
-3. Type the following line: `php -S localhost:8000 yellow.php`
-
-The website is available as `http://localhost:8000`. Furthermore, you can edited your website in a [web browser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) with `http://localhost:8000/edit/`. You can browse your website, make some changes and see the result immediately.
-
-## Error page
-
-When there are problems an error page is shown. When a web browser requests a file that the web server doesn't find, your website will show an error page with “File not found”. The file `system/config/page-error-404.md` defines how this error page looks like:
-
-~~~~
----
-Title: File not found
----
-The requested file was not found. Oh no...
-~~~~
-
-Usually there's nothing more to do. If you create a static website with Datenstrom Yellow, there's one additional step. Configure your web server to display your custom error page. 
-
-For [Apache](http://httpd.apache.org) add the following line to your configuration file:
-
-    ErrorDocument 404 /404.html
-
-For [Nginx](https://nginx.org/) add the following line to your configuration file:
-
-    error_page 404 /404.html;
+As an alternative to a static website you can build a cache. This speeds up your website significantly, but the cache needs to be updated repeatedly. Here's an example: `php yellow.php build cache`. To clean the cache type the following line: `php yellow.php clean cache`.
 
 [Next: Language configuration →](language-configuration)

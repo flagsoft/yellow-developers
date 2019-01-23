@@ -38,6 +38,12 @@ Wenn deine Webseite immer noch nicht funktioniert und sich über das Rewrite-Mod
 
 Wenn der Dateizugriff nicht funktioniert, wird angezeigt "Datenstrom Yellow requires Apache read/write access". Stelle sicher dass der Webserver Dateien lesen und schreiben kann. Du kannst [Schreibrechte](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) für Dateien manuell angleichen, zum Beispiel mit `chmod -R a+rw *`. Als Alternative kannst du Webserver und Benutzern die Gruppe `www-data` und `umask 002` zuweisen.
 
+Wenn man eine [statische Webseite](#statische-webseite) hat, sollte man die folgende Konfigurationsdatei benutzen:
+
+```apache
+ErrorDocument 404 /404.html
+```
+
 ## Nginx
 
 Die `nginx.conf` Konfigurationsdatei für den [Nginx](https://nginx.org/)-Webserver:
@@ -81,6 +87,17 @@ Wenn deine Webseite nicht funktioniert, wird angezeigt "Datenstrom Yellow requir
 
 Wenn der Dateizugriff nicht funktioniert, wird angezeigt "Datenstrom Yellow requires Nginx read/write access". Stelle sicher dass der Webserver Dateien lesen und schreiben kann. Du kannst [Schreibrechte](https://superuser.com/questions/51838/recursive-chmod-rw-for-files-rwx-for-directories) für Dateien manuell angleichen, zum Beispiel mit `chmod -R a+rw *`. Als Alternative kannst du Webserver und Benutzern die Gruppe `www-data` und `umask 002` zuweisen.
 
+Wenn man eine [statische Webseite](#statische-webseite) hat, sollte man die folgende Konfigurationsdatei benutzen:
+
+```nginx
+server {
+    listen 80;
+    server_name website.com;
+    root /var/www/website/;
+    error_page 404 /404.html;
+}
+```
+
 ## Statische Webseite
 
 Falls man eine statische Webseite erstellen will, benutzt man den Static-Site-Generator. Dazu führt man einen Build-Befehl im Installations-Verzeichnis aus. Daraufhin wird eine statische Webseite erstellt, die auf fast jedem Webserver funktioniert.
@@ -91,41 +108,10 @@ Du kannst eine statische Webseite in der [Befehlszeile](https://github.com/daten
 2. Gehe ins Installations-Verzeichnis, dort wo sich die `yellow.php` befindet.
 3. Gib die folgende Zeile ein: `php yellow.php build`
 
-Das erstellt eine statische Webseite im Verzeichnis `public`. Lade das Verzeichnis auf dein Webhosting hoch und erstelle bei Bedarf eine neue Version. Die URL der Webseite kann man in den [Systemeinstellungen](adjusting-system#systemeinstellungen) festlegen, zum Beispiel `StaticUrl: http://website/`. 
+Das erstellt eine statische Webseite im `public`-Verzeichnis. Lade das Verzeichnis auf dein Webserver hoch und erstelle bei Bedarf eine neue Webseite. Die URL deiner Webseite kannst du in den [Systemeinstellungen](adjusting-system#systemeinstellungen) festlegen, zum Beispiel `StaticUrl: http://website/`. 
 
-Als Alternative zu einer statischen Webseite kannst du einen Cache erstellen. Das beschleunigt deine Webseite, jedoch muss der Cache immer wieder aktualisiert werden. Hier ist ein Beispiel: `php yellow.php build cache`. Zum Löschen des Caches gibt man ein: `php yellow.php clean cache`.
+Man kann eine statische Webseite auch testen, ohne sie auf einen Webserver hochzuladen. Das ist vor allem für Entwickler praktisch, da alles auf dem eigenem Computer läuft. Hier ist ein Beispiel: `php yellow.php serve`. Daraufhin ist die Webseite vorhanden als `http://localhost:8000`.
 
-## Statische Webseite testen
-
-Falls man eine statische Webseite testen will, benutzt man den eingebauten Webserver. Das ist vor allem für Entwickler praktisch, da alles auf dem eigenem Computer läuft. Mit dieser Philosophie fährst du einwandfrei, sorgenfrei an Webserverproblemen vorbei.
-
-Du kannst kannst den eingebauten Webserver in der [Befehlszeile](https://github.com/datenstrom/yellow-plugins/tree/master/command) starten:
-
-1. Öffne ein Terminal-Fenster.
-2. Gehe ins Installations-Verzeichnis, dort wo sich die `yellow.php` befindet.
-3. Gib die folgende Zeile ein: `php -S localhost:8000 yellow.php`
-
-Daraufhin ist die Webseite vorhanden als `http://localhost:8000`. Ausserdem kannst du deine Webseite im [Webbrowser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) bearbeiten mit `http://localhost:8000/edit/`. Du kannst deine Webseite anschauen, Änderungen machen und das Ergebnis sofort sehen.
-
-## Fehlerseite
-
-Falls Probleme auftreten wird eine Fehlerseite angezeigt. Wenn der Webbrowser eine Datei anfragt die der Webserver nicht findet, dann wird eine "File not found"-Fehlerseite angezeigt. Die Datei `system/config/page-error-404.md` legt fest wie diese Fehlerseite aussieht:
-
-~~~~
----
-Title: File not found
----
-The requested file was not found. Oh no...
-~~~~
-
-Normalerweise gibt es nichts weiteres zu tun. Falls man eine statische Webseite mit Datenstrom Yellow erstellt, gibt es einen zusätzlichen Schritt. Konfiguriere den Webserver so, dass er die angepasste Fehlerseite anzeigt.
-
-Bei [Apache](http://httpd.apache.org) fügt man die folgende Zeile zur Konfigurationsdatei hinzu:
-
-    ErrorDocument 404 /404.html
-
-Bei [Nginx](https://nginx.org/) fügt man die folgende Zeile zur Konfigurationsdatei hinzu:
-
-    error_page 404 /404.html;
+Als Alternative zu einer statischen Webseite kannst du einen Cache erstellen. Das beschleunigt deine Webseite deutlich, jedoch muss der Cache immer wieder aktualisiert werden. Hier ist ein Beispiel: `php yellow.php build cache`. Zum Löschen gibt man ein: `php yellow.php clean cache`.
 
 [Weiter: Spracheinstellungen →](language-configuration)
