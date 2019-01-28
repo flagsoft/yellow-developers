@@ -1,10 +1,10 @@
 <?php
 // Highlight plugin, https://github.com/datenstrom/yellow-plugins/tree/master/highlight
-// Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
+// Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
 class YellowHighlight {
-    const VERSION = "0.7.7";
+    const VERSION = "0.7.8";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -370,7 +370,12 @@ class Highlighter
 
     private function processBuffer()
     {
-        $this->result .= $this->top->subLanguage ? $this->processSubLanguage() : $this->processKeywords();
+        if (is_object($this->top) && $this->top->subLanguage) {
+            $this->result .= $this->processSubLanguage();
+        } else {
+            $this->result .= $this->processKeywords();
+        }
+
         $this->modeBuffer = '';
     }
 
@@ -784,8 +789,8 @@ class Language
         }
 
         foreach ($def as $k => $v) {
-            if (!isset($e->$k)) {
-                @$e->$k = $v;
+            if (!isset($e->$k) && is_object($e)) {
+                $e->$k = $v;
             }
         }
     }
@@ -1009,14 +1014,20 @@ class JsonRef
      *
      * @param mixed $s Decoded JSON data (decoded with json_decode)
      */
-    private function resolvePathReferences(&$s)
+    private function resolvePathReferences(&$s, $limit = 20, $depth = 1)
     {
+        if ($depth >= $limit) {
+            return;
+        }
+
+        ++$depth;
+
         if (is_array($s) || is_object($s)) {
             foreach ($s as $k => &$v) {
                 if ($k === "\$ref") {
                     $s = $this->paths[$v];
                 } else {
-                    $this->resolvePathReferences($v);
+                    $this->resolvePathReferences($v, $limit, $depth);
                 }
             }
         }
