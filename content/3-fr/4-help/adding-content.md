@@ -9,15 +9,16 @@ Le contenu de tout les dossiers présents dans `content` est accessible depuis v
 
 ## Fichiers et dossiers
 
-Le menu de navigation est automatiquement créée à partir de vos dossiers présents dans le dossier `content`. Seuls les dossiers possédant un préfixe sont présents dans le menu de navigation. Les dossiers possédant un préfixe concernent les pages visibles, les dossiers sans préfixes seront pour des pages invisibles. Tous les fichiers et les dossiers peuvent avoir un préfixe:
+Le menu de navigation est automatiquement créée à partir de vos dossiers `content`. Les dossiers avec préfixe sont destinés aux pages visibles, qui sont affichées dans la navigation. Les dossiers sans préfixe sont destinés aux pages invisibles, qui ne sont pas affichées dans la navigation. Tous les dossiers et fichiers peuvent avoir un préfixe:
 
-1. Avec un préfixe numérique, p. ex. `1-home` `9-about`
-2. Avec un préfixe de la date, p. ex. `2013-04-07-blog-example.md`
-3. L'absence de préfixe pour ne pas trier, p. ex. `wiki-example.md`
+1. Les dossiers peuvent avoir un préfixe numérique, par exemple `1-home` ou` 9-about`
+2. Les dossiers sans préfixe ne sont pas affichés dans la navigation, par exemple `shared`
+3. Les fichiers peuvent avoir un préfixe numérique, par exemple `2013-04-07-blog-example.md`
+4. Les fichiers sans préfixe n’ont aucune signification particulière, par exemple `wiki-example.md`
 
 Préfixe et suffixe sont retirés de l'url afin de proposer une navigation cohérente et propre. Le dossier `content/9-about/` est accessible à l'adresse `http://website/about/`. Le fichier `content/9-about/what-we-do.md` devient quand à lui `http://website/about/what-we-do`. 
 
-Chaque dossier peut contenir des fichiers et des sous-dossiers. Il y a une exception cependant: le premier dossier ne peut pas contenir de sous-dossiers, car il est responsable de la page d'accueil et est accessible en tant qu'url principale `http://website/`.
+Il y a deux exceptions. Le premier dossier ne doit pas contenir de sous-dossiers, car il est responsable de la page d'accueil et est accessible en tant que `http://website/`. Le dossier `shared` peut uniquement être inclus dans d'autres pages, il n'est pas disponible sur votre site web.
 
 ## Markdown
 

@@ -9,15 +9,16 @@ The `content` folders are available on your website. Every folder has a file cal
 
 ## Files and folders
 
-The navigation is automatically created from your `content` folders. Only folders with a prefix are shown in the navigation. Folders with prefix are for visible pages, folders without prefix are for invisible pages. All files and folders can have a prefix:
+The navigation is automatically created from your `content` folders. Folders with prefix are for visible pages, which are shown in the navigation. Folders without prefix are for invisible pages, which are not shown in the navigation. All folders and files can have a prefix:
 
-1. Folders can have a numerical prefix, e.g. `1-home` `9-about`
-2. Files can have a date prefix for sorting, e.g. `2013-04-07-blog-example.md`
-3. No prefix means there is no special order, e.g. `wiki-example.md`
+1. Folders can have a numerical prefix, e.g. `1-home` or `9-about`
+2. Folders without a prefix are not shown in the navigation, e.g. `shared`
+3. Files can have a numerical prefix, e.g. `2013-04-07-blog-example.md`
+4. Files without a prefix have no special meaning, e.g. `wiki-example.md`
 
 Prefix and suffix are removed from the location, so that it looks better. For example the folder `content/9-about/` is available on your website as `http://website/about/`. The file `content/9-about/what-we-do.md` becomes `http://website/about/what-we-do`. 
 
-Folders may contain files and folders. There is one exception. The first folder may not contain subfolders, because it's responsible for the home page and available on your website as `http://website/`.
+There are two exception. The first folder must not contain subfolders, because it's responsible for the home page and available on your website as `http://website/`. The `shared` folder may only be included in other pages, it's not available on your website.
 
 ## Markdown
 

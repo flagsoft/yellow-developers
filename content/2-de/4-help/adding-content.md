@@ -5,19 +5,20 @@ Alle Inhalte befinden sich im `content`-Verzeichnis. Hier bearbeitet man seine W
 
 [image screenshot-content.png Screenshot]
 
-Die `content`-Verzeichnisse stehen auf deiner Webseite zur Verfügung. In jedem Verzeichnis gibt es eine Datei mit Namen `page.md` oder dem Namen des Verzeichnisses. Man kann auch weitere Dateien und Verzeichnisse hinzufügen. Im Prinzip ist das, was du im Dateimanager siehst, die Webseite die du bekommst.
+Die `content`-Verzeichnisse stehen auf deiner Webseite zur Verfügung. In jedem Verzeichnis gibt es eine Datei mit Namen `page.md` oder mit dem Namen des Verzeichnisses. Man kann auch weitere Dateien und Verzeichnisse hinzufügen. Im Prinzip ist das, was du im Dateimanager siehst, die Webseite die du bekommst.
 
 ## Dateien und Verzeichnisse
 
-Die Navigation wird automatisch aus deinen `content`-Verzeichnissen erstellt. Es werden nur Verzeichnisse mit einem Präfix in der Navigation angezeigt. Verzeichnisse mit Präfix sind für sichtbare Seiten, Verzeichnisse ohne Präfix sind für unsichtbare Seiten. Alle Dateien und Verzeichnisse können ein Präfix benutzen:
+Die Navigation wird automatisch aus deinen `content`-Verzeichnissen erstellt. Verzeichnisse mit Präfix sind für sichtbare Seiten, die in der Navigation angezeigt werden. Verzeichnisse ohne Präfix sind für unsichtbare Seiten, die nicht in der Navigation angezeigt werden. Alle Verzeichnisse und Dateien können ein Präfix benutzen:
 
 1. Verzeichnisse können ein numerisches Präfix haben, z.B. `1-home` oder `9-about`
-2. Dateien können ein Datumspräfix haben, z.B. `2013-04-07-blog-example.md`
-3. Ohne Präfix gibt es keine besondere Reihenfolge, z.B. `wiki-example.md`
+2. Verzeichnisse ohne Präfix werden nicht in der Navigation angezeigt, z.B. `shared`
+3. Dateien können ein numerisches Präfix haben, z.B. `2013-04-07-blog-example.md`
+4. Dateien ohne Präfix haben keine besondere Bedeutung, z.B. `wiki-example.md`
 
 Präfixe und Suffixe werden aus der Adresse entfernt, damit es besser aussieht. Zum Beispiel ist das Verzeichnis `content/9-about/` vorhanden als `http://website/about/`. Die Datei `content/9-about/what-we-do.md` wird zu `http://website/about/what-we-do`.
 
-Verzeichnisse können weitere Dateien und Verzeichnisse enthalten. Es gibt eine Ausnahme. Das erste Verzeichnis darf keine Unterverzeichnisse besitzen, da es für die Startseite verantwortlich ist und auf deiner Webseite vorhanden ist als `http://website/`.
+Es gibt zwei Ausnahmen. Das erste Verzeichnis darf keine Unterverzeichnisse besitzen, da es für die Startseite verantwortlich ist und vorhanden als `http://website/`. Das `shared`-Verzeichnis darf nur in andere Seiten eingebunden werden, es ist nicht auf der Webseite vorhanden.
 
 ## Markdown
 
