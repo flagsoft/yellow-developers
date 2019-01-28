@@ -3,7 +3,7 @@
 Language: en
 LanguageDescription: English
 LanguageTranslator: Mark Seuffert
-LanguageVersion: 0.7.15
+LanguageVersion: 0.7.16
 
 BlogBy: by
 BlogTag: Tags:
@@ -133,6 +133,14 @@ EditToolbarMarkdown: Markdown
 EditToolbarHelp: Help
 EditUserHelp: Help
 EditUserLogout: Logout
+Error404Title: File not found
+Error404Text: The requested file was not found. Oh no...
+Error430Title: Login failed
+Error430Text: The email or password is incorrect. [Please try again](javascript:yellow.action('login');).
+Error434Title: File not found
+Error434Text: The requested file was not found. [You can create this page](javascript:yellow.action('edit');).
+Error500Title: Server error
+Error500Text: Something went wrong. [yellow error]
 InstallTitle: Hello
 InstallFeature: What do you want to make?
 InstallHomeTitle: Home

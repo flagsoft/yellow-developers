@@ -3,7 +3,7 @@
 Language: de
 LanguageDescription: Deutsch
 LanguageTranslator: David Fehrmann
-LanguageVersion: 0.7.15
+LanguageVersion: 0.7.16
 
 BlogBy: von
 BlogTag: Tags:
@@ -133,6 +133,14 @@ EditToolbarMarkdown: Markdown
 EditToolbarHelp: Hilfe
 EditUserHelp: Hilfe
 EditUserLogout: Abmelden
+Error404Title: Datei nicht gefunden
+Error404Text: Die angeforderte Datei wurde nicht gefunden. Oh nein...
+Error430Title: Anmeldung fehlgeschlagen
+Error430Text: E-Mail oder Kennwort ist falsch. [Bitte erneut versuchen](javascript:yellow.action('login');).
+Error434Title: Datei nicht gefunden
+Error434Text: Die angeforderte Datei wurde nicht gefunden. [Du kannst diese Seite erstellen](javascript:yellow.action('edit');).
+Error500Title: Serverfehler
+Error500Text: Etwas ist schief gelaufen. [yellow error]
 InstallTitle: Hallo
 InstallFeature: Was willst du machen?
 InstallHomeTitle: Home

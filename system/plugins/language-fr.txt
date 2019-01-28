@@ -3,7 +3,7 @@
 Language: fr
 LanguageDescription: Français
 LanguageTranslator: Juh Nibreh
-LanguageVersion: 0.7.15
+LanguageVersion: 0.7.16
 
 BlogBy: par
 BlogTag: Tags:
@@ -133,6 +133,14 @@ EditToolbarMarkdown: Markdown
 EditToolbarHelp: Aide
 EditUserHelp: Aide
 EditUserLogout: Déconnexion
+Error404Title: Fichier non trouvé
+Error404Text: Le fichier demandé n'a pas été trouvé. Oh non...
+Error430Title: La connexion a échoué
+Error430Text: L'email ou le mot de passe est incorrect. [Veuillez réessayer](javascript:yellow.action('login');).
+Error434Title: Fichier non trouvé
+Error434Text: Le fichier demandé n'a pas été trouvé. [Vous pouvez créer cette page](javascript:yellow.action('edit');).
+Error500Title: Erreur du serveur
+Error500Text: Une erreur s'est produite. [yellow error]
 InstallTitle: Bonjour
 InstallFeature: Que voulez-vous faire ?
 InstallHomeTitle: Home
