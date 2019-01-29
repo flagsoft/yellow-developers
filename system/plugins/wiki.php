@@ -1,10 +1,10 @@
 <?php
 // Wiki plugin, https://github.com/datenstrom/yellow-plugins/tree/master/wiki
-// Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
+// Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
 class YellowWiki {
-    const VERSION = "0.7.8";
+    const VERSION = "0.7.9";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -17,6 +17,15 @@ class YellowWiki {
         $this->yellow->config->setDefault("wikiPaginationLimit", "30");
     }
 
+    // Handle page meta data
+    public function onParseMeta($page) {
+        if ($page==$this->yellow->page) {
+            if ($page->get("template")=="wikipages" && !$this->yellow->toolbox->isLocationArgs()) {
+                $page->set("template", "wiki");
+            }
+        }
+    }
+    
     // Handle page content of shortcut
     public function onParseContentShortcut($page, $name, $text, $type) {
         $output = null;
@@ -209,7 +218,6 @@ class YellowWiki {
                 $this->yellow->page->set("titleWiki", $this->yellow->page->get("title").": ".$title);
                 $this->yellow->page->set("wikipagesChronologicalOrder", $chronologicalOrder);
             }
-            $this->yellow->page->set("content", !empty($pagesFilter) ? "content-wikipages" : "content-wiki");
             $this->yellow->page->setPages($pages);
             $this->yellow->page->setLastModified($pages->getModified());
             $this->yellow->page->setHeader("Cache-Control", "max-age=60");
