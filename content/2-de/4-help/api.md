@@ -306,6 +306,9 @@ Hole eine [Page-Collection](#yellow-page-collection) mit Hauptseiten der Navigat
 **$yellow->pages->path($location, $absoluteLocation = false)**  
 Hole eine [Page-Collection](#yellow-page-collection) mit Pfad in der Navigation
 
+**$yellow->pages->shared($location, $absoluteLocation = false, $name = "shared")**  
+Hole eine [Page](#yellow-page) mit geteiltem Inhalt, null falls nicht vorhanden  
+
 **$yellow->pages->multi($location, $absoluteLocation = false, $showInvisible = false)**  
 Hole eine [Page-Collection](#yellow-page-collection) mit mehreren Sprachen
 

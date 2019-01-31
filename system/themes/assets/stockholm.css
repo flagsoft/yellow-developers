@@ -1,5 +1,5 @@
 /* Stockholm theme, https://github.com/datenstrom/yellow-themes/tree/master/stockholm */
-/* Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se */
+/* Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se */
 /* This file may be used and distributed under the terms of the public license. */
 
 html, body, div, form, pre, span, tr, th, td, img {
@@ -223,13 +223,13 @@ a:hover {
 .header .navigation-banner {
     position: relative;
 }
-.header .sitename h2 {
+.header .sitename p {
     position: absolute;
     top: 135px;
     left: 16px;
     z-index: 1;
 }
-.header .sitename h2 {
+.header .sitename p {
     padding: 1em;
     background: #f27272;
     color: #fff;
@@ -371,8 +371,8 @@ a:hover {
 
 .footer .siteinfo {
     color: #666;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 .footer .siteinfo a {
     color: #07d;
@@ -502,10 +502,6 @@ a:hover {
     .content h1,
     .content h2 {
         font-size: 1.6em;
-    }
-    .footer .siteinfo {
-        padding-top: 1em;
-        padding-bottom: 1em;
     }
     .with-sidebar .main {
         padding-right: 0;

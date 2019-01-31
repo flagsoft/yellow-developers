@@ -3,7 +3,7 @@
 <?php $yellow->snippet("sidebar") ?>
 <div class="main" role="main">
 <h1><?php echo $yellow->page->getHtml("titleContent") ?></h1>
-<?php if($yellow->page->get("status")!="done"): ?>
+<?php if ($yellow->page->get("status")!="done"): ?>
 <p class="<?php echo $yellow->page->getHtml("status") ?>"><?php echo $yellow->text->getHtml("contactStatus".ucfirst($yellow->page->get("status"))) ?></p>
 <form class="contact-form" action="<?php echo $yellow->page->getLocation(true) ?>" method="post">
 <p class="contact-name"><label for="name"><?php echo $yellow->text->getHtml("contactName") ?></label><br /><input type="text" class="form-control" name="name" id="name" value="<?php echo htmlspecialchars($_REQUEST["name"]) ?>" /></p>

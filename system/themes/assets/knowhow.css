@@ -154,11 +154,10 @@ a:hover {
     color: #333;
     text-decoration: none;
 }
-.header .sitename h2 {
+.header .sitename p {
     margin-top: 0;
     color: #333;
-    font-size: 1em;
-    font-weight: 400;
+    font-weight: 500;
 }
 .header .sitename-logo {
     display: inline-block;
@@ -304,7 +303,6 @@ a:hover {
 
 .footer {
     margin-top: 1em;
-    padding-top: 1em;
     border-top: 1px solid #eee;
 }
 .footer .siteinfo a {
@@ -482,7 +480,6 @@ a:hover {
         font-size: 1.4em;
     }
     .header .sitename h1,
-    .header .sitename h2,
     .page {
         margin: 0;
         padding: 0;
@@ -497,7 +494,8 @@ a:hover {
         width: 24px;
         height: 24px;
     }
-    .navigation {
+    .navigation,
+    .navigation-tree {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
     }

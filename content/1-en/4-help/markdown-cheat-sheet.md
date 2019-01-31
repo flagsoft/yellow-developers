@@ -142,6 +142,8 @@ Using HTML blocks:
 `Redirect` = redirect to a new page or URL  
 `Status` = status for workflow  
 `Navigation` = page navigation  
+`Header` = page header  
+`Footer` = page footer  
 `Sidebar` = page sidebar  
 `Sitename` = name of the website  
 `Siteicon` = icon of the website  

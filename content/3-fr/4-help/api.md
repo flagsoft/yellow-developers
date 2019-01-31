@@ -308,6 +308,9 @@ Return [page collection](#yellow-page-collection) with top-level navigation
 **$yellow->pages->path($location, $absoluteLocation = false)**  
 Return [page collection](#yellow-page-collection) with path ancestry
 
+**$yellow->pages->shared($location, $absoluteLocation = false, $name = "shared")**  
+Return [page](#yellow-page) with shared content, null if not found  
+
 **$yellow->pages->multi($location, $absoluteLocation = false, $showInvisible = false)**  
 Return [page collection](#yellow-page-collection) with multiple languages
 

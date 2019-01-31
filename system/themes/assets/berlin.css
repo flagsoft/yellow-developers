@@ -1,5 +1,5 @@
 /* Berlin theme, https://github.com/datenstrom/yellow-themes/tree/master/berlin */
-/* Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se */
+/* Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se */
 /* This file may be used and distributed under the terms of the public license. */
 
 html, body, div, form, pre, span, tr, th, td, img {
@@ -352,8 +352,8 @@ a:hover {
 }
 .footer .siteinfo {
     color: #888;
-    padding-top: 2em;
-    padding-bottom: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 .footer .siteinfo a {
     color: #555;

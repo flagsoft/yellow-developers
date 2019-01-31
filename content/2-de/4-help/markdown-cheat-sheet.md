@@ -142,6 +142,8 @@ HTML-Blöcke benutzen:
 `Redirect` = Umleitung zu einer neuen Seite oder URL  
 `Status` = Status für Arbeitsablauf  
 `Navigation` = Navigation der Seite  
+`Header` = Kopfzeile der Seite  
+`Footer` = Fußzeile der Seite  
 `Sidebar` = Sidebar der Seite  
 `Sitename` = Name der Webseite  
 `Siteicon` = Icon der Webseite  

@@ -1,5 +1,5 @@
 ---
-Title: Datenstrom Yellow Hilfe
+Title: Hilfe für deine Webseite
 TitleNavigation: Hilfe
 ---
 [[image datenstrom-yellow-de.jpg "Datenstrom Yellow"]](https://datenstrom.se/de/yellow/)

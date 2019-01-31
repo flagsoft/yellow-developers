@@ -1,10 +1,10 @@
 <?php
 // Feed plugin, https://github.com/datenstrom/yellow-plugins/tree/master/feed
-// Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se
+// Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
 class YellowFeed {
-    const VERSION = "0.7.5";
+    const VERSION = "0.8.1";
     public $yellow;         //access to API
     
     // Handle initialisation
@@ -43,7 +43,7 @@ class YellowFeed {
                 $output .= "<channel>\r\n";
                 $output .= "<title>".htmlspecialchars($title)."</title>\r\n";
                 $output .= "<link>".$this->yellow->page->scheme."://".$this->yellow->page->address.$this->yellow->page->base."/"."</link>\r\n";
-                $output .= "<description>".$this->yellow->page->getHtml("tagline")."</description>\r\n";
+                $output .= "<description>".$this->yellow->page->getHtml("description")."</description>\r\n";
                 $output .= "<language>".$this->yellow->page->getHtml("language")."</language>\r\n";
                 foreach ($pages as $page) {
                     $timestamp = strtotime($page->get($chronologicalOrder ? "modified" : "published"));

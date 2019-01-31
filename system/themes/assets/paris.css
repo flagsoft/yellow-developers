@@ -1,5 +1,5 @@
 /* Paris theme, https://github.com/datenstrom/yellow-themes/tree/master/paris */
-/* Copyright (c) 2013-2018 Datenstrom, https://datenstrom.se */
+/* Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se */
 /* This file may be used and distributed under the terms of the public license. */
 
 html, body, div, form, pre, span, tr, th, td, img {
@@ -221,11 +221,8 @@ a:hover {
     text-decoration: none;
     text-transform: uppercase;
 }
-.header .sitename h2 {
-    margin-top: -1.1em;
-    color: #cf3621;
-    font-size: 1.1em;
-    font-weight: 300;
+.header .sitename p {
+    color: #333;
 }
 .header .sitename-logo {
     display: inline-block;
@@ -541,7 +538,8 @@ body {
         width: 30px;
         height: 30px;
     }
-    .navigation {
+    .navigation,
+    .navigation-tree {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
     }

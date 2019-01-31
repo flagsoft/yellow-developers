@@ -8,7 +8,7 @@
 <?php echo $yellow->page->getContent() ?>
 <table>
 <tr><th><?php echo $yellow->text->getHtml("textLocation") ?></th><th><?php echo $yellow->text->getHtml("textVisible") ?></th><th><?php echo $yellow->text->getHtml("textLanguage") ?></th><th><?php echo $yellow->text->getHtml("textDescription") ?></th><th><?php echo $yellow->text->getHtml("textModified") ?></th></tr>
-<?php foreach($pages as $page): ?>
+<?php foreach ($pages as $page): ?>
 <tr>
 <td><a href="<?php echo $page->getLocation(true) ?>"><i class="fa fa-file-o"></i> <?php echo $page->getLocation(true) ?></a></td>
 <td><?php echo $yellow->text->getHtml($page->isVisible() ? "textYes" : "textNo") ?></td>

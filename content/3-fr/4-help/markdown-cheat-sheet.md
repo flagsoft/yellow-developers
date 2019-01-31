@@ -142,7 +142,9 @@ En utilisant des blocs HTML:
 `Redirect` = redirection vers une page ou une URL  
 `Status` = état de la page  
 `Navigation` = menu de navigation pour la page  
-`Sidebar` = sidebar pour la page  
+`Header` = en-tête de la page  
+`Footer` = pied de la page  
+`Sidebar` = sidebar de la page  
 `Sitename` = nom su site web  
 `Siteicon` = icône du site web  
 `Email` = email du webmaster  
