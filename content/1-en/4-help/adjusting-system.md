@@ -25,11 +25,13 @@ You can define the system settings here, for example the name of the website and
 Another configuration file is `system/config/text.ini`. Here's an example:
 
     EditLoginTitle: Welcome to Stockholm
+    Error404Title: File not found
+    Error404Text: The requested file was not found. Oh no...
     DateFormatShort: F Y
     DateFormatMedium: Y-m-d
     DateFormatLong: Y-m-d H:i
 
-You can define the text settings here, for example text that is displayed on your website and the [date format](http://php.net/manual/en/function.date.php). The default text is defined in the corresponding [language file](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-en.txt). This text can be customised in the text settings.
+You can define the text settings here, for example error messages of the website and the date format. The default text is defined in the corresponding [language file](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-en.txt). You can copy text from the language file into the text settings and customise it.
 
 ## User accounts
 
@@ -39,6 +41,6 @@ All user accounts are stored in file `system/config/user.ini`. Here's an example
     english@demo.com: $2y$10$zG5tycOnAJ5nndGfEQhrBexVxNYIvepSWYd1PdSb1EPJuLHakJ9Ri,Demo,en,active,f3e71699df534913a823,946684800,0,none,/
     guest@demo.com: $2y$10$zG5tycOnAJ5nndGfEQhrBexVxNYIvepSWYd1PdSb1EPJuLHakJ9Ri,Guest,en,active,b3106b8b1732ee60f5b3,946684800,0,none,/tests/
 
-You can use the [web browser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) and the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command) to create new user accounts and change passwords. A user account consists of email, encrypted password, different settings and at the end of the line is the user's home page.
+You can use the [web browser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) and the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command) to create new user accounts and change passwords. A user account consists of one line with email, encrypted password and different settings. At the end of the line is the user's home page.
 
-[Next: Server configuration →](server-configuration)
+[Next: Language configuration →](language-configuration)

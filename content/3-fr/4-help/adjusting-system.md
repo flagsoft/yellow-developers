@@ -25,11 +25,13 @@ Vous pouvez y définir les paramètres du système, par exemple le nom du site w
 Un autre fichier de configuration est `system/config/text.ini`. Voici un exemple:
 
     EditLoginTitle: Bienvenue à Paris
+    Error404Title: Fichier non trouvé
+    Error404Text: Le fichier demandé n'a pas été trouvé. Oh non...
     DateFormatShort: F Y
     DateFormatMedium: d/m/Y
     DateFormatLong: d/m/Y H:i
 
-Vous pouvez définir ici les paramètres de texte, par exemple le texte affiché sur votre site web et le [format de la date](http://php.net/manual/fr/function.date.php). Le texte par défaut est défini dans le [fichier de langue](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-fr.txt) correspondant. Ce texte peut être personnalisé dans les paramètres de texte.
+Vous pouvez définir ici les paramètres de texte, par exemple les messages d'erreur du site seb et le format de la date. Le texte par défaut est défini dans le [fichier de langue](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-fr.txt) correspondant. Vous pouvez copier le texte du fichier de langue dans les paramètres de texte et le personnaliser.
 
 ## Comptes d'utilisateurs
 
@@ -39,6 +41,6 @@ Tous les utilisateurs sont stockés dans le fichier `system/config/user.ini`. Vo
     français@demo.com: $2y$10$zG5tycOnAJ5nndGfEQhrBexVxNYIvepSWYd1PdSb1EPJuLHakJ9Ri,Demo,fr,active,1c5a6e50c714112c7c25,946684800,0,none,/
     guest@demo.com: $2y$10$zG5tycOnAJ5nndGfEQhrBexVxNYIvepSWYd1PdSb1EPJuLHakJ9Ri,Guest,en,active,b3106b8b1732ee60f5b3,946684800,0,none,/tests/
 
-Le [navigateur web](https://github.com/datenstrom/yellow-plugins/tree/master/edit) et le [ligne de commande](https://github.com/datenstrom/yellow-plugins/tree/master/command) vous permet de créer de nouveaux comptes d'utilisateurs et de changer les mots de passe. Un compte d'utilisateur se compose d'un email, d'un mot de passe crypté, de différents paramètres, tandis que le dernier paramètre concerne la page d'accueil de l'utilisateur.
+Le [navigateur web](https://github.com/datenstrom/yellow-plugins/tree/master/edit) et le [ligne de commande](https://github.com/datenstrom/yellow-plugins/tree/master/command) vous permet de créer de nouveaux comptes d'utilisateurs et de changer les mots de passe. Un compte d'utilisateur consiste en une ligne avec email et différents paramètres. À la fin de la ligne se trouve la page d'accueil de l'utilisateur.
 
-[Suivant: Configuration du serveur →](server-configuration)
+[Suivant: Configuration de la langue →](language-configuration)

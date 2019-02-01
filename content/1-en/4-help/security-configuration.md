@@ -19,4 +19,4 @@ If you don't want pages to be changed in the web browser, then restrict [user ac
 
 If you want to protect your website from nuisance, then restrict further features. Open file `system/config/config.ini` and change `SafeMode: 1`. Users are no longer allowed to use HTML and JavaScript, [Markdown](markdown-cheat-sheet) and other features are restricted.
 
-[Next: API for developers →](api)
+[Next: Server configuration →](server-configuration)

@@ -13,10 +13,10 @@ Falls du nicht willst dass Benutzerkonten im Webbrowser erstellt werden, beschr�
 
 ## Benutzerbeschränkungen
 
-Falls du nicht willst dass Seiten im Webbrowser verändert werden, beschränke [Benutzerkonten](adjusting-system#benutzerkonten). Öffne die Datei `system/config/user.ini` und ändere am Ende der Zeile die Startseite. Benutzer dürfen dann nur noch Seiten innerhalb ihrer Startseite bearbeiten.
+Falls du nicht willst dass Seiten im Webbrowser verändert werden, beschränke [Benutzerkonten](adjusting-system#benutzerkonten). Öffne die Datei `system/config/user.ini` und ändere am Zeilenende die Startseite. Benutzer dürfen dann nur noch Seiten innerhalb ihrer Startseite bearbeiten.
 
 ## Sicherheitsmodus
 
 Falls du deine Webseite vor Unfug schützen willst, beschränke weitere Funktionen. Öffne die Datei `system/config/config.ini` und ändere `SafeMode: 1`. Benutzer dürfen dann nicht mehr HTML und JavaScript benutzen, [Markdown](markdown-cheat-sheet) und andere Funktionen sind eingeschränkt.
 
-[Weiter: API für Entwickler →](api)
+[Weiter: Servereinstellungen →](server-configuration)

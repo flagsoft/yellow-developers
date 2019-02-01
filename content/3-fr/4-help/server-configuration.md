@@ -115,4 +115,4 @@ Vous pouvez tester un site web statique sans le télécharger sur un serveur web
 
 Comme alternative à un site statique, vous pouvez créer un cache. Cela accélère considérablement votre site web, mais le cache doit être mis à jour. Voici un exemple: `php yellow.php build cache`. Pour effacer le cache, tapez la commande suivante: `php yellow.php clean cache`.
 
-[Suivant: Configuration de la langue →](language-configuration)
+[Suivant: API pour les développeurs →](api)

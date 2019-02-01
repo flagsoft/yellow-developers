@@ -115,4 +115,4 @@ You can test a static website without uploading it to a web server. Start the bu
 
 As an alternative to a static website you can build a cache. This speeds up your website significantly, but the cache needs to be updated repeatedly. Here's an example: `php yellow.php build cache`. To clean the cache type the following line: `php yellow.php clean cache`.
 
-[Next: Language configuration →](language-configuration)
+[Next: API for developers →](api)

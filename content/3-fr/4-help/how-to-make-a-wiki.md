@@ -1,13 +1,14 @@
 ---
 Title: Comment faire un wiki
 ---
-[[image screenshot-wiki.png Screenshot screenshot 75%]](/fr/plugins/wiki/coffee-is-good-for-you)  
 Apprenez à faire un propre wiki. [Voir la démo](/fr/plugins/wiki/).
+
+[[image screenshot-wiki.png Screenshot screenshot 75%]](/fr/plugins/wiki/coffee-is-good-for-you)  
 
 ## Installer un wiki
 
 1. [Téléchargez et dézippez Datenstrom Yellow](https://github.com/datenstrom/yellow/archive/master.zip).
-2. Copiez tout les fichiers chez votre hébergeur.
+2. Copiez tout les fichiers sur votre serveur web.
 3. Accédez à votre site depuis un navigateur web et choisissez 'Wiki'.
 
 Votre wiki est immédiatement accessible. L'installation est fournie avec plusieurs pages, 'Home', 'Wiki' et 'À propos'. Elles sont juste un exemple pour commencer, vous pouvez les modifier comme il vous convient. Vous pouvez supprimer 'Home', si vous souhaitez faire de votre wiki la page d'accueil.
@@ -16,7 +17,7 @@ S'il y a des problèmes, vérifiez la [configuration du serveur](server-configur
 
 ## Écrire une page de wiki
 
-Jetons un oeil dans le dossier `content`, où se trouve le dossier de votre wiki avec toutes vos pages de wiki. Ouvrez le fichier `wiki-page.md`. Vous y verrez les paramètres et le texte de la page. Vous pouvez changer le titre de la page `Title` ainsi que d'autres [paramètres](markdown-cheat-sheet#paramètres) en haut de la page. Voici un exemple:
+Jetons un oeil dans le dossier `content`, où se trouve le dossier de votre wiki avec toutes vos pages de wiki. Ouvrez le fichier `wiki-page.md`. Vous y verrez les paramètres et le texte de la page. Vous pouvez changer le titre de la page `Title` ainsi que d'autres [paramètres](markdown-cheat-sheet#paramètres) en haut de la page. Ci-dessous, vous pouvez utiliser [Markdown](markdown-cheat-sheet). Voici un exemple:
 
 ```
 ---
@@ -73,11 +74,9 @@ Le café est une boisson fabriquée à partir des haricots rôtis de l'usine de 
 [youtube SUpY1BT9Xf4]
 ```
 
-Vous pouvez utiliser [Markdown](markdown-cheat-sheet) pour éditer les pages du wiki.
-
 ## Afficher une sidebar
 
-Pour afficher une sidebar (menu latéral), ajoutez le fichier `sidebar.md` dans le dossier de votre wiki. La sidebar est visible sur toutes les pages présentes dans le même dossier. Vous pouvez décider si vous souhaitez avoir une sidebar ou non. Voici un exemple de sidebar:
+Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans votre dossier de wiki, la sidebar ne sera alors affichée que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -123,6 +122,18 @@ Liens
 * [Voir l'exemple](/tag:exemple/)
 
 [wikitags / 5]
+```
+
+## Ajuster le pied de page
+
+Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans votre dossier de wiki, le pied de page ne sera alors affiché que sur les pages du même dossier. Voici un exemple:
+
+```
+---
+Title: Footer
+Status: hidden
+---
+[Fait avec Datenstrom Yellow](https://datenstrom.se/fr/yellow/)
 ```
 
 ## Plus de fonctionnalités

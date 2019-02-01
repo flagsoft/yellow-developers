@@ -1,13 +1,14 @@
 ---
 Title: How to make a blog
 ---
-[[image screenshot-blog.png Screenshot screenshot 75%]](/plugins/blog/fika-is-good-for-you)  
 Learn how to make your own blog. [See demo](/plugins/blog/).
+
+[[image screenshot-blog.png Screenshot screenshot 75%]](/plugins/blog/fika-is-good-for-you)  
 
 ## Install blog
 
 1. [Download and unzip Datenstrom Yellow](https://github.com/datenstrom/yellow/archive/master.zip).
-2. Copy all files to your web hosting.
+2. Copy all files to your web server.
 3. Open your website in a web browser and select 'Blog'.
 
 Your blog is immediately available. The installation comes with several pages, 'Home', 'Blog' and 'About'. This is just an example to get you started, change everything as you like. You can delete 'Home', if you want to show the blog on the home page.
@@ -16,7 +17,7 @@ When there are problems, please check the [server configuration](server-configur
  
 ## Writing blog pages
 
-Have a look inside your `content` folder, there's the blog folder with all your blog pages. Open the file `2013-04-07-blog-example.md`. You'll see settings and text of the page. You can change `Title` and other [settings](markdown-cheat-sheet#settings) at the top of a page. Here's an example:
+Have a look inside your `content` folder, there's the blog folder with all your blog pages. Open the file `2013-04-07-blog-example.md`. You'll see settings and text of the page. You can change `Title` and other [settings](markdown-cheat-sheet#settings) at the top of a page. Below that you can use [Markdown](markdown-cheat-sheet). Here's an example:
 
 ```
 ---
@@ -88,11 +89,9 @@ How often do you fika? [--more--]
 [youtube aIMR73COZQU]
 ```
 
-You can use [Markdown](markdown-cheat-sheet) to edit blog pages.
+## Showing sidebar
 
-## Showing a sidebar
-
-To show a sidebar add the file `sidebar.md` to your blog folder. The sidebar will be shown on all pages in the same folder. You can decide if you like to have a sidebar or not. Here's an example sidebar:
+To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in your blog folder, the sidebar will then only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -136,6 +135,18 @@ New
 Tags
 
 [blogtags / 5]
+```
+
+## Adjusting footer
+
+To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in your blog folder, the footer will then only be shown on pages in the same folder. Here's an example:
+
+```
+---
+Title: Footer
+Status: hidden
+---
+[Made with Datenstrom Yellow](https://datenstrom.se/yellow/)
 ```
 
 ## More features

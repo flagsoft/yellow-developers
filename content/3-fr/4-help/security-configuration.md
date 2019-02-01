@@ -21,4 +21,4 @@ Si vous ne voulez pas que les pages soient modifiées dans le navigateur, restre
 
 Si vous souhaitez protéger votre site web contre les nuisances, restreignez les autres fonctionnalités. Ouvrez le fichier `system/config/config.ini` et changez `SafeMode: 1`. Les utilisateurs ne sont plus autorisés à utiliser HTML et JavaScript, [Markdown](markdown-cheat-sheet) et d'autres fonctionnalités sont restreintes.
 
-[Suivant: API pour les développeurs →](api)
+[Suivant: Configuration du serveur →](server-configuration)

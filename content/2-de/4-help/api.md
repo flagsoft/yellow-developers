@@ -30,8 +30,6 @@ Die folgenden Dateien sind vorhanden:
 `system/config/config.ini` = [Systemeinstellungen](adjusting-system#systemeinstellungen)  
 `system/config/text.ini` = [Texteinstellungen](adjusting-system#texteinstellungen)  
 `system/config/user.ini` = [Benutzerkonten](adjusting-system#benutzerkonten)  
-`system/themes/snippets/navigation.php` = [Navigation](customising-templates#navigation-anpassen)  
-`system/themes/snippets/footer.php` = [Fußzeile](customising-templates#fußzeile-anpassen)  
 
 ## Objekte
 

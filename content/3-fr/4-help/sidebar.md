@@ -16,9 +16,9 @@ Status: hidden
 
 [-- Configurations --]
 
-* [Configuration du serveur](server-configuration)
 * [Configuration de la langue](language-configuration)
 * [Configuration de la sécurité](security-configuration)
+* [Configuration du serveur](server-configuration)
 
 [-- Développeurs --]
 

@@ -18,18 +18,20 @@ Die zentrale Konfigurationsdatei ist `system/config/config.ini`. Hier ist ein Be
     Timezone: Europe/Berlin
     Theme: flatsite
 
-Dort kannst du die Systemeinstellungen festlegen, zum Beispiel den Namen der Webseite und E-Mail des Webmasters. Die individuellen [Einstellungen](markdown-cheat-sheet#einstellungen) lassen sich ganz oben auf jeder Seite festlegen. Bei einer neuen Installation sollte man `Sitename`, `Author` und `Email` anpassen.
+Dort kannst du die Systemeinstellungen festlegen, zum Beispiel den Namen der Webseite und die E-Mail des Webmasters. Die individuellen [Einstellungen](markdown-cheat-sheet#einstellungen) lassen sich ganz oben auf jeder Seite festlegen. Bei einer neuen Installation sollte man `Sitename`, `Author` und `Email` anpassen.
 
 ## Texteinstellungen
 
 Eine weitere Konfigurationsdatei ist `system/config/text.ini`. Hier ist ein Beispiel:
 
     EditLoginTitle: Willkommen in Berlin
+    Error404Title: Datei nicht gefunden
+    Error404Text: Die angeforderte Datei wurde nicht gefunden. Oh nein...
     DateFormatShort: F Y
     DateFormatMedium: d.m.Y
     DateFormatLong: d.m.Y H:i
 
-Dort kannst du die Texteinstellungen festlegen, zum Beispiel Text der auf der Webseite angezeigt wird und das [Datumsformat](http://php.net/manual/de/function.date.php). Der Standard-Text wird in der entsprechenden [Sprachdatei](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-de.txt) festgelegt. Dieser Text lässt sich in den Texteinstellungen anpassen.
+Dort kannst du die Texteinstellungen festlegen, zum Beispiel Fehlermeldungen der Webseite und das Datumsformat. Der Standard-Text wird in der entsprechenden [Sprachdatei](https://github.com/datenstrom/yellow-plugins/blob/master/language/language-de.txt) festgelegt. Man kann Text aus der Sprachdatei in die Texteinstellungen kopieren und anpassen.
 
 ## Benutzerkonten
 
@@ -39,6 +41,6 @@ Alle Benutzerkonten sind in `system/config/user.ini` gespeichert. Hier ist ein B
     deutsch@demo.com: $2y$10$zG5tycOnAJ5nndGfEQhrBexVxNYIvepSWYd1PdSb1EPJuLHakJ9Ri,Demo,de,active,2a2ddef05dbea5071ba0,946684800,0,none,/
     guest@demo.com: $2y$10$zG5tycOnAJ5nndGfEQhrBexVxNYIvepSWYd1PdSb1EPJuLHakJ9Ri,Guest,en,active,b3106b8b1732ee60f5b3,946684800,0,none,/tests/
 
-Im [Webbrowser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) und der [Befehlszeile](https://github.com/datenstrom/yellow-plugins/tree/master/command) kannst du neue Benutzerkonten anlegen und Kennwörter ändern. Ein Benutzerkonto besteht aus E-Mail, verschlüsseltem Kennwort, verschiedenen Einstellungen und am Ende der Zeile befindet sich die Startseite des Benutzers.
+Im [Webbrowser](https://github.com/datenstrom/yellow-plugins/tree/master/edit) und der [Befehlszeile](https://github.com/datenstrom/yellow-plugins/tree/master/command) kannst du neue Benutzerkonten anlegen und Kennwörter ändern. Ein Benutzerkonto besteht aus einer Zeile mit E-Mail, verschlüsseltem Kennwort und verschiedenen Einstellungen. Am Zeilenende befindet sich die Startseite des Benutzers.
 
-[Weiter: Servereinstellungen →](server-configuration)
+[Weiter: Spracheinstellungen →](language-configuration)

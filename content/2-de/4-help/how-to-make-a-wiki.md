@@ -1,13 +1,14 @@
 ---
 Title: Wiki erstellen
 ---
-[[image screenshot-wiki.png Screenshot screenshot 75%]](/de/plugins/wiki/coffee-is-good-for-you)  
 Lerne wie man ein eigenes Wiki erstellt. [Demo anschauen](/de/plugins/wiki/).
+
+[[image screenshot-wiki.png Screenshot screenshot 75%]](/de/plugins/wiki/coffee-is-good-for-you)  
 
 ## Wiki installieren
 
 1. [Datenstrom Yellow herunterladen und entpacken](https://github.com/datenstrom/yellow/archive/master.zip).
-2. Kopiere alle Dateien auf dein Webhosting.
+2. Kopiere alle Dateien auf deinen Webserver.
 3. Öffne deine Webseite im Webbrowser und wähle "Wiki" aus.
 
 Dein Wiki ist sofort erreichbar. Die Installation kommt mit mehreren Seiten, "Home", "Wiki" und "Über". Das ist nur ein Beispiel um loszulegen, verändere alles so wie du willst. Du kannst "Home" löschen, wenn du das Wiki auf der Startseite anzeigen willst.
@@ -16,7 +17,7 @@ Falls Probleme auftreten, überprüfe bitte die [Servereinstellungen](server-con
 
 ## Wikiseiten schreiben
 
-Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Wikiverzeichnis mit allen Wikiseiten. Öffne die Datei `wiki-page.md`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Hier ist ein Beispiel:
+Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Wikiverzeichnis mit allen Wikiseiten. Öffne die Datei `wiki-page.md`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Darunter kannst du [Markdown](markdown-cheat-sheet) benutzen. Hier ist ein Beispiel:
 
 ```
 ---
@@ -73,11 +74,9 @@ Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.
 [youtube SUpY1BT9Xf4]
 ```
 
-Du kannst [Markdown](markdown-cheat-sheet) benutzen um Wikiseiten zu bearbeiten.
-
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.md` in deinem Wikiverzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Du kannst entscheiden ob du eine Sidebar haben möchtest oder nicht. Hier ist eine Beispiel-Sidebar:
+Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in deinem Wikiverzeichnis erstellen, die Sidebar wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -121,6 +120,18 @@ Status: hidden
 Tags
 
 [wikitags / 5]
+```
+
+## Fußzeile anpassen
+
+Um die Fußzeile anzupassen, ändere die Datei `content/shared/footer.md`. Du kannst auch eine `footer.md` in deinem Wikiverzeichnis erstellen, die Fußzeile wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+
+```
+---
+Title: Footer
+Status: hidden
+---
+[Erstellt mit Datenstrom Yellow](https://datenstrom.se/de/yellow/)
 ```
 
 ## Weitere Funktionen

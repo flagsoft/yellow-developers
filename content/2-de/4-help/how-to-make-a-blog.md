@@ -1,13 +1,14 @@
 ---
 Title: Blog erstellen
 ---
-[[image screenshot-blog.png Screenshot screenshot 75%]](/de/plugins/blog/fika-is-good-for-you)  
 Lerne wie man ein eigenes Blog erstellt. [Demo anschauen](/de/plugins/blog/).
+
+[[image screenshot-blog.png Screenshot screenshot 75%]](/de/plugins/blog/fika-is-good-for-you)  
 
 ## Blog installieren
 
 1. [Datenstrom Yellow herunterladen und entpacken](https://github.com/datenstrom/yellow/archive/master.zip).
-2. Kopiere alle Dateien auf dein Webhosting.
+2. Kopiere alle Dateien auf deinen Webserver.
 3. Öffne deine Webseite im Webbrowser und wähle "Blog" aus.
 
 Dein Blog ist sofort erreichbar. Die Installation kommt mit mehreren Seiten, "Home", "Blog" und "Über". Das ist nur ein Beispiel um loszulegen, verändere alles so wie du willst. Du kannst "Home" löschen, wenn du das Blog auf der Startseite anzeigen willst.
@@ -16,7 +17,7 @@ Falls Probleme auftreten, überprüfe bitte die [Servereinstellungen](server-con
  
 ## Blogeinträge schreiben
 
-Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Blogverzeichnis mit allen Blogseiten. Öffne die Datei `2013-04-07-blog-example.md`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Hier ist ein Beispiel:
+Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Blogverzeichnis mit allen Blogseiten. Öffne die Datei `2013-04-07-blog-example.md`. Es werden Einstellungen und Text der Seite angezeigt. Ganz oben auf der Seite kannst du `Title` und andere [Einstellungen](markdown-cheat-sheet#einstellungen) ändern. Darunter kannst du [Markdown](markdown-cheat-sheet) benutzen. Hier ist ein Beispiel:
 
 ```
 ---
@@ -88,11 +89,9 @@ wird. Wie oft machst du Fika? [--more--]
 [youtube aIMR73COZQU]
 ```
 
-Du kannst [Markdown](markdown-cheat-sheet) benutzen um Blogseiten zu bearbeiten.
-
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `sidebar.md` in deinem Blogverzeichnis. Die Sidebar wird auf allen Seiten im gleichen Verzeichnis angezeigt. Du kannst entscheiden ob du eine Sidebar haben möchtest oder nicht. Hier ist eine Beispiel-Sidebar:
+Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in deinem Blogverzeichnis erstellen, die Sidebar wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -136,6 +135,18 @@ Neu
 Tags
 
 [blogtags / 5]
+```
+
+## Fußzeile anpassen
+
+Um die Fußzeile anzupassen, ändere die Datei `content/shared/footer.md`. Du kannst auch eine `footer.md` in deinem Blogverzeichnis erstellen, die Fußzeile wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+
+```
+---
+Title: Footer
+Status: hidden
+---
+[Erstellt mit Datenstrom Yellow](https://datenstrom.se/de/yellow/)
 ```
 
 ## Weitere Funktionen

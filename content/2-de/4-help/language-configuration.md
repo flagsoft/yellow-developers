@@ -3,6 +3,10 @@ Title: Spracheinstellungen
 ---
 Wie man verschiedene Sprachen konfiguriert.
 
+## Sprachen
+
+Die Installation kommt mit drei Sprachen und man kann weitere [Sprachdateien](https://github.com/datenstrom/yellow-plugins/tree/master/language) herunterladen. Lade eine Datei herunter und kopiere sie in das `system/plugins`-Verzeichnis. Die Standardsprache wird in den [Systemeinstellungen](adjusting-system#systemeinstellungen) festgelegt und  in den [Texteinstellungen](adjusting-system#texteinstellungen) angepasst.
+
 ## Einsprachen-Modus
 
 Falls man einzelne Webseiten übersetzen will, benutzt man den Einsprachen-Modus. Die Standardsprache wird in den [Systemeinstellungen](adjusting-system#systemeinstellungen) festgelegt. Eine andere Sprache lässt sich in den [Einstellungen](markdown-cheat-sheet#einstellungen) ganz oben auf jeder Seite festlegen, zum Beispiel `Language: de`. 
@@ -50,9 +54,5 @@ Der erste Screenshot zeigt die Verzeichnisse `1-en`, `2-de` und `3-fr`. Das erze
 Der zweite Screenshot zeigt die Verzeichnisse `1-en`, `2-de`, `3-fr` und `default`. Das erzeugt die URLs `http://website/en/` `http://website/de/` `http://website/fr/` und die Startseite `http://website/` welche automatisch die Sprache der Besucher ermittelt. 
 
 Um eine [Sprachauswahl](/language/) anzuzeigen, kannst du eine Seite erstellen welche die vorhandenen Sprachen auflistet. Das ermöglicht es Besuchern jede Sprache auszuwählen. Die Sprachauswahl kann man in die Webseite einbauen, beispielsweise in die Navigation oder Fußzeile.
-
-## Sprachen
-
-Die Installation kommt mit drei Sprachen und man kann weitere [Sprachdateien](https://github.com/datenstrom/yellow-plugins/tree/master/language) herunterladen. Lade eine Datei herunter und kopiere sie in das `system/plugins`-Verzeichnis. Die Standardsprache wird in den [Systemeinstellungen](adjusting-system#systemeinstellungen) festgelegt. Dieser Text lässt sich in den [Texteinstellungen](adjusting-system#texteinstellungen) anpassen.
 
 [Weiter: Sicherheitseinstellungen →](security-configuration)

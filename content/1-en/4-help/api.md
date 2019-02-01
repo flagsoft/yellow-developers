@@ -29,8 +29,6 @@ The following files are available:
 `system/config/config.ini` = [system settings](adjusting-system#system-settings)  
 `system/config/text.ini` = [text settings](adjusting-system#text-settings)  
 `system/config/user.ini` = [user accounts](adjusting-system#user-accounts)  
-`system/themes/snippets/navigation.php` = [navigation](customising-templates#custom-navigation)  
-`system/themes/snippets/footer.php` = [footer](customising-templates#custom-footer)  
 
 ## Objects
 
