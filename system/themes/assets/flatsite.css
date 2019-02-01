@@ -520,7 +520,7 @@ a:hover {
         float: none;
     }
     .header .sitename,
-    .navigation {
+    .navigation,
     .navigation-tree {
         margin-bottom: 0.5em;
     }
