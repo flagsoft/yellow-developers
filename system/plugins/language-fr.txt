@@ -3,7 +3,7 @@
 Language: fr
 LanguageDescription: Français
 LanguageTranslator: Juh Nibreh
-LanguageVersion: 0.7.16
+LanguageVersion: 0.8.1
 
 BlogBy: par
 BlogTag: Tags:
@@ -146,7 +146,9 @@ InstallFeature: Que voulez-vous faire ?
 InstallHomeTitle: Home
 InstallHomeText: Votre site web fonctionne !\n\n[edit - Vous pouvez modifier cette page] ou utiliser un éditeur de texte.
 InstallAboutTitle: À propos
-InstallAboutText: Ce site web est fait avec [Datenstrom Yellow](https://datenstrom.se/fr/yellow/). [edit - Se connecter].
+InstallAboutText: Pour les gens qui font des sites web. [edit - Se connecter].
+InstallFooterTitle: Footer
+InstallFooterText: [Fait avec Datenstrom Yellow](https://datenstrom.se/fr/yellow/)
 PagePrevious: ← Précédent: @title
 PageNext: Suivant: @title →
 PaginationPrevious: ← Précédent

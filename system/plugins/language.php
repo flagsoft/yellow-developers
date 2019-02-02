@@ -4,5 +4,5 @@
 // This file may be used and distributed under the terms of the public license.
 
 class YellowLanguage {
-    const VERSION = "0.7.16";
+    const VERSION = "0.8.1";
 }
