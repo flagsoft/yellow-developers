@@ -3,7 +3,7 @@ Title: Test link parsing
 ---
 This page tests link parsing.
 
-Link on same website: [Demo](/), [Wiki](/plugins/wiki/).  
+Link on same website: [Demo](/), [Wiki](/features/wiki/).  
 Link to another website: [Datenstrom](https://datenstrom.se), [W3Schools](https://www.w3schools.com).  
 Relative link to current page: [Content](api-content-files), [Images](image-parsing).  
 Special links for this page: [Read](@pageread), [Edit](@pageedit).

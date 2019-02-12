@@ -1,9 +1,9 @@
 ---
 Title: How to make a wiki
 ---
-Learn how to make your own wiki. [See demo](/plugins/wiki/).
+Learn how to make your own wiki. [See demo](/features/wiki/).
 
-[[image screenshot-wiki.png Screenshot screenshot 75%]](/plugins/wiki/coffee-is-good-for-you)  
+[[image screenshot-wiki.png Screenshot screenshot 75%]](/features/wiki/coffee-is-good-for-you)  
 
 ## Install wiki
 
@@ -52,7 +52,7 @@ Coffee is a beverage made from the roasted beans of the coffee plant.
 3. Enjoy.
 ```
 
-Now let's add a video with the [Youtube plugin](https://github.com/datenstrom/yellow-plugins/tree/master/youtube):
+Now let's add a video with the [Youtube plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
@@ -90,7 +90,7 @@ Links
 * [See example](/wiki/tag:example/)
 ```
 
-You can use [shortcuts](https://github.com/datenstrom/yellow-plugins/tree/master/wiki#how-to-show-wiki-information) to show information about the wiki:
+You can use [shortcuts](https://github.com/datenstrom/yellow-extensions/tree/master/features/wiki#how-to-show-wiki-information) to show information about the wiki:
 
 ```
 ---
@@ -140,10 +140,10 @@ Status: hidden
 
 ## More features
 
-* [How to add a table of contents to your wiki](https://github.com/datenstrom/yellow-plugins/tree/master/toc)
-* [How to add a search to your wiki](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [How to add a contact page to your wiki](https://github.com/datenstrom/yellow-plugins/tree/master/contact)
-* [How to make a draft page](https://github.com/datenstrom/yellow-plugins/tree/master/draft)
+* [How to add a table of contents to your wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc)
+* [How to add a search to your wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [How to add a contact page to your wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
+* [How to make a draft page](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [How to make a static wiki](server-configuration#static-website)
 
 [Next: Adding content →](adding-content)

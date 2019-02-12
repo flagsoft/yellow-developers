@@ -82,10 +82,10 @@ Status: hidden
 
 ## More features
 
-* [How to add an image gallery to your website](https://github.com/datenstrom/yellow-plugins/tree/master/gallery)
-* [How to add a search to your website](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [How to add a sitemap to your website](https://github.com/datenstrom/yellow-plugins/tree/master/sitemap)
-* [How to add a contact page to your website](https://github.com/datenstrom/yellow-plugins/tree/master/contact)
+* [How to add an image gallery to your website](https://github.com/datenstrom/yellow-extensions/tree/master/features/gallery)
+* [How to add a search to your website](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [How to add a sitemap to your website](https://github.com/datenstrom/yellow-extensions/tree/master/features/sitemap)
+* [How to add a contact page to your website](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
 * [How to make a static website](server-configuration#static-website)
 
 [Next: How to make a blog →](how-to-make-a-blog)

@@ -1,9 +1,9 @@
 ---
 Title: How to make a blog
 ---
-Learn how to make your own blog. [See demo](/plugins/blog/).
+Learn how to make your own blog. [See demo](/features/blog/).
 
-[[image screenshot-blog.png Screenshot screenshot 75%]](/plugins/blog/fika-is-good-for-you)  
+[[image screenshot-blog.png Screenshot screenshot 75%]](/features/blog/fika-is-good-for-you)  
 
 ## Install blog
 
@@ -51,7 +51,7 @@ an important part of life in Sweden that it is both a verb and a noun.
 How often do you fika?
 ```
 
-Now let's add a video with the [Youtube plugin](https://github.com/datenstrom/yellow-plugins/tree/master/youtube):
+Now let's add a video with the [Youtube plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
@@ -105,7 +105,7 @@ Links
 * [Datenstrom](https://datenstrom.se)
 ```
 
-You can use [shortcuts](https://github.com/datenstrom/yellow-plugins/tree/master/blog#how-to-show-blog-information) to show information about the blog:
+You can use [shortcuts](https://github.com/datenstrom/yellow-extensions/tree/master/features/blog#how-to-show-blog-information) to show information about the blog:
 
 ```
 ---
@@ -151,10 +151,10 @@ Status: hidden
 
 ## More features
 
-* [How to add comments to your blog](https://github.com/datenstrom/yellow-plugins/tree/master/disqus)
-* [How to add a search to your blog](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [How to add a feed to your blog](https://github.com/datenstrom/yellow-plugins/tree/master/feed)
-* [How to make a draft page](https://github.com/datenstrom/yellow-plugins/tree/master/draft)
+* [How to add comments to your blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/disqus)
+* [How to add a search to your blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [How to add a feed to your blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/feed)
+* [How to make a draft page](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [How to make a static blog](server-configuration#static-website)
 
 [Next: How to make a wiki →](how-to-make-a-wiki)

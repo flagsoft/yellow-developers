@@ -82,10 +82,10 @@ Status: hidden
 
 ## Plus de fonctionnalités
 
-* [Comment ajouter une galerie d'images](https://github.com/datenstrom/yellow-plugins/tree/master/gallery)
-* [Comment ajouter un moteur de recherche à votre site](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [Comment ajouter un plan à votre site](https://github.com/datenstrom/yellow-plugins/tree/master/sitemap)
-* [Comment ajouter une page de contact à votre site](https://github.com/datenstrom/yellow-plugins/tree/master/contact)
+* [Comment ajouter une galerie d'images](https://github.com/datenstrom/yellow-extensions/tree/master/features/gallery)
+* [Comment ajouter un moteur de recherche à votre site](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [Comment ajouter un plan à votre site](https://github.com/datenstrom/yellow-extensions/tree/master/features/sitemap)
+* [Comment ajouter une page de contact à votre site](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
 * [Comment créer un site web statique](server-configuration#site-web-statique)
 
 [Suivant: Comment faire un blog →](how-to-make-a-blog)

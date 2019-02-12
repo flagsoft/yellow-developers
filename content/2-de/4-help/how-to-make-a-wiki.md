@@ -1,9 +1,9 @@
 ---
 Title: Wiki erstellen
 ---
-Lerne wie man ein eigenes Wiki erstellt. [Demo anschauen](/de/plugins/wiki/).
+Lerne wie man ein eigenes Wiki erstellt. [Demo anschauen](/de/features/wiki/).
 
-[[image screenshot-wiki.png Screenshot screenshot 75%]](/de/plugins/wiki/coffee-is-good-for-you)  
+[[image screenshot-wiki.png Screenshot screenshot 75%]](/de/features/wiki/coffee-is-good-for-you)  
 
 ## Wiki installieren
 
@@ -52,7 +52,7 @@ Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.
 3. Genieße.
 ```
 
-Ein Video hinzufügen mit dem [Youtube-Plugin](https://github.com/datenstrom/yellow-plugins/tree/master/youtube):
+Ein Video hinzufügen mit dem [Youtube-Plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
@@ -90,7 +90,7 @@ Links
 * [Siehe Beispiel](/wiki/tag:beispiel/)
 ```
 
-Verwende [Abkürzungen](https://github.com/datenstrom/yellow-plugins/tree/master/wiki#how-to-show-wiki-information), um Informationen über das Wiki anzuzeigen:
+Verwende [Abkürzungen](https://github.com/datenstrom/yellow-extensions/tree/master/features/wiki#how-to-show-wiki-information), um Informationen über das Wiki anzuzeigen:
 
 ```
 ---
@@ -136,10 +136,10 @@ Status: hidden
 
 ## Weitere Funktionen
 
-* [Ein Inhaltsverzeichnis zum Wiki hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/toc)
-* [Eine Suchfunktion zum Wiki hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [Eine Kontaktseite zum Wiki hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/contact)
-* [Eine Entwurfseite erstellen](https://github.com/datenstrom/yellow-plugins/tree/master/draft)
+* [Ein Inhaltsverzeichnis zum Wiki hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc)
+* [Eine Suchfunktion zum Wiki hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [Eine Kontaktseite zum Wiki hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
+* [Eine Entwurfseite erstellen](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Ein statisches Wiki erstellen](server-configuration#statische-webseite)
 
 [Weiter: Inhalt hinzufügen →](adding-content)

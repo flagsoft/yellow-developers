@@ -402,7 +402,7 @@ Here's an example snippet for showing media files of a specific type:
 
 ### Yellow plugins
 
-Yellow plugins gives access to [plugins](/plugins/):
+Yellow plugins gives access to plugins:
 
 **$yellow->plugins->get($name)**  
 Return plugin
@@ -706,11 +706,11 @@ onLoad ─────▶ onStartup ─────▶ onRequest
 exit ◀─────── onShutDown ◀─────────┴──────────────────────┘
 ```
 
-When a page is displayed, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the [core](https://github.com/datenstrom/yellow-plugins/tree/master/core) informs with `onRequest` that there's a request. The page can be analysed with various `onParse` events. Then the source code of the page will be generated with the help of [templates and snippets](customising-templates). If an error occurs, an error page will be generated. Finally the page is output and `onShutdown` will be called.
+When a page is displayed, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the [core](https://github.com/datenstrom/yellow-extensions/tree/master/features/core) informs with `onRequest` that there's a request. The page can be analysed with various `onParse` events. Then the source code of the page will be generated with the help of [templates and snippets](customising-templates). If an error occurs, an error page will be generated. Finally the page is output and `onShutdown` will be called.
 
-When a page is edited, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the core informs with `onRequest` that there's a request, which will be handled by the [edit plugin](https://github.com/datenstrom/yellow-plugins/tree/master/edit). Changes at the page can be analysed with various `onEdit` events. Then the page will be saved in the file system. Finally a status code is output to reload the page and `onShutdown` will be called.
+When a page is edited, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the core informs with `onRequest` that there's a request, which will be handled by the [edit plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/edit). Changes at the page can be analysed with various `onEdit` events. Then the page will be saved in the file system. Finally a status code is output to reload the page and `onShutdown` will be called.
 
-When a command is executed, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the core informs with `onCommand` that there's a command, which will be handled by the corresponding plugin. If no command has been entered at the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command), then `onCommandHelp` will be called and plugins can provide a help. Finally a return code is output and `onShutdown` will be called.
+When a command is executed, the plugins are loaded and `onLoad` will be called. As soon as all plugins are loaded `onStartup` will be called. After that the core informs with `onCommand` that there's a command, which will be handled by the corresponding plugin. If no command has been entered at the [command line](https://github.com/datenstrom/yellow-extensions/tree/master/features/command), then `onCommandHelp` will be called and plugins can provide a help. Finally a return code is output and `onShutdown` will be called.
 
 ### Yellow core events
 

@@ -82,10 +82,10 @@ Status: hidden
 
 ## Weitere Funktionen
 
-* [Eine Bildergalerie zur Webseite hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/gallery)
-* [Eine Suche zur Webseite hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [Eine Sitemap zur Webseite hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/sitemap)
-* [Eine Kontaktseite zur Webseite hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/contact)
+* [Eine Bildergalerie zur Webseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/gallery)
+* [Eine Suche zur Webseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [Eine Sitemap zur Webseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/sitemap)
+* [Eine Kontaktseite zur Webseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
 * [Eine statische Webseite erstellen](server-configuration#statische-webseite)
 
 [Weiter: Blog erstellen →](how-to-make-a-blog)

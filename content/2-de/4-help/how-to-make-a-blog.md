@@ -1,9 +1,9 @@
 ---
 Title: Blog erstellen
 ---
-Lerne wie man ein eigenes Blog erstellt. [Demo anschauen](/de/plugins/blog/).
+Lerne wie man ein eigenes Blog erstellt. [Demo anschauen](/de/features/blog/).
 
-[[image screenshot-blog.png Screenshot screenshot 75%]](/de/plugins/blog/fika-is-good-for-you)  
+[[image screenshot-blog.png Screenshot screenshot 75%]](/de/features/blog/fika-is-good-for-you)  
 
 ## Blog installieren
 
@@ -51,7 +51,7 @@ schwedischen Alltag, dass es sowohl als Verb als auch als Nomen verwendet
 wird. Wie oft machst du Fika?
 ```
 
-Ein Video hinzufügen mit dem [Youtube-Plugin](https://github.com/datenstrom/yellow-plugins/tree/master/youtube):
+Ein Video hinzufügen mit dem [Youtube-Plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
@@ -105,7 +105,7 @@ Links
 * [Datenstrom](https://datenstrom.se)
 ```
 
-Verwende [Abkürzungen](https://github.com/datenstrom/yellow-plugins/tree/master/blog#how-to-show-blog-information), um Informationen über das Blog anzuzeigen.
+Verwende [Abkürzungen](https://github.com/datenstrom/yellow-extensions/tree/master/features/blog#how-to-show-blog-information), um Informationen über das Blog anzuzeigen.
 
 ```
 ---
@@ -151,10 +151,10 @@ Status: hidden
 
 ## Weitere Funktionen
 
-* [Eine Kommentarfunktion zum Blog hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/disqus)
-* [Eine Suche zum Blog hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [Einen Feed zum Blog hinzufügen](https://github.com/datenstrom/yellow-plugins/tree/master/feed)
-* [Eine Entwurfseite erstellen](https://github.com/datenstrom/yellow-plugins/tree/master/draft)
+* [Eine Kommentarfunktion zum Blog hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/disqus)
+* [Eine Suche zum Blog hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [Einen Feed zum Blog hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/feed)
+* [Eine Entwurfseite erstellen](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Ein statisches Blog erstellen](server-configuration#statische-webseite)
 
 [Weiter: Wiki erstellen →](how-to-make-a-wiki)

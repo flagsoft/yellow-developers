@@ -1,9 +1,9 @@
 ---
 Title: Comment faire un blog
 ---
-Apprenez à faire un propre blog. [Voir la démo](/fr/plugins/blog/).
+Apprenez à faire un propre blog. [Voir la démo](/fr/features/blog/).
 
-[[image screenshot-blog.png Screenshot screenshot 75%]](/fr/plugins/blog/fika-is-good-for-you)
+[[image screenshot-blog.png Screenshot screenshot 75%]](/fr/features/blog/fika-is-good-for-you)
 
 ## Installer un blog
 
@@ -51,7 +51,7 @@ Fika est une part aussi importante de la vie en Suède que c'est à la fois un
 verbe et un nom. À quelle fréquence faites-vous fika?
 ```
 
-Maintenant ajoutons une vidéo avec le [plugin Youtube](https://github.com/datenstrom/yellow-plugins/tree/master/youtube):
+Maintenant ajoutons une vidéo avec le [plugin Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
@@ -105,7 +105,7 @@ Liens
 * [Datenstrom](https://datenstrom.se)
 ```
 
-Vous pouvez utiliser des [raccourcis](https://github.com/datenstrom/yellow-plugins/tree/master/blog#how-to-show-blog-information) afin d'afficher des informations à propos du blog.
+Vous pouvez utiliser des [raccourcis](https://github.com/datenstrom/yellow-extensions/tree/master/features/blog#how-to-show-blog-information) afin d'afficher des informations à propos du blog.
 
 ```
 ---
@@ -151,10 +151,10 @@ Status: hidden
 
 ## Plus de fonctionnalités
 
-* [Comment ajouter des commentaires à votre blog](https://github.com/datenstrom/yellow-plugins/tree/master/disqus)
-* [Comment ajouter un moteur de recherche à votre blog](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [Comment ajouter un feed à votre blog](https://github.com/datenstrom/yellow-plugins/tree/master/feed)
-* [Comment créer une page de brouillon](https://github.com/datenstrom/yellow-plugins/tree/master/draft)
+* [Comment ajouter des commentaires à votre blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/disqus)
+* [Comment ajouter un moteur de recherche à votre blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [Comment ajouter un feed à votre blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/feed)
+* [Comment créer une page de brouillon](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Comment créer un blog statique](server-configuration#site-web-statique)
 
 [Suivant: Comment faire un wiki →](how-to-make-a-wiki)

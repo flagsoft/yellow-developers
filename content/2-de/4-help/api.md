@@ -400,7 +400,7 @@ Hier ist ein Beispiel-Snippet um Mediendateien eines bestimmten Types anzuzeigen
 
 ### Yellow-Plugins
 
-Yellow-Plugins gibt Zugang zu [Plugins](/plugins/):
+Yellow-Plugins gibt Zugang zu Plugins:
 
 **$yellow->plugins->get($name)**  
 Hole ein Plugin
@@ -704,11 +704,11 @@ onLoad ─────▶ onStartup ─────▶ onRequest
 exit ◀─────── onShutDown ◀─────────┴──────────────────────┘
 ```
 
-Wird eine Seite angezeigt, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der [Core](https://github.com/datenstrom/yellow-plugins/tree/master/core) mit `onRequest` dass es eine Anfrage gibt. Die Seite kann mit verschiedenen `onParse`-Ereignisse analysiert werden. Dann wird der Quellcode der Seite mit Hilfe von [Templates und Snippets](customising-templates) erzeugt. Sollte ein Fehler auftreten, wird eine Fehlerseite erzeugt. Zum Schluss wird die Seite ausgegeben und es wird `onShutdown` aufgerufen.
+Wird eine Seite angezeigt, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der [Core](https://github.com/datenstrom/yellow-extensions/tree/master/features/core) mit `onRequest` dass es eine Anfrage gibt. Die Seite kann mit verschiedenen `onParse`-Ereignisse analysiert werden. Dann wird der Quellcode der Seite mit Hilfe von [Templates und Snippets](customising-templates) erzeugt. Sollte ein Fehler auftreten, wird eine Fehlerseite erzeugt. Zum Schluss wird die Seite ausgegeben und es wird `onShutdown` aufgerufen.
 
-Wird eine Seite bearbeitet, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der Core mit `onRequest` dass es eine Anfrage gibt, welche vom [Edit-Plugin](https://github.com/datenstrom/yellow-plugins/tree/master/edit) behandelt wird. Änderungen an der Seite können mit verschiedenen `onEdit`-Ereignisse überprüft werden. Dann wird die Seite im Dateisystem gespeichert. Zum Schluss wird ein Statuscode zum Neuladen der Seite ausgegeben und es wird `onShutdown` aufgerufen.
+Wird eine Seite bearbeitet, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der Core mit `onRequest` dass es eine Anfrage gibt, welche vom [Edit-Plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/edit) behandelt wird. Änderungen an der Seite können mit verschiedenen `onEdit`-Ereignisse überprüft werden. Dann wird die Seite im Dateisystem gespeichert. Zum Schluss wird ein Statuscode zum Neuladen der Seite ausgegeben und es wird `onShutdown` aufgerufen.
 
-Wird ein Befehl ausgeführt, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der Core mit `onCommand` dass es einen Befehl gibt, welcher vom entsprechenden Plugin behandelt wird. Sollte kein Befehl an der [Befehlszeile](https://github.com/datenstrom/yellow-plugins/tree/master/command) eingegeben worden sein, dann wird `onCommandHelp` aufgerufen und Plugins können eine Hilfe zur Verfügung stellen. Zum Schluss wird ein Rückgabecode ausgegeben und es wird `onShutdown` aufgerufen.
+Wird ein Befehl ausgeführt, dann werden die Plugins geladen und es wird `onLoad` aufgerufen. Sobald alle Plugins geladen sind wird `onStartup` aufgerufen. Danach informiert der Core mit `onCommand` dass es einen Befehl gibt, welcher vom entsprechenden Plugin behandelt wird. Sollte kein Befehl an der [Befehlszeile](https://github.com/datenstrom/yellow-extensions/tree/master/features/command) eingegeben worden sein, dann wird `onCommandHelp` aufgerufen und Plugins können eine Hilfe zur Verfügung stellen. Zum Schluss wird ein Rückgabecode ausgegeben und es wird `onShutdown` aufgerufen.
 
 ### Yellow-Core-Ereignisse
 

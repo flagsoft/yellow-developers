@@ -1,9 +1,9 @@
 ---
 Title: Comment faire un wiki
 ---
-Apprenez à faire un propre wiki. [Voir la démo](/fr/plugins/wiki/).
+Apprenez à faire un propre wiki. [Voir la démo](/fr/features/wiki/).
 
-[[image screenshot-wiki.png Screenshot screenshot 75%]](/fr/plugins/wiki/coffee-is-good-for-you)  
+[[image screenshot-wiki.png Screenshot screenshot 75%]](/fr/features/wiki/coffee-is-good-for-you)  
 
 ## Installer un wiki
 
@@ -52,7 +52,7 @@ Le café est une boisson fabriquée à partir des haricots rôtis de l'usine de 
 3. Prendre plaisir.
 ```
 
-Maintenant ajoutons une vidéo avec le [plugin Youtube](https://github.com/datenstrom/yellow-plugins/tree/master/youtube):
+Maintenant ajoutons une vidéo avec le [plugin Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
@@ -90,7 +90,7 @@ Liens
 * [Voir l'exemple](/wiki/tag:exemple/)
 ```
 
-Vous pouvez utiliser des [raccourcis](https://github.com/datenstrom/yellow-plugins/tree/master/wiki#how-to-show-wiki-information) afin d'afficher des informations à propos du wiki:
+Vous pouvez utiliser des [raccourcis](https://github.com/datenstrom/yellow-extensions/tree/master/features/wiki#how-to-show-wiki-information) afin d'afficher des informations à propos du wiki:
 
 ```
 ---
@@ -138,10 +138,10 @@ Status: hidden
 
 ## Plus de fonctionnalités
 
-* [Comment ajouter une table des matières à votre wiki](https://github.com/datenstrom/yellow-plugins/tree/master/toc)
-* [Comment ajouter un moteur de recherche à votre wiki](https://github.com/datenstrom/yellow-plugins/tree/master/search)
-* [Comment ajouter une page de contact à votre wiki](https://github.com/datenstrom/yellow-plugins/tree/master/contact)
-* [Comment créer une page de brouillon](https://github.com/datenstrom/yellow-plugins/tree/master/draft)
+* [Comment ajouter une table des matières à votre wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc)
+* [Comment ajouter un moteur de recherche à votre wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
+* [Comment ajouter une page de contact à votre wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
+* [Comment créer une page de brouillon](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Comment créer un wiki statique](server-configuration#site-web-statique)
 
 [Suivant: Ajouter des pages →](adding-content)
