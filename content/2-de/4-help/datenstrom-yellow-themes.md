@@ -1,25 +1,28 @@
 ---
 Title: Datenstrom Yellow themes
-Redirect: https://github.com/datenstrom/yellow-themes
+Redirect: https://github.com/datenstrom/yellow-extensions/tree/master/themes
 Information: Please do not translate this file, English only
 Language: en
 ---
-Available themes:
+Themes to download
+==================
 
-* [Berlin](https://github.com/datenstrom/yellow-themes/tree/master/berlin): 
+The following are official extensions:
+
+* [Berlin](https://github.com/datenstrom/yellow-extensions/tree/master/themes/berlin): 
   Berlin is a simple and beautiful theme inspired by Dieter Rams.
-* [Blogsite](https://github.com/datenstrom/yellow-themes/tree/master/blogsite): 
+* [Blogsite](https://github.com/datenstrom/yellow-extensions/tree/master/themes/blogsite): 
   Blogsite is a basic blogger theme.
-* [Flatsite](https://github.com/datenstrom/yellow-themes/tree/master/flatsite): 
+* [Flatsite](https://github.com/datenstrom/yellow-extensions/tree/master/themes/flatsite): 
   Flatsite is a clean business theme.
-* [Knowhow](https://github.com/datenstrom/yellow-themes/tree/master/knowhow): 
+* [Knowhow](https://github.com/datenstrom/yellow-extensions/tree/master/themes/knowhow): 
   Knowhow is a theme for a GitHub-like knowledge base.
-* [Paris](https://github.com/datenstrom/yellow-themes/tree/master/paris): 
+* [Paris](https://github.com/datenstrom/yellow-extensions/tree/master/themes/paris): 
   Paris is an elegant theme for writers.
-* [Stockholm](https://github.com/datenstrom/yellow-themes/tree/master/stockholm): 
+* [Stockholm](https://github.com/datenstrom/yellow-extensions/tree/master/themes/stockholm): 
   Stockholm is a modern business theme.
 
-Experimental themes:
+The following are experimental extensions:
 
 * [Buoa](https://github.com/bsnosi/yellow-theme-buoa):
   Buoa is a theme for a technical oriented blog/wiki.
@@ -28,4 +31,6 @@ Experimental themes:
 * [Lateral](https://github.com/nibreh/yellow-theme-lateral):
   Lateral is a clean theme with fixed sidebar, inspired by Indexhibit.
 
-We have a developer kit and an API for developers. [Learn more](https://developers.datenstrom.se/help/).
+## Developer
+
+Datenstrom and contributors. [Get support](https://developers.datenstrom.se/help/support).

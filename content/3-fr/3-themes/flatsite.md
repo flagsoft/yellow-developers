@@ -1,13 +1,13 @@
 ---
 Sitename: Flatsite
 Title: Flatsite
-Description: Thème commercial propre
+Description: Thème de site web clair
 Navigation: navigation
 Image: flatsite-fr.png
 Theme: flatsite
 ---
-Flatsite est un thème commercial propre. 
-[Installer le thème](https://github.com/datenstrom/yellow-themes/tree/master/flatsite).
+Flatsite est un thème de site web clair. 
+[Installer](https://github.com/datenstrom/yellow-extensions/tree/master/themes/flatsite).
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna pizza. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 

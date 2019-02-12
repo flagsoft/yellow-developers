@@ -1,7 +1,7 @@
 ---
-Title: Themes zum Herunterladen
-TitleNavigation: Themes
+Title: Themen zum Herunterladen
+TitleNavigation: Themen
 ---
 [preview /de/themes/ - 40.5%]
 
-Willst du weitere Themes herunterladen? [Siehe alle Themes](/de/help/datenstrom-yellow-themes).
+Möchtest du weitere Themen herunterladen? [Siehe alle Themen](/de/help/datenstrom-yellow-themes).

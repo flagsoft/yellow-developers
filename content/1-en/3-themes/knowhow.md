@@ -7,7 +7,7 @@ Image: knowhow-en.png
 Theme: knowhow
 ---
 Knowhow is a theme for a GitHub-like knowledge base. 
-[Install theme](https://github.com/datenstrom/yellow-themes/tree/master/knowhow).
+[Install](https://github.com/datenstrom/yellow-extensions/tree/master/themes/knowhow).
 
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna pizza. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
