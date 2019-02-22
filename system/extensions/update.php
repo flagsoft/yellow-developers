@@ -16,7 +16,7 @@ class YellowUpdate {
         $this->yellow->system->setDefault("updateExtensionUrl", "https://github.com/datenstrom/yellow-extensions");
         $this->yellow->system->setDefault("updateInformationFile", "update.ini");
         $this->yellow->system->setDefault("updateVersionFile", "version.ini");
-        $this->yellow->system->setDefault("updateWaffleFile", "waffle");
+        $this->yellow->system->setDefault("updateWaffleFile", "waffle.ini");
     }
     
     // Handle startup
@@ -48,17 +48,16 @@ class YellowUpdate {
             $fileNameError = $this->yellow->system->get("settingDir")."system-error.log";
             if ($this->yellow->system->isExisting("languageFile")) {
                 $path = $this->yellow->system->get("extensionDir");
-                $languageTypes = array("bn" => "bengali", "cs" => "czech", "da" => "danish", "de" => "german", "en" => "english", "es" => "spanish", "fr" => "french", "hu" => "hungarian", "id" => "indonesian", "it" => "italian", "ja" => "japanese", "ko" => "korean", "nl" => "dutch", "pl" => "polish", "pt" => "portuguese", "ru" => "russian", "sk" => "slovenian", "sv" => "swedish", "zh-CN" => "chinese");
                 foreach ($this->yellow->toolbox->getDirectoryEntries($path, "/^.*\.txt$/", true, false) as $entry) {
                     preg_match("/^language-(.*)\.txt$/", basename($entry), $matches);
-                    if (array_key_exists($matches[1], $languageTypes)) {
-                        $language = $languageTypes[$matches[1]];
-                        $entryNew = $path.$language."-language.txt";
+                    $languageName = $this->yellow->toolbox->getLanguageName($matches[1]);
+                    if (!empty($languageName)) {
+                        $entryNew = $path.$languageName."-language.txt";
                         if (!$this->yellow->toolbox->renameFile($entry, $entryNew)) {
                             $fileDataError .= "ERROR renaming file '$entry'!\n";
                         }
-                        $fileNameNew = $path.$language.".php";
-                        $fileDataNew = "<?php\n\nclass Yellow".ucfirst($language)." {\nconst VERSION = \"0.8.2\";\nconst TYPE = \"language\";\n}\n";
+                        $fileNameNew = $path.$languageName.".php";
+                        $fileDataNew = "<?php\n\nclass Yellow".ucfirst($languageName)." {\nconst VERSION = \"0.8.2\";\nconst TYPE = \"language\";\n}\n";
                         if (!$this->yellow->toolbox->createFile($fileNameNew, $fileDataNew)) {
                             $fileDataError .= "ERROR writing file '$fileNameNew'!\n";
                         }
@@ -435,7 +434,7 @@ class YellowUpdate {
         if (function_exists("opcache_reset")) opcache_reset();
         $path = $this->yellow->system->get("extensionDir");
         foreach ($this->yellow->toolbox->getDirectoryEntries($path, "/^.*\.zip$/", true, false) as $entry) {
-            $statusCode = max($statusCode, $this->updateExtensionsArchive($entry, $force));
+            $statusCode = max($statusCode, $this->updateExtensionArchive($entry, $force));
             if (!$this->yellow->toolbox->deleteFile($entry)) {
                 $statusCode = 500;
                 $this->yellow->page->error($statusCode, "Can't delete file '$entry'!");
@@ -444,12 +443,12 @@ class YellowUpdate {
         return $statusCode;
     }
 
-    // Update extensions from archive
-    public function updateExtensionsArchive($path, $force = false) {
+    // Update extension from archive
+    public function updateExtensionArchive($path, $force = false) {
         $statusCode = 200;
         $zip = new ZipArchive();
         if ($zip->open($path)===true) {
-            if (defined("DEBUG") && DEBUG>=2) echo "YellowUpdate::updateExtensionsArchive file:$path<br/>\n";
+            if (defined("DEBUG") && DEBUG>=2) echo "YellowUpdate::updateExtensionArchive file:$path<br/>\n";
             if (preg_match("#^(.*\/).*?$#", $zip->getNameIndex(0), $matches)) $pathBase = $matches[1];
             $fileData = $zip->getFromName($pathBase.$this->yellow->system->get("updateInformationFile"));
             foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
@@ -471,9 +470,9 @@ class YellowUpdate {
                 if (!empty($matches[1]) && !empty($matches[2]) && strposu($matches[1], "/")) {
                     list($dummy, $entry) = explode("/", $matches[1], 2);
                     list($fileName, $flags) = explode(",", $matches[2], 2);
-                    $fileData = $zip->getFromName($pathBase.$entry);
+                    $fileData = $zip->getFromName($pathBase.basename($entry));
                     $lastModified = $this->yellow->toolbox->getFileModified($fileName);
-                    $statusCode = $this->updateExtensionsFile($fileName, $fileData, $modified, $lastModified, $lastPublished, $flags, $force, $extension);
+                    $statusCode = $this->updateExtensionFile($fileName, $fileData, $modified, $lastModified, $lastPublished, $flags, $force, $extension);
                     if ($statusCode!=200) break;
                 }
             }
@@ -488,8 +487,8 @@ class YellowUpdate {
         return $statusCode;
     }
     
-    // Update extensions from file
-    public function updateExtensionsFile($fileName, $fileData, $modified, $lastModified, $lastPublished, $flags, $force, $extension) {
+    // Update extension from file
+    public function updateExtensionFile($fileName, $fileData, $modified, $lastModified, $lastPublished, $flags, $force, $extension) {
         $statusCode = 200;
         $fileName = $this->yellow->toolbox->normaliseTokens($fileName);
         if ($this->yellow->lookup->isValidFile($fileName) && !empty($extension)) {
@@ -523,7 +522,7 @@ class YellowUpdate {
             if (defined("DEBUG") && DEBUG>=2) {
                 $debug = "action:".($create ? "create" : "").($update ? "update" : "").($delete ? "delete" : "");
                 if (!$create && !$update && !$delete) $debug = "action:none";
-                echo "YellowUpdate::updateExtensionsFile file:$fileName $debug<br/>\n";
+                echo "YellowUpdate::updateExtensionFile file:$fileName $debug<br/>\n";
             }
         }
         return $statusCode;
