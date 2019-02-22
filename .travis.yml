@@ -8,7 +8,7 @@ php:
   - 5.5
   - 5.4
 before_script: 
-  - echo "StaticUrl:http://website/" >> system/config/config.ini
+  - echo "StaticUrl:http://website/" >> system/settings/system.ini
   - php yellow.php version
 script: 
   - php yellow.php build test
