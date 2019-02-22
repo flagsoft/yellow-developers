@@ -3,7 +3,7 @@
 // Copyright (c) 2013-2019 Datenstrom, https://datenstrom.se
 // This file may be used and distributed under the terms of the public license.
 
-version_compare(PHP_VERSION, "5.4", ">=") || die("Datenstrom Yellow requires PHP 5.4 or higher!");
+version_compare(PHP_VERSION, "5.5", ">=") || die("Datenstrom Yellow requires PHP 5.5 or higher!");
 extension_loaded("mbstring") || die("Datenstrom Yellow requires PHP mbstring extension!");
 extension_loaded("curl") || die("Datenstrom Yellow requires PHP cURL extension!");
 extension_loaded("zip") || die("Datenstrom Yellow requires PHP zip extension!");
