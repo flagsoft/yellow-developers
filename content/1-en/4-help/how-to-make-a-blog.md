@@ -24,7 +24,7 @@ Have a look inside your `content` folder, there's the blog folder with all your 
 Title: Blog example
 Published: 2013-04-07
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Example
 ---
 This is an example blog page. 
@@ -41,7 +41,7 @@ To create a new blog page, add a new file to the blog folder. Set `Published` an
 Title: Fika is good for you
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Example, Coffee
 ---
 Fika is a Swedish custom. It's a social coffee break where people 
@@ -51,14 +51,14 @@ an important part of life in Sweden that it is both a verb and a noun.
 How often do you fika?
 ```
 
-Now let's add a video with the [Youtube plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
+Now let's add a video with the [Youtube extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
 Title: Fika is good for you
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Example, Coffee, Video
 ---
 Fika is a Swedish custom. It's a social coffee break where people 
@@ -77,7 +77,7 @@ Let's show the video when a visitor clicks on the blog page. You can use `[--mor
 Title: Fika is good for you
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Example, Coffee, Video
 ---
 Fika is a Swedish custom. It's a social coffee break where people 
@@ -91,7 +91,7 @@ How often do you fika? [--more--]
 
 ## Showing sidebar
 
-To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in your blog folder, the sidebar will then only be shown on pages in the same folder. Here's an example:
+To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in your blog folder and it will only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -137,9 +137,21 @@ Tags
 [blogtags / 5]
 ```
 
+## Showing header
+
+To show a header create the file `content/shared/header.md`. You can also create a `header.md` in your blog folder and it will only be shown on pages in the same folder. Here's an example:
+
+```
+---
+Title: Header
+Status: hidden
+---
+I like Markdown.
+```
+
 ## Adjusting footer
 
-To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in your blog folder, the footer will then only be shown on pages in the same folder. Here's an example:
+To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in your blog folder and it will only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -149,12 +161,12 @@ Status: hidden
 [Made with Datenstrom Yellow](https://datenstrom.se/yellow/)
 ```
 
-## More features
+## Adding extensions
 
 * [How to add comments to your blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/disqus)
 * [How to add a search to your blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
 * [How to add a feed to your blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/feed)
-* [How to make a draft page](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
+* [How to add a draft page](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [How to make a static blog](server-configuration#static-website)
 
 [Next: How to make a wiki →](how-to-make-a-wiki)

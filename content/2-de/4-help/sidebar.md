@@ -23,8 +23,9 @@ Status: hidden
 [-- Entwickler --]
 
 * [API für Entwickler](api)
-* [Themes anpassen](customising-themes)
-* [Templates anpassen](customising-templates)
+* [HTML-Dateien](html-files)
+* [CSS-Dateien](css-files)
+* [JavaScript-Dateien](javascript-files)
 
 [-- Verschiedenes --]
 

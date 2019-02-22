@@ -103,7 +103,7 @@ server {
 
 Si vous souhaitez créer un site web statique, utilisez le générateur de site statique. Ceci est fait en exécutant une commande de construction depuis le dossier d'installation. Il génère un site web statique, qui fonctionne sur presque tous les serveurs web.
 
-Vous pouvez créer un site statique depuis une interface en [ligne de commande](https://github.com/datenstrom/yellow-plugins/tree/master/command).
+Vous pouvez créer un site statique depuis une interface en [ligne de commande](https://github.com/datenstrom/yellow-extensions/tree/master/features/command).
 
 1. Lancez un terminal.
 2. Rendez-vous dans le dossier d'installation, où se trouve `yellow.php`.
@@ -111,8 +111,8 @@ Vous pouvez créer un site statique depuis une interface en [ligne de commande](
 
 Ceci construira votre site statique dans le dossier `public`. Placez ce dossier sur votre espace d'hébergement, et contruisez une nouvelle version lorsque c'est nécessaire. L'URL peut être défini dans les [paramètres du système](adjusting-system#paramètres-du-système), par exemple `StaticUrl: http://website/`.
 
-Vous pouvez tester un site web statique sans le télécharger sur un serveur web. Ceci est pratique pour les développeurs web, puisque tout fonctionne sur votre propre ordinateur. Voici un exemple: `php yellow.php serve`. Le site web est accessible à l'adresse `http://localhost:8000`.
-
 Comme alternative à un site statique, vous pouvez créer un cache. Cela accélère considérablement votre site web, mais le cache doit être mis à jour. Voici un exemple: `php yellow.php build cache`. Pour effacer le cache, tapez la commande suivante: `php yellow.php clean cache`.
+
+Vous pouvez tester un site web statique sans le télécharger sur un serveur web. Ceci est pratique pour les [développeurs web](api), puisque tout fonctionne sur votre propre ordinateur. Voici un exemple: `php yellow.php serve`. Le site web est accessible à l'adresse `http://localhost:8000`.
 
 [Suivant: API pour les développeurs →](api)

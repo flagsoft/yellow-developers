@@ -9,7 +9,7 @@ The `downloads` folder contains files to download. The `images` folder is the pl
 
 ## Images
 
-You can use the [image plugin](https://github.com/datenstrom/yellow-plugins/tree/master/image) to embed images. To add a new image, copy a new file into the `images` folder and create an `[image]` shortcut. The image formats GIF, JPG, PNG and SVG are supported. Here's an example:
+You can use the [image extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/image) to embed images. To add a new image, copy a new file into the `images` folder and create an `[image]` shortcut. The image formats GIF, JPG, PNG and SVG are supported. Here's an example:
 
     [image picture.jpg]
     [image picture.jpg Picture]
@@ -29,7 +29,7 @@ Images in different sizes:
 
 ## Videos
 
-You can use the [Youtube plugin](https://github.com/datenstrom/yellow-plugins/tree/master/youtube) to embed videos:
+You can use the [Youtube extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube) to embed videos:
 
     [youtube fhs55HEl-Gc]
     [youtube fhs55HEl-Gc left 200 112]

@@ -4,7 +4,7 @@ Description: Inhaltsverzeichnis anzeigen
 Image: toc-de.png
 ---
 Inhaltsverzeichnis anzeigen.
-[Installieren](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc).
+[Erweiterung installieren](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc).
 
 [toc]
 

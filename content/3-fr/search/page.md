@@ -2,7 +2,7 @@
 Title: Rechercher
 TitleSlug: Search
 Description: Rechercher
-Template: search
+Layout: search
 Status: ignore
 ---
 This page is automatically generated.

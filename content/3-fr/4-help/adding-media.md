@@ -9,7 +9,7 @@ Le dossier `downloads` contient des fichiers à télécharger. Le dossier `image
 
 ## Images
 
-Vous pouvez utiliser le [plugin image](https://github.com/datenstrom/yellow-plugins/tree/master/image) pour intégrer les images. Pour ajouter une nouvelle image, copiez un nouveau fichier dans le dossier `images` et créez un raccourci `[image]`. Les formats d'image GIF, JPG, PNG et SVG sont pris en charge. Voici un exemple:
+Vous pouvez utiliser l'[extension image](https://github.com/datenstrom/yellow-extensions/tree/master/features/image) pour intégrer les images. Pour ajouter une nouvelle image, copiez un nouveau fichier dans le dossier `images` et créez un raccourci `[image]`. Les formats d'image GIF, JPG, PNG et SVG sont pris en charge. Voici un exemple:
 
     [image picture.jpg]
     [image picture.jpg Picture]
@@ -29,7 +29,7 @@ Images de différentes tailles:
 
 ## Vidéos
 
-Vous pouvez utiliser le [plugin Youtube](https://github.com/datenstrom/yellow-plugins/tree/master/youtube) pour intégrer des vidéos: 
+Vous pouvez utiliser l'[extension Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube) pour intégrer des vidéos: 
 
     [youtube fhs55HEl-Gc]
     [youtube fhs55HEl-Gc left 200 112]

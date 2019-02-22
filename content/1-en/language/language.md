@@ -3,6 +3,6 @@ Title: Chose your language
 TitleSlug: Language
 TitleNavigation: Language
 Description: Language
-Template: language
+Layout: language
 ---
 This page is automatically generated.

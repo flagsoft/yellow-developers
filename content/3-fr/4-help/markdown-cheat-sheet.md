@@ -132,9 +132,9 @@ En utilisant des blocs HTML:
 `Keywords` = mots clés de la page, séparés par des virgules  
 `Author` = auteur(s) de la page, séparés par des virgules  
 `Language` = langue de la page  
+`Layout` = modèle de la page  
+`LayoutNew` = modèle pour créer une nouvelle page  
 `Theme` = thème de la page  
-`Template` = modèle de la page  
-`TemplateNew` = modèle pour créer une nouvelle page  
 `Parser` = parser de la page  
 `Modified` = date de modification de la page, format YYYY-MM-DD  
 `Published` = date de publication de la page, format YYYY-MM-DD  
@@ -146,5 +146,4 @@ En utilisant des blocs HTML:
 `Footer` = pied de la page  
 `Sidebar` = sidebar de la page  
 `Sitename` = nom su site web  
-`Siteicon` = icône du site web  
 `Email` = email du webmaster  

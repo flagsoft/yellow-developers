@@ -4,7 +4,7 @@ Description: Images and thumbnails
 Image: image-en.png
 ---
 Images and thumbnails.
-[Install](https://github.com/datenstrom/yellow-extensions/tree/master/features/image).
+[Install extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/image).
 
 [image picture.jpg Example]
 

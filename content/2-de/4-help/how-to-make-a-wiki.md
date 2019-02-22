@@ -22,7 +22,7 @@ Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Wi
 ```
 ---
 Title: Wikiseite
-Template: wiki
+Layout: wiki
 Tag: Beispiel
 ---
 Das ist eine Beispiel-Wikiseite.
@@ -37,7 +37,7 @@ Um eine neue Wikiseite hinzuzufügen, erstellst du eine neue Datei im Wikiverzei
 ```
 ---
 Title: Kaffee ist gut für dich
-Template: wiki
+Layout: wiki
 Tag: Beispiel, Kaffee
 ---
 Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.
@@ -52,12 +52,12 @@ Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.
 3. Genieße.
 ```
 
-Ein Video hinzufügen mit dem [Youtube-Plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
+Ein Video hinzufügen mit der [Youtube-Erweiterung](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
 Title: Kaffee ist gut für dich
-Template: wiki
+Layout: wiki
 Tag: Beispiel, Kaffee, Video
 ---
 Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.
@@ -76,7 +76,7 @@ Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.
 
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in deinem Wikiverzeichnis erstellen, die Sidebar wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in deinem Wikiverzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -122,9 +122,21 @@ Tags
 [wikitags / 5]
 ```
 
+## Kopfzeile anzeigen
+
+Um eine Kopfzeile anzuzeigen, erstelle die Datei `content/shared/header.md`. Du kannst auch eine `header.md` in deinem Wikiverzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+
+```
+---
+Title: Header
+Status: hidden
+---
+Ich mag Markdown.
+```
+
 ## Fußzeile anpassen
 
-Um die Fußzeile anzupassen, ändere die Datei `content/shared/footer.md`. Du kannst auch eine `footer.md` in deinem Wikiverzeichnis erstellen, die Fußzeile wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+Um die Fußzeile anzupassen, ändere die Datei `content/shared/footer.md`. Du kannst auch eine `footer.md` in deinem Wikiverzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -134,12 +146,12 @@ Status: hidden
 [Erstellt mit Datenstrom Yellow](https://datenstrom.se/de/yellow/)
 ```
 
-## Weitere Funktionen
+## Erweiterungen hinzufügen
 
 * [Ein Inhaltsverzeichnis zum Wiki hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc)
 * [Eine Suchfunktion zum Wiki hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
 * [Eine Kontaktseite zum Wiki hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
-* [Eine Entwurfseite erstellen](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
+* [Eine Entwurfseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Ein statisches Wiki erstellen](server-configuration#statische-webseite)
 
 [Weiter: Inhalt hinzufügen →](adding-content)

@@ -4,7 +4,7 @@ Description: Table des matières
 Image: toc-fr.png
 ---
 Afficher une table des matières.
-[Installer](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc).
+[Installer l'extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc).
 
 [toc]
 

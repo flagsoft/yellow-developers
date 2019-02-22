@@ -1,6 +1,6 @@
 ---
 Title: Wikiseite
-Template: wiki
+Layout: wiki
 Tag: Beispiel
 ---
 Dies ist eine neue Wikiseite.

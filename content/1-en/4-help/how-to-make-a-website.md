@@ -54,7 +54,7 @@ about how to create small web pages, blogs and wikis.
 
 ## Showing sidebar
 
-To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in any `content` folder, the sidebar will then only be shown on pages in the same folder. Here's an example:
+To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in any `content` folder and it will only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -68,9 +68,21 @@ Links
 * [Datenstrom](https://datenstrom.se)
 ```
 
+## Showing header
+
+To show a header create the file `content/shared/header.md`. You can also create a `header.md` in any `content` folder and it will only be shown on pages in the same folder. Here's an example:
+
+```
+---
+Title: Header
+Status: hidden
+---
+I like Markdown.
+```
+
 ## Adjusting footer
 
-To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in any `content` folder, the footer will then only be shown on pages in the same folder. Here's an example:
+To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in any `content` folder and it will only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -80,7 +92,7 @@ Status: hidden
 [Made with Datenstrom Yellow](https://datenstrom.se/yellow/)
 ```
 
-## More features
+## Adding extensions
 
 * [How to add an image gallery to your website](https://github.com/datenstrom/yellow-extensions/tree/master/features/gallery)
 * [How to add a search to your website](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)

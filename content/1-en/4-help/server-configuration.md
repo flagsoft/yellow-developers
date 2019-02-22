@@ -103,7 +103,7 @@ server {
 
 If you want to create a static website, use the static site generator. This is done by running a build command from within the installation folder. It generates a static website, that works on almost any web server.
 
-You can create a static website from the [command line](https://github.com/datenstrom/yellow-plugins/tree/master/command):
+You can create a static website from the [command line](https://github.com/datenstrom/yellow-extensions/tree/master/features/command):
 
 1. Open a terminal window.
 2. Go to your installation folder, where the `yellow.php` is.
@@ -111,8 +111,8 @@ You can create a static website from the [command line](https://github.com/daten
 
 This will build a static website in the `public` folder. Upload the folder to your web server and build a new version when needed. The URL of the website can be defined in the [system settings](adjusting-system#system-settings), for example `StaticUrl: http://website/`.
 
-You can test a static website without uploading it to a web server. Start the built-in web server. This is especially handy for developers, since everything runs on your own computer. Here's an example: `php yellow.php serve`. Now the website is available as `http://localhost:8000`.
-
 As an alternative to a static website you can build a cache. This speeds up your website significantly, but the cache needs to be updated repeatedly. Here's an example: `php yellow.php build cache`. To clean the cache type the following line: `php yellow.php clean cache`.
+
+You can test a static website without uploading it to a web server. Start the built-in web server. This is especially handy for [developers](api), since everything runs on your own computer. Here's an example: `php yellow.php serve`. Now the website is available as `http://localhost:8000`.
 
 [Next: API for developers →](api)

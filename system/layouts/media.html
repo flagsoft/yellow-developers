@@ -1,0 +1,23 @@
+<?php $this->yellow->layout("header") ?>
+<?php $files = $this->yellow->media->index(true, true) ?>
+<?php $this->yellow->page->setLastModified($files->getModified()) ?>
+<?php $this->yellow->page->setHeader("Cache-Control", "max-age=60") ?>
+<div class="content">
+<div class="main" role="main">
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<?php echo $this->yellow->page->getContent() ?>
+<table>
+<tr><th><?php echo $this->yellow->text->getHtml("textLocation") ?></th><th><?php echo $this->yellow->text->getHtml("textType") ?></th><th><?php echo $this->yellow->text->getHtml("textGroup") ?></th><th><?php echo $this->yellow->text->getHtml("textSize") ?></th><th><?php echo $this->yellow->text->getHtml("textModified") ?></th></tr>
+<?php foreach ($files as $file): ?>
+<tr>
+<td><a href="<?php echo $file->getLocation(true) ?>"><i class="fa fa-file-image-o"></i> <?php echo $file->getLocation(true) ?></a></td>
+<td><?php echo $file->getHtml("type") ?></td>
+<td><?php echo $file->getHtml("group") ?></td>
+<td style="text-align:right;"><?php echo intval((filesize($file->fileName)+512)/1024)." KB" ?></td>
+<td><?php echo $file->getDateHtml("modified") ?></td>
+</tr>
+<?php endforeach ?>
+</table>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>

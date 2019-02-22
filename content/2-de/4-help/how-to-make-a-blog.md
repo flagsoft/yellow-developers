@@ -24,7 +24,7 @@ Lass uns einen Blick ins `content`-Verzeichnis werfen, dort befindet sich das Bl
 Title: Blog-Beispiel
 Published: 2013-04-07
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Beispiel
 ---
 Das ist eine Beispiel-Blogseite.
@@ -41,7 +41,7 @@ Um eine neue Blogseite hinzuzufügen, erstellst du eine neue Datei im Blogverzei
 Title: Fika ist gut für dich
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Beispiel, Kaffee
 ---
 Fika ist ein schwedischer Brauch. Es ist eine Kaffeepause, bei der Menschen  
@@ -51,14 +51,14 @@ schwedischen Alltag, dass es sowohl als Verb als auch als Nomen verwendet
 wird. Wie oft machst du Fika?
 ```
 
-Ein Video hinzufügen mit dem [Youtube-Plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
+Ein Video hinzufügen mit der [Youtube-Erweiterung](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
 Title: Fika ist gut für dich
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Beispiel, Kaffee, Video
 ---
 Fika ist ein schwedischer Brauch. Es ist eine Kaffeepause, bei der Menschen  
@@ -77,7 +77,7 @@ Das Video erst anzeigen wenn ein Besucher auf die Blogseite klickt. Du kannst `[
 Title: Fika ist gut für dich
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Beispiel, Kaffee, Video
 ---
 Fika ist ein schwedischer Brauch. Es ist eine Kaffeepause, bei der Menschen  
@@ -91,7 +91,7 @@ wird. Wie oft machst du Fika? [--more--]
 
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in deinem Blogverzeichnis erstellen, die Sidebar wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in deinem Blogverzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -102,7 +102,7 @@ Links
 
 * [Twitter](https://twitter.com/datenstromse)
 * [GitHub](https://github.com/datenstrom)
-* [Datenstrom](https://datenstrom.se)
+* [Datenstrom](https://datenstrom.se/de/)
 ```
 
 Verwende [Abkürzungen](https://github.com/datenstrom/yellow-extensions/tree/master/features/blog#how-to-show-blog-information), um Informationen über das Blog anzuzeigen.
@@ -137,9 +137,21 @@ Tags
 [blogtags / 5]
 ```
 
+## Kopfzeile anzeigen
+
+Um eine Kopfzeile anzuzeigen, erstelle die Datei `content/shared/header.md`. Du kannst auch eine `header.md` in deinem Blogverzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+
+```
+---
+Title: Header
+Status: hidden
+---
+Ich mag Markdown.
+```
+
 ## Fußzeile anpassen
 
-Um die Fußzeile anzupassen, ändere die Datei `content/shared/footer.md`. Du kannst auch eine `footer.md` in deinem Blogverzeichnis erstellen, die Fußzeile wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+Um die Fußzeile anzupassen, ändere die Datei `content/shared/footer.md`. Du kannst auch eine `footer.md` in deinem Blogverzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -149,12 +161,12 @@ Status: hidden
 [Erstellt mit Datenstrom Yellow](https://datenstrom.se/de/yellow/)
 ```
 
-## Weitere Funktionen
+## Erweiterungen hinzufügen
 
 * [Eine Kommentarfunktion zum Blog hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/disqus)
 * [Eine Suche zum Blog hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
 * [Einen Feed zum Blog hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/feed)
-* [Eine Entwurfseite erstellen](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
+* [Eine Entwurfseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Ein statisches Blog erstellen](server-configuration#statische-webseite)
 
 [Weiter: Wiki erstellen →](how-to-make-a-wiki)

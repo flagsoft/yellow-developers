@@ -22,7 +22,7 @@ Jetons un oeil dans le dossier `content`, où se trouve le dossier de votre wiki
 ```
 ---
 Title: Exemple de wiki
-Template: wiki
+Layout: wiki
 Tag: Exemple
 ---
 Ceci est un exemple de page de wiki.
@@ -37,7 +37,7 @@ Pour créer une nouvelle page de wiki, ajoutez un nouveau fichier dans le dossie
 ```
 ---
 Title: Café est bon pour toi
-Template: wiki
+Layout: wiki
 Tag: Exemple, Café
 ---
 Le café est une boisson fabriquée à partir des haricots rôtis de l'usine de café.
@@ -52,12 +52,12 @@ Le café est une boisson fabriquée à partir des haricots rôtis de l'usine de 
 3. Prendre plaisir.
 ```
 
-Maintenant ajoutons une vidéo avec le [plugin Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
+Maintenant ajoutons une vidéo avec l'[extension Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
 Title: Café est bon pour toi
-Template: wiki
+Layout: wiki
 Tag: Exemple, Café, Vidéo
 ---
 Le café est une boisson fabriquée à partir des haricots rôtis de l'usine de café.
@@ -76,7 +76,7 @@ Le café est une boisson fabriquée à partir des haricots rôtis de l'usine de 
 
 ## Afficher une sidebar
 
-Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans votre dossier de wiki, la sidebar ne sera alors affichée que sur les pages du même dossier. Voici un exemple:
+Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans votre dossier de wiki et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -124,9 +124,21 @@ Liens
 [wikitags / 5]
 ```
 
-## Ajuster le pied de page
+## Afficher un en-tête
 
-Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans votre dossier de wiki, le pied de page ne sera alors affiché que sur les pages du même dossier. Voici un exemple:
+Pour afficher un en-tête, ajoutez le fichier `content/shared/header.md`. Vous pouvez également créer un `header.md` dans votre dossier de wiki et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
+
+```
+---
+Title: Header
+Status: hidden
+---
+J'aime Markdown.
+```
+
+## Ajuster un pied de page
+
+Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans votre dossier de wiki et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -136,12 +148,12 @@ Status: hidden
 [Fait avec Datenstrom Yellow](https://datenstrom.se/fr/yellow/)
 ```
 
-## Plus de fonctionnalités
+## Ajouter des extensions
 
 * [Comment ajouter une table des matières à votre wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc)
 * [Comment ajouter un moteur de recherche à votre wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
 * [Comment ajouter une page de contact à votre wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
-* [Comment créer une page de brouillon](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
+* [Comment ajouter une page de brouillon](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Comment créer un wiki statique](server-configuration#site-web-statique)
 
 [Suivant: Ajouter des pages →](adding-content)

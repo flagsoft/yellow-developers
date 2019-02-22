@@ -2,7 +2,7 @@
 Title: Blogseite
 Published: @datetime
 Author: @username
-Template: blog
+Layout: blog
 Tag: Beispiel
 ---
 Dies ist eine neue Blogseite.

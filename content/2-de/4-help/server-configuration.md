@@ -102,7 +102,7 @@ server {
 
 Falls man eine statische Webseite erstellen will, benutzt man den Static-Site-Generator. Dazu führt man einen Build-Befehl im Installations-Verzeichnis aus. Daraufhin wird eine statische Webseite erstellt, die auf fast jedem Webserver funktioniert.
 
-Du kannst eine statische Webseite in der [Befehlszeile](https://github.com/datenstrom/yellow-plugins/tree/master/command) erstellen:
+Du kannst eine statische Webseite in der [Befehlszeile](https://github.com/datenstrom/yellow-extensions/tree/master/features/command) erstellen:
 
 1. Öffne ein Terminal-Fenster.
 2. Gehe ins Installations-Verzeichnis, dort wo sich die `yellow.php` befindet.
@@ -110,8 +110,8 @@ Du kannst eine statische Webseite in der [Befehlszeile](https://github.com/daten
 
 Das erstellt eine statische Webseite im `public`-Verzeichnis. Lade das Verzeichnis auf dein Webserver hoch und erstelle bei Bedarf eine neue Webseite. Die URL deiner Webseite kannst du in den [Systemeinstellungen](adjusting-system#systemeinstellungen) festlegen, zum Beispiel `StaticUrl: http://website/`. 
 
-Man kann eine statische Webseite auch testen, ohne sie auf einen Webserver hochzuladen. Das ist vor allem für Entwickler praktisch, da alles auf dem eigenem Computer läuft. Hier ist ein Beispiel: `php yellow.php serve`. Daraufhin ist die Webseite vorhanden als `http://localhost:8000`.
-
 Als Alternative zu einer statischen Webseite kannst du einen Cache erstellen. Das beschleunigt deine Webseite deutlich, jedoch muss der Cache immer wieder aktualisiert werden. Hier ist ein Beispiel: `php yellow.php build cache`. Zum Löschen gibt man ein: `php yellow.php clean cache`.
+
+Man kann eine statische Webseite auch testen, ohne sie auf einen Webserver hochzuladen. Das ist vor allem für [Entwickler](api) praktisch, da alles auf dem eigenem Computer läuft. Hier ist ein Beispiel: `php yellow.php serve`. Daraufhin ist die Webseite vorhanden als `http://localhost:8000`.
 
 [Weiter: API für Entwickler →](api)

@@ -2,6 +2,6 @@
 Title: Feed
 TitleSlug: Feed
 Description: Feed
-Template: feed
+Layout: feed
 ---
 This page is automatically generated.

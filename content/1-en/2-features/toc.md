@@ -4,7 +4,7 @@ Description: Table of contents
 Image: toc-en.png
 ---
 Table of contents.
-[Install](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc).
+[Install extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc).
 
 [toc]
 

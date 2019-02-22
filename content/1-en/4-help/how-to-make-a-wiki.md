@@ -22,7 +22,7 @@ Have a look inside your `content` folder, there's the wiki folder with all your 
 ```
 ---
 Title: Wiki page
-Template: wiki
+Layout: wiki
 Tag: Example
 ---
 This is an example wiki page. 
@@ -37,7 +37,7 @@ To create a new wiki page, add a new file to the wiki folder. Set `Title` and mo
 ```
 ---
 Title: Coffee is good for you
-Template: wiki
+Layout: wiki
 Tag: Example, Coffee
 ---
 Coffee is a beverage made from the roasted beans of the coffee plant.
@@ -52,12 +52,12 @@ Coffee is a beverage made from the roasted beans of the coffee plant.
 3. Enjoy.
 ```
 
-Now let's add a video with the [Youtube plugin](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
+Now let's add a video with the [Youtube extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
 Title: Coffee is good for you
-Template: wiki
+Layout: wiki
 Tag: Example, Coffee, Video
 ---
 Coffee is a beverage made from the roasted beans of the coffee plant.
@@ -76,7 +76,7 @@ Coffee is a beverage made from the roasted beans of the coffee plant.
 
 ## Showing sidebar
 
-To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in your wiki folder, the sidebar will then only be shown on pages in the same folder. Here's an example:
+To show a sidebar create the file `content/shared/sidebar.md`. You can also create a `sidebar.md` in your wiki folder and it will only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -126,9 +126,21 @@ Tags
 [wikitags / 5]
 ```
 
+## Showing header
+
+To show a header create the file `content/shared/header.md`. You can also create a `header.md` in your wiki folder and it will only be shown on pages in the same folder. Here's an example:
+
+```
+---
+Title: Header
+Status: hidden
+---
+I like Markdown.
+```
+
 ## Adjusting footer
 
-To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in your wiki folder, the footer will then only be shown on pages in the same folder. Here's an example:
+To adjust the footer change the file `content/shared/footer.md`. You can also create a `footer.md` in your wiki folder and it will only be shown on pages in the same folder. Here's an example:
 
 ```
 ---
@@ -138,12 +150,12 @@ Status: hidden
 [Made with Datenstrom Yellow](https://datenstrom.se/yellow/)
 ```
 
-## More features
+## Adding extensions
 
 * [How to add a table of contents to your wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/toc)
 * [How to add a search to your wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
 * [How to add a contact page to your wiki](https://github.com/datenstrom/yellow-extensions/tree/master/features/contact)
-* [How to make a draft page](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
+* [How to add a draft page](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [How to make a static wiki](server-configuration#static-website)
 
 [Next: Adding content →](adding-content)

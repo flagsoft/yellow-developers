@@ -1,6 +1,6 @@
 ---
 Title: Demo
-Template: demo
+Layout: demo
 ---
 [image picture.jpg Example rounded]
 

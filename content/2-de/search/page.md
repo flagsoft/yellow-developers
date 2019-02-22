@@ -2,7 +2,7 @@
 Title: Suche
 TitleSlug: Search
 Description: Suche
-Template: search
+Layout: search
 Status: ignore
 ---
 This page is automatically generated.

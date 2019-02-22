@@ -1,0 +1,23 @@
+<?php $this->yellow->layout("header") ?>
+<?php $pages = $this->yellow->content->index(true, true) ?>
+<?php $this->yellow->page->setLastModified($pages->getModified()) ?>
+<?php $this->yellow->page->setHeader("Cache-Control", "max-age=60") ?>
+<div class="content">
+<div class="main" role="main">
+<h1><?php echo $this->yellow->page->getHtml("titleContent") ?></h1>
+<?php echo $this->yellow->page->getContent() ?>
+<table>
+<tr><th><?php echo $this->yellow->text->getHtml("textLocation") ?></th><th><?php echo $this->yellow->text->getHtml("textVisible") ?></th><th><?php echo $this->yellow->text->getHtml("textLanguage") ?></th><th><?php echo $this->yellow->text->getHtml("textDescription") ?></th><th><?php echo $this->yellow->text->getHtml("textModified") ?></th></tr>
+<?php foreach ($pages as $page): ?>
+<tr>
+<td><a href="<?php echo $page->getLocation(true) ?>"><i class="fa fa-file-o"></i> <?php echo $page->getLocation(true) ?></a></td>
+<td><?php echo $this->yellow->text->getHtml($page->isVisible() ? "textYes" : "textNo") ?></td>
+<td><?php echo $page->get("language")!="none" ? $this->yellow->text->getTextHtml("languageDescription", $page->get("language")) : "none" ?></td>
+<td><?php echo $page->getParent()!=null ? $page->getParent()->getHtml("titleNavigation") : $page->getHtml("titleNavigation") ?></td>
+<td><?php echo $page->getDateHtml("modified") ?></td>
+</tr>
+<?php endforeach ?>
+</table>
+</div>
+</div>
+<?php $this->yellow->layout("footer") ?>

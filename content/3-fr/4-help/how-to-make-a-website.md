@@ -54,7 +54,7 @@ créer de petites pages web, blogs et wikis.
 
 ## Afficher une sidebar
 
-Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans n’importe quel dossier `content`, la sidebar ne sera alors affichée que sur les pages du même dossier. Voici un exemple:
+Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans n’importe quel dossier `content` et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -65,12 +65,24 @@ Liens
 
 * [Twitter](https://twitter.com/datenstromse)
 * [GitHub](https://github.com/datenstrom)
-* [Datenstrom](https://datenstrom.se)
+* [Datenstrom](https://datenstrom.se/fr/)
 ```
 
-## Ajuster le pied de page
+## Afficher un en-tête
 
-Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans n’importe quel dossier `content`, le pied de page ne sera alors affiché que sur les pages du même dossier. Voici un exemple:
+Pour afficher nu en-tête, ajoutez le fichier `content/shared/header.md`. Vous pouvez également créer un `header.md` dans n’importe quel dossier `content` et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
+
+```
+---
+Title: Header
+Status: hidden
+---
+J'aime Markdown.
+```
+
+## Ajuster un pied de page
+
+Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans n’importe quel dossier `content` et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -80,7 +92,7 @@ Status: hidden
 [Fait avec Datenstrom Yellow](https://datenstrom.se/fr/yellow/)
 ```
 
-## Plus de fonctionnalités
+## Ajouter des extensions
 
 * [Comment ajouter une galerie d'images](https://github.com/datenstrom/yellow-extensions/tree/master/features/gallery)
 * [Comment ajouter un moteur de recherche à votre site](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)

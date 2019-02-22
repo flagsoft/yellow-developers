@@ -4,4 +4,4 @@ TitleNavigation: Funktionen
 ---
 [preview /de/features/ - 40.5%]
 
-Möchtest du weitere Funktionen herunterladen? [Siehe alle Funktionen](/de/help/datenstrom-yellow-features).
+[Weitere Funktionen herunterladen](/de/help/extensions-features).

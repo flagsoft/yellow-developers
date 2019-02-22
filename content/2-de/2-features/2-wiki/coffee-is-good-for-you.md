@@ -1,6 +1,6 @@
 ---
 Title: Kaffee ist gut für dich
-Template: wiki
+Layout: wiki
 Tag: Beispiel, Kaffee, Video
 ---
 Kaffee ist ein Getränk aus gerösteten Bohnen der Kaffeepflanze.

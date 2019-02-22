@@ -16,8 +16,8 @@ Connect with other users and find support.
 
 * [Follow us on Twitter](https://twitter.com/datenstromse): We're curious what you do with Datenstrom Yellow.
 * [Watch us on GitHub](https://github.com/datenstrom/yellow): Answer questions from other users.
-* [Create new features](https://github.com/datenstrom/yellow-extensions/tree/master/features): Develop useful features for websites.
-* [Create new themes](https://github.com/datenstrom/yellow-extensions/tree/master/themes): Design beautiful themes for websites.
-* [Create new languages](https://github.com/datenstrom/yellow-extensions/tree/master/features/language): Translate and improve language files.
+* [Make new features](https://github.com/datenstrom/yellow-extensions/tree/master/features): Develop useful features for websites.
+* [Make new languages](https://github.com/datenstrom/yellow-extensions/tree/master/languages): Translate and improve language files.
+* [Make new themes](https://github.com/datenstrom/yellow-extensions/tree/master/themes): Design beautiful themes for websites.
 
 At the heart of open source is the idea that we make better software together. [API for developers](api).

@@ -24,7 +24,7 @@ Jetons un oeil dans le dossier `content`, où se trouve le dossier de votre blog
 Title: Exemple de blog
 Published: 2013-04-07
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Exemple
 ---
 Ceci est un exemple de page de blog.
@@ -41,7 +41,7 @@ Pour créer une nouvelle page de blog, ajoutez un nouveau fichier dans le dossie
 Title: Fika est bon pour toi
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Exemple, Café, Vidéo
 ---
 Fika est une coutume suédoise. C'est une pause-café sociale où les gens se 
@@ -51,14 +51,14 @@ Fika est une part aussi importante de la vie en Suède que c'est à la fois un
 verbe et un nom. À quelle fréquence faites-vous fika?
 ```
 
-Maintenant ajoutons une vidéo avec le [plugin Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
+Maintenant ajoutons une vidéo avec l'[extension Youtube](https://github.com/datenstrom/yellow-extensions/tree/master/features/youtube):
 
 ```
 ---
 Title: Fika est bon pour toi
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Exemple, Café, Vidéo
 ---
 Fika est une coutume suédoise. C'est une pause-café sociale où les gens se 
@@ -77,7 +77,7 @@ Faisons en sorte que la vidéo soit visible quand le visiteur clique sur la page
 Title: Fika est bon pour toi
 Published: 2016-06-01
 Author: Datenstrom
-Template: blog
+Layout: blog
 Tag: Exemple, Café, Vidéo
 ---
 Fika est une coutume suédoise. C'est une pause-café sociale où les gens se 
@@ -91,7 +91,7 @@ verbe et un nom. À quelle fréquence faites-vous fika? [--more--]
 
 ## Afficher une sidebar
 
-Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans votre dossier de blog, la sidebar ne sera alors affichée que sur les pages du même dossier. Voici un exemple:
+Pour afficher une sidebar (menu latéral), ajoutez le fichier `content/shared/sidebar.md`. Vous pouvez également créer un `sidebar.md` dans votre dossier de blog et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -102,7 +102,7 @@ Liens
 
 * [Twitter](https://twitter.com/datenstromse)
 * [GitHub](https://github.com/datenstrom)
-* [Datenstrom](https://datenstrom.se)
+* [Datenstrom](https://datenstrom.se/fr/)
 ```
 
 Vous pouvez utiliser des [raccourcis](https://github.com/datenstrom/yellow-extensions/tree/master/features/blog#how-to-show-blog-information) afin d'afficher des informations à propos du blog.
@@ -137,9 +137,21 @@ Tags
 [blogtags / 5]
 ```
 
-## Ajuster le pied de page
+## Afficher un en-tête
 
-Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans votre dossier de blog, le pied de page ne sera alors affiché que sur les pages du même dossier. Voici un exemple:
+Pour afficher un en-tête, ajoutez le fichier `content/shared/header.md`. Vous pouvez également créer un `header.md` dans votre dossier de blog et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
+
+```
+---
+Title: Header
+Status: hidden
+---
+J'aime Markdown.
+```
+
+## Ajuster un pied de page
+
+Pour ajuster le pied de page, changez le fichier `content/shared/footer.md`. Vous pouvez également créer un `footer.md` dans votre dossier de blog et il ne sera affiché que sur les pages du même dossier. Voici un exemple:
 
 ```
 ---
@@ -149,12 +161,12 @@ Status: hidden
 [Fait avec Datenstrom Yellow](https://datenstrom.se/fr/yellow/)
 ```
 
-## Plus de fonctionnalités
+## Ajouter des extensions
 
 * [Comment ajouter des commentaires à votre blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/disqus)
 * [Comment ajouter un moteur de recherche à votre blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)
 * [Comment ajouter un feed à votre blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/feed)
-* [Comment créer une page de brouillon](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
+* [Comment ajouter une page de brouillon](https://github.com/datenstrom/yellow-extensions/tree/master/features/draft)
 * [Comment créer un blog statique](server-configuration#site-web-statique)
 
 [Suivant: Comment faire un wiki →](how-to-make-a-wiki)

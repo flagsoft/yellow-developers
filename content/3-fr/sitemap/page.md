@@ -2,6 +2,6 @@
 Title: Sitemap
 TitleSlug: Sitemap
 Description: Sitemap
-Template: sitemap
+Layout: sitemap
 ---
 This page is automatically generated.

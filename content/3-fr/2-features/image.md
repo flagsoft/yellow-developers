@@ -4,7 +4,7 @@ Description: Images et miniatures
 Image: image-fr.png
 ---
 Images et miniatures.
-[Installer](https://github.com/datenstrom/yellow-extensions/tree/master/features/image).
+[Installer l'extension](https://github.com/datenstrom/yellow-extensions/tree/master/features/image).
 
 [image picture.jpg Exemple]
 

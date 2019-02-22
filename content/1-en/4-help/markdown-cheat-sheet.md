@@ -132,9 +132,9 @@ Using HTML blocks:
 `Keywords` = page keyword(s), comma separated  
 `Author` = page author(s), comma separated  
 `Language` = page language  
+`Layout` = page layout  
+`LayoutNew` = page layout for creating a new page  
 `Theme` = page theme  
-`Template` = page template  
-`TemplateNew` = page template for creating a new page  
 `Parser` = page parser  
 `Modified` = page modification date, YYYY-MM-DD format  
 `Published` = page publication date, YYYY-MM-DD format  
@@ -146,5 +146,4 @@ Using HTML blocks:
 `Footer` = page footer  
 `Sidebar` = page sidebar  
 `Sitename` = name of the website  
-`Siteicon` = icon of the website  
 `Email` = email of the webmaster  

@@ -132,9 +132,9 @@ HTML-Blöcke benutzen:
 `Keywords` = Stichwörter der Seite, durch Komma getrennt  
 `Author` = Autoren der Seite, durch Komma getrennt  
 `Language` = Sprache der Seite  
-`Theme` = Theme der Seite  
-`Template` = Template der Seite  
-`TemplateNew` = Template um eine neue Seite zu erzeugen  
+`Layout` = Layout der Seite  
+`LayoutNew` = Layout um eine neue Seite zu erzeugen  
+`Theme` = Thema der Seite  
 `Parser` = Parser der Seite  
 `Modified` = Änderungsdatum der Seite, JJJJ-MM-TT Format  
 `Published` = Veröffentlichungsdatum der Seite, JJJJ-MM-TT Format  
@@ -146,5 +146,4 @@ HTML-Blöcke benutzen:
 `Footer` = Fußzeile der Seite  
 `Sidebar` = Sidebar der Seite  
 `Sitename` = Name der Webseite  
-`Siteicon` = Icon der Webseite  
 `Email` = E-Mail des Webmasters  

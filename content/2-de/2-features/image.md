@@ -4,7 +4,7 @@ Description: Bilder in unterschiedlichen Größen
 Image: image-de.png
 ---
 Bilder in unterschiedlichen Größen.
-[Installieren](https://github.com/datenstrom/yellow-extensions/tree/master/features/image).
+[Erweiterung installieren](https://github.com/datenstrom/yellow-extensions/tree/master/features/image).
 
 [image picture.jpg Beispiel]
 

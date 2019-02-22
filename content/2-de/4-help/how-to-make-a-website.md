@@ -54,7 +54,7 @@ man kleine Webseiten, Blogs und Wikis erstellt.
 
 ## Sidebar anzeigen
 
-Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in einem beliebigen `content`-Verzeichnis erstellen, die Sidebar wird dann nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+Um eine Sidebar anzuzeigen, erstelle die Datei `content/shared/sidebar.md`. Du kannst auch eine `sidebar.md` in einem `content`-Verzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
 
 ```
 ---
@@ -65,7 +65,19 @@ Links
 
 * [Twitter](https://twitter.com/datenstromse)
 * [GitHub](https://github.com/datenstrom)
-* [Datenstrom](https://datenstrom.se)
+* [Datenstrom](https://datenstrom.se/de/)
+```
+
+## Kopfzeile anzeigen
+
+Um eine Kopfzeile anzuzeigen, erstelle die Datei `content/shared/header.md`. Du kannst auch eine `header.md` in einem `content`-Verzeichnis erstellen und sie wird nur auf Seiten im gleichen Verzeichnis angezeigt. Hier ist ein Beispiel:
+
+```
+---
+Title: Header
+Status: hidden
+---
+Ich mag Markdown.
 ```
 
 ## Fußzeile anpassen
@@ -80,7 +92,7 @@ Status: hidden
 [Erstellt mit Datenstrom Yellow](https://datenstrom.se/de/yellow/)
 ```
 
-## Weitere Funktionen
+## Erweiterungen hinzufügen
 
 * [Eine Bildergalerie zur Webseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/gallery)
 * [Eine Suche zur Webseite hinzufügen](https://github.com/datenstrom/yellow-extensions/tree/master/features/search)

@@ -1,6 +1,6 @@
 ---
 Title: Coffee is good for you
-Template: wiki
+Layout: wiki
 Tag: Example, Coffee, Video
 ---
 Coffee is a beverage made from the roasted beans of the coffee plant.

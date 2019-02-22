@@ -9,14 +9,14 @@ Wie man Sicherheit und Datenschutz konfiguriert.
 
 ## Loginbeschränkungen
 
-Falls du nicht willst dass Benutzerkonten im Webbrowser erstellt werden, beschränke die [Login-Seite](https://github.com/datenstrom/yellow-plugins/tree/master/edit). Öffne die Datei `system/config/config.ini` und ändere `EditLoginRestrictions: 1`. Benutzer dürfen sich dann noch einloggen, aber keine Benutzerkonten erstellen.
+Falls du nicht willst dass Benutzerkonten im Webbrowser erstellt werden, beschränke die [Login-Seite](https://github.com/datenstrom/yellow-extensions/tree/master/features/edit). Öffne die Datei `system/settings/system.ini` und ändere `EditLoginRestrictions: 1`. Benutzer dürfen sich dann einloggen, aber keine neue Benutzerkonten erstellen.
 
 ## Benutzerbeschränkungen
 
-Falls du nicht willst dass Seiten im Webbrowser verändert werden, beschränke [Benutzerkonten](adjusting-system#benutzerkonten). Öffne die Datei `system/config/user.ini` und ändere am Zeilenende die Startseite. Benutzer dürfen dann nur noch Seiten innerhalb ihrer Startseite bearbeiten.
+Falls du nicht willst dass Seiten im Webbrowser verändert werden, beschränke [Benutzerkonten](adjusting-system#benutzerkonten). Öffne die Datei `system/settings/user.ini` und ändere am Zeilenende die Startseite. Benutzer dürfen dann Seiten innerhalb ihrer Startseite bearbeiten, aber nirgendwo sonst.
 
 ## Sicherheitsmodus
 
-Falls du deine Webseite vor Unfug schützen willst, beschränke weitere Funktionen. Öffne die Datei `system/config/config.ini` und ändere `SafeMode: 1`. Benutzer dürfen dann nicht mehr HTML und JavaScript benutzen, [Markdown](markdown-cheat-sheet) und andere Funktionen sind eingeschränkt.
+Falls du deine Webseite vor unterschiedlichem Unfug schützen willst, beschränke Funktionen. Öffne die Datei `system/settings/system.ini` und ändere `SafeMode: 1`. Benutzer dürfen dann [Markdown](markdown-cheat-sheet) benutzen, aber HTML und andere Funktionen sind eingeschränkt.
 
 [Weiter: Servereinstellungen →](server-configuration)
