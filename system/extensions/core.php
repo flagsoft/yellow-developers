@@ -2486,19 +2486,6 @@ class YellowToolbox {
         return $shortFormat ? $text : "$serverProtocol $statusCode $text";
     }
                               
-    // Return human readable language name
-    public function getLanguageName($language) {
-        $languageName = "";
-        $languageNames = array("bn" => "bengali", "cs" => "czech", "da" => "danish", "de" => "german",
-            "en" => "english", "es" => "spanish", "fr" => "french", "hu" => "hungarian", "id" => "indonesian",
-            "it" => "italian", "ja" => "japanese", "ko" => "korean", "nl" => "dutch", "pl" => "polish",
-            "pt" => "portuguese", "ru" => "russian", "sk" => "slovenian", "sv" => "swedish", "zh-CN" => "chinese");
-        if (array_key_exists($language, $languageNames)) {
-            $languageName = $languageNames[$language];
-        }
-        return $languageName;
-    }
-                
     // Return MIME content type
     public function getMimeContentType($fileName) {
         $contentType = "";

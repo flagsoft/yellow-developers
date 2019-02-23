@@ -50,7 +50,7 @@ class YellowUpdate {
                 $path = $this->yellow->system->get("extensionDir");
                 foreach ($this->yellow->toolbox->getDirectoryEntries($path, "/^.*\.txt$/", true, false) as $entry) {
                     preg_match("/^language-(.*)\.txt$/", basename($entry), $matches);
-                    $languageName = $this->yellow->toolbox->getLanguageName($matches[1]);
+                    $languageName = $this->getLanguageName($matches[1]);
                     if (!empty($languageName)) {
                         $entryNew = $path.$languageName."-language.txt";
                         if (!$this->yellow->toolbox->renameFile($entry, $entryNew)) {
@@ -711,6 +711,19 @@ class YellowUpdate {
         }
         if (defined("DEBUG") && DEBUG>=2) echo "YellowUpdate::getExtensionFile status:$statusCode url:$url<br/>\n";
         return array($statusCode, $fileData);
+    }
+    
+    // Return human readable language name, TODO: remove later, for backwards compatibility
+    public function getLanguageName($language) {
+        $languageName = "";
+        $languageNames = array("bn" => "bengali", "cs" => "czech", "da" => "danish", "de" => "german",
+            "en" => "english", "es" => "spanish", "fr" => "french", "hu" => "hungarian", "id" => "indonesian",
+            "it" => "italian", "ja" => "japanese", "ko" => "korean", "nl" => "dutch", "pl" => "polish",
+            "pt" => "portuguese", "ru" => "russian", "sk" => "slovenian", "sv" => "swedish", "zh-CN" => "chinese");
+        if (array_key_exists($language, $languageNames)) {
+            $languageName = $languageNames[$language];
+        }
+        return $languageName;
     }
 
     // Check if extension pending
