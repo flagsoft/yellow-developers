@@ -44,6 +44,18 @@ class YellowUpdate {
                 if (!empty($fileDataError)) $this->yellow->toolbox->createFile($fileNameError, $fileDataError);
             }
         }
+        if ($update) {  //TODO: remove later, converts old website icon
+            $fileNameError = $this->yellow->system->get("settingDir")."system-error.log";
+            if ($this->yellow->system->isExisting("siteicon")) {
+                $theme = $this->yellow->system->get("theme");
+                $fileName = $this->yellow->system->get("resourceDir")."icon.png";
+                $fileNameNew = $this->yellow->system->get("resourceDir").$this->yellow->lookup->normaliseName($theme)."-icon.png";
+                if (is_file($fileName) && !$this->yellow->toolbox->renameFile($fileName, $fileNameNew)) {
+                    $fileDataError .= "ERROR renaming file '$fileName'!\n";
+                }
+                if (!empty($fileDataError)) $this->yellow->toolbox->createFile($fileNameError, $fileDataError);
+            }
+        }
         if ($update) {  //TODO: remove later, converts old language files
             $fileNameError = $this->yellow->system->get("settingDir")."system-error.log";
             if ($this->yellow->system->isExisting("languageFile")) {
