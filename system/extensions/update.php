@@ -63,6 +63,10 @@ class YellowUpdate {
                         }
                     }
                 }
+                $fileName = $this->yellow->system->get("extensionDir")."language.php";
+                if (is_file($fileName) && !$this->yellow->toolbox->deleteFile($fileName, $this->yellow->system->get("trashDir"))) {
+                    $fileDataError .= "ERROR deleting file '$fileName'!\n";
+                }
                 if (!empty($fileDataError)) $this->yellow->toolbox->createFile($fileNameError, $fileDataError);
             }
         }

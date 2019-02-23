@@ -317,7 +317,7 @@ class YellowCore {
         $fileData = $fileDataNew = $this->toolbox->readFile("yellow.php");
         $fileDataNew = str_replace("system/plugins/core.php", "system/extensions/core.php", $fileData);
         if (is_dir("system/config/") || is_dir("system/themes/") || is_dir("system/plugins/") || $fileData!=$fileDataNew) {
-            $fileNameError = $this->yellow->system->get("settingDir")."system-error.log";;
+            $fileNameError = "system/settings/system-error.log";
             if (is_dir("system/config/")) {
                 foreach ($this->toolbox->getDirectoryEntriesRecursive("system/config/", "/.*/", true, false) as $entry) {
                     $entryNew = str_replace("system/config/", "system/settings/", $entry);
@@ -372,7 +372,8 @@ class YellowCore {
                 if (preg_match("/^core\.php$/", basename($entry))) continue;
                 if ($fileData!=$fileDataNew) $this->toolbox->createFile($entry, $fileDataNew);
             }
-            if (!empty($fileDataError)) $this->yellow->toolbox->createFile($fileNameError, $fileDataError);
+            $this->system->save("system/settings/system.ini", array("startupUpdate" => "update"));
+            if (!empty($fileDataError)) $this->toolbox->createFile($fileNameError, $fileDataError);
             @header($this->toolbox->getHttpStatusFormatted(empty($fileDataError) ? 200 : 500));
             die(empty($fileDataError) ? "System folder has been updated. Please try again.\n" :
                 "System folder has not been updated. See errors in file '$fileNameError'!\n");
