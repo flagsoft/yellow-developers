@@ -4,7 +4,7 @@ Redirect: https://github.com/datenstrom/yellow-extensions/tree/master/features
 Information: Please do not translate this file, English only
 Language: en
 ---
-The following features are official:
+The following features are available:
 
 * [Blog](https://github.com/datenstrom/yellow-extensions/tree/master/features/blog): 
   Blog for your website.
@@ -42,8 +42,6 @@ The following features are official:
   Images and thumbnails.
 * [Instagram](https://github.com/datenstrom/yellow-extensions/tree/master/features/instagram): 
   Embed Instagram photos.
-* [Language](https://github.com/datenstrom/yellow-extensions/tree/master/features/language): 
-  Languages and regions.
 * [Links](https://github.com/datenstrom/yellow-extensions/tree/master/features/links): 
   Add links to previous/next page.
 * [Markdown](https://github.com/datenstrom/yellow-extensions/tree/master/features/markdown): 

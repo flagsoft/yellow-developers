@@ -6,6 +6,7 @@ TitleSlug: Tests
 
 [![Build status](https://travis-ci.org/datenstrom/yellow.svg?branch=master)](https://travis-ci.org/datenstrom/yellow) [![Code quality](https://img.shields.io/codacy/grade/f565b048bdff4b0e90391d3d93384b2f/master.svg)](https://app.codacy.com/project/markseu/yellow/dashboard)  
 [![Build status](https://travis-ci.org/datenstrom/yellow-developers.svg?branch=master)](https://travis-ci.org/datenstrom/yellow-developers) [![Code quality](https://img.shields.io/codacy/grade/238ea263acd94e36a8dc105a9c0c80fa/master.svg)](https://app.codacy.com/project/markseu/yellow-developers/dashboard)  
+[![Build status](https://travis-ci.org/datenstrom/yellow-extensions.svg?branch=master)](https://travis-ci.org/datenstrom/yellow-extensions) [![Code quality](https://img.shields.io/codacy/grade/38254c5c3b8247359d09e74267b70eaf/master.svg)](https://app.codacy.com/project/markseu/yellow-extensions/dashboard)  
 
 Hier ist eine Sammlung unserer Tests:
 

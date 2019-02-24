@@ -4,7 +4,7 @@ Redirect: https://github.com/datenstrom/yellow-extensions/tree/master/themes
 Information: Please do not translate this file, English only
 Language: en
 ---
-The following themes are official:
+The following themes are available:
 
 * [Berlin](https://github.com/datenstrom/yellow-extensions/tree/master/themes/berlin): 
   Berlin is a simple and beautiful theme inspired by Dieter Rams.
