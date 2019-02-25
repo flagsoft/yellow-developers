@@ -127,7 +127,7 @@ class YellowRelease {
         if (is_file($fileNameDocumentation) && !empty($extension) && !empty($version)) {
             $fileData = $this->yellow->toolbox->readFile($fileNameDocumentation);
             foreach ($this->yellow->toolbox->getTextLines($fileData) as $line) {
-                preg_match("/^(.*?)([0-9\.]+)\s*$/", $line, $matches);
+                preg_match("/^(.*?)([0-9\.]{5,})\s*$/", $line, $matches);
                 if (!empty($matches[1]) && !empty($matches[2]) && !$found) {
                     $fileDataNew .= ucfirst($extension)." $version\n";
                     $found = true;

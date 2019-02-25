@@ -3,7 +3,6 @@
 Language: de
 LanguageDescription: Deutsch
 LanguageTranslator: David Fehrmann
-LanguageVersion: 0.8.2
 
 BlogBy: von
 BlogTag: Tags:

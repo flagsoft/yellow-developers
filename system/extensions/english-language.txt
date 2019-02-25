@@ -3,7 +3,6 @@
 Language: en
 LanguageDescription: English
 LanguageTranslator: Mark Seuffert
-LanguageVersion: 0.8.2
 
 BlogBy: by
 BlogTag: Tags:
